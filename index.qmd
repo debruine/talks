@@ -1,0 +1,9 @@
+---
+title: "Talks"
+author: "Lisa DeBruine"
+format: 
+  html:
+    css: style.scss
+---
+
+* [UofG Open Research Workshop](UofG-open-res/) 2022-10-25

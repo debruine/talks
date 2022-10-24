@@ -1,0 +1,62 @@
+---
+title: "UofG Open Research Workshop"
+subtitle: "[https://debruine.github.io/talks/UofG-open-res/](https://debruine.github.io/talks/UofG-open-res/)"
+author: "Lisa DeBruine"
+format: 
+  revealjs:
+    theme: [dark, ../style.scss]
+    transition: none
+    transition-speed: fast
+---
+
+```{r, include = FALSE}
+library(tidyverse)
+library(ggdark)
+library(gt)
+
+knitr::opts_chunk$set(echo = TRUE)
+
+theme_set(dark_theme_gray(base_size = 17))
+```
+
+# Key concepts
+
+## Collaboration
+
+## Accessibility
+
+## Transparency
+
+## Reproducibility
+
+# Key practices
+
+## Contributorship
+
+## Open Access
+
+## Preprints
+
+## Open Materials/Data/Code
+
+## Computational Data Processing/Analysis
+
+## Preregistration/Registered Reports
+
+## Replication
+
+
+## Column Demo
+
+:::: columns
+::: {.column width="50%"}
+
+Left
+
+:::
+::: {.column width="50%"}
+
+Right
+
+:::
+::::
