@@ -55,7 +55,7 @@ Processes are documented for others to assess and learn from
 
 ## Reproducibility
 
-[![Scriberia. CC-BY 4.0. DOI: 10.5281/zenodo.3332807](images/reproducibility.jpg)](https://doi.org/10.5281/zenodo.3332807)
+[![Scriberia. CC-BY 4.0. DOI: 10.5281/zenodo.3332807](images/reproducibility.jpg)](https://doi.org/10.5281/zenodo.3332807){fig-alt="Image of a map map showing the 'path' from data to tools to results to code"}
 
 # Key practices
 
@@ -90,7 +90,7 @@ Tenzing: [App](https://rollercoaster.shinyapps.io/tenzing/)/[Paper](https://doi.
 
 ## Preprints
 
-::: {#fig-arxivs layout-ncol=5}
+::: {layout-ncol=5}
 
 ![](images/preprints/arxiv.png){fig-alt="arXiv logo (word with the X like a chain link)"}
 
@@ -148,3 +148,8 @@ An analysis by [Nuijten et al. (2016)](https://doi.org/10.3758/s13428-015-0664-2
 ## Replication
 
 ![From A manifesto for reproducible science, [10.1038/s41562-016-0021](https://doi.org/10.1038/s41562-016-0021)](images/lego-replication.png){fig-alt="An idealized version of the hypothetico-deductive model of the scientific method. Various potential threats to this model exist (indicated in red), including lack of replication, hypothesizing after the results are known (HARKing), poor study design, low statistical power, analytical flexibility, P-hacking, publication bias and lack of data sharing."}
+
+# Open Research Support at University of Glasgow
+
+Matt Mahon  
+[Slides](https://gla.sharepoint.com/:p:/s/RIMFiles/EdozsddvXqJNisI5VPv3PzoBwzZIorGBFsvS2QtRB-NQ8A?e=ug0bch) (via SharePoint)

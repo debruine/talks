@@ -4,6 +4,36 @@ subtitle: "Layout glitch: image is 300x300px; should be 2 rows of 5, equally siz
 format: revealjs
 ---
 
+## Fixed!
+
+Thanks [Mickaël Canouil](https://twitter.com/MickaelCanouil/status/1584607733956870144?s=20&t=QOwkVcXbBhHIqO0Scj5Gng)! 
+
+Omit the fig ID or don't start with "fig-".
+
+::: {layout-ncol=5}
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+:::
+
 ## layout-ncol=5
 
 ::: {#fig-arxivs-5 layout-ncol=5}
