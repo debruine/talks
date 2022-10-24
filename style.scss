@@ -1,6 +1,5 @@
 /*-- scss:defaults --*/
 
-$body-bg: #222;
 
 /*-- scss:rules --*/
 
@@ -22,6 +21,10 @@ $body-bg: #222;
               0 -16px 0 0px var(--yellow),
               0 -20px 0 0px var(--orange),
               0 -24px 0 0px var(--red);
+}
+
+h2 {
+  padding-bottom: 0.5em;
 }
 
 .checklist li {

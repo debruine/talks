@@ -1,0 +1,131 @@
+---
+title: "reprex"
+subtitle: "Layout glitch: image is 300x300px; should be 2 rows of 5, equally sized"
+format: revealjs
+---
+
+## layout-ncol=5
+
+::: {#fig-arxivs-5 layout-ncol=5}
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+:::
+
+## layout-nrow=2
+
+::: {#fig-arxivs-5 layout-nrow=2}
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+:::
+
+
+
+## layout-ncol=4
+
+::: {#fig-arxivs-4 layout-ncol=4}
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+:::
+
+## layout-ncol=3
+
+::: {#fig-arxivs-3 layout-ncol=3}
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+:::
+
+## layout-ncol=2
+
+::: {#fig-arxivs-2 layout-ncol=2}
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+![](images/psyarxiv.png)
+
+:::
+
+## no blank line between images
+
+::: {#fig-arxivs-noblank layout-ncol=5}
+
+![](images/psyarxiv.png)
+![](images/psyarxiv.png)
+![](images/psyarxiv.png)
+![](images/psyarxiv.png)
+![](images/psyarxiv.png)
+![](images/psyarxiv.png)
+![](images/psyarxiv.png)
+![](images/psyarxiv.png)
+![](images/psyarxiv.png)
+![](images/psyarxiv.png)
+
+:::
+
