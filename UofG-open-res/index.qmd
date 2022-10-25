@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Housekeeping
 
-<https://tinyurl.com/uofg-open-res-22>
+Schedule/Notes: [tinyurl.com/uofg-open-res-22](https://tinyurl.com/uofg-open-res-22)
 
 :::: columns
 ::: {.column width="30%"}
@@ -30,7 +30,6 @@ knitr::opts_chunk$set(echo = TRUE)
 ::: {.column width="70%"}
 
 * Facilitators
-* Notes [tinyurl.com/uofg-open-res-22](https://tinyurl.com/uofg-open-res-22)
 * Slido [sli.do/1861388](https://app.sli.do/event/uW9f4MqGRvZmrQPawiNn2d)
 * Twitter [@UofGOpen](https://twitter.com/UofGOpen) #GlasgowOpenRes
 * Photography
@@ -55,7 +54,7 @@ Processes are documented for others to assess and learn from
 
 ## Reproducibility
 
-[![Scriberia. CC-BY 4.0. DOI: 10.5281/zenodo.3332807](images/reproducibility.jpg)](https://doi.org/10.5281/zenodo.3332807){fig-alt="Image of a map map showing the 'path' from data to tools to results to code"}
+![Scriberia. CC-BY 4.0. DOI: [10.5281/zenodo.3332807](https://doi.org/10.5281/zenodo.3332807)](images/reproducibility.jpg){fig-alt="Image of a map map showing the 'path' from data to tools to results to code"}
 
 # Key practices
 
