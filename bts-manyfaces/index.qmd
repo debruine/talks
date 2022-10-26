@@ -1,0 +1,36 @@
+---
+title: "ManyFaces"
+subtitle: "[https://debruine.github.io/talks/bts-manyfaces/](https://debruine.github.io/talks/bts-manyfaces/)"
+author: "Lisa DeBruine"
+format: 
+  revealjs:
+    logo: images/manyfaces.png
+    theme: [default, ../style.scss]
+    transition: none
+    transition-speed: fast
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Housekeeping
+
+:::: columns
+::: {.column width="30%"}
+
+* A
+
+:::
+::: {.column width="70%"}
+
+* B
+
+:::
+::::
+
+
+## Join ManyFaces
+
+https://forms.gle/LyN6QwrEMuvKNQrf6
+
