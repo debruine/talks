@@ -1,0 +1,130 @@
+---
+title: "What is Open Research?"
+subtitle: "[debruine.github.io/talks/UofG-OR-PGR-2022/](https://debruine.github.io/talks/UofG-OR-PGR-2022/)"
+author: "Lisa DeBruine"
+format: 
+  revealjs:
+    logo: images/or_logo.png
+    theme: [default, ../style.scss]
+    transition: none
+    transition-speed: fast
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Key Concepts
+
+## Replication
+
+![From A manifesto for reproducible science, [10.1038/s41562-016-0021](https://doi.org/10.1038/s41562-016-0021)](images/lego-replication.png){fig-alt="An idealized version of the hypothetico-deductive model of the scientific method. Various potential threats to this model exist (indicated in red), including lack of replication, hypothesizing after the results are known (HARKing), poor study design, low statistical power, analytical flexibility, P-hacking, publication bias and lack of data sharing."}
+
+
+
+# Key Practices
+
+## Easing into Open Science
+
+![Open Science research practices across the research cycle](images/easing_path.jpg){}
+
+https://doi.org/10.1525/collabra.18684
+
+## Preregistration
+
+![Haroz (2022) Comparison of Preregistration Platforms, [10.31222/osf.io/zry2u](https://doi.org/10.31222/osf.io/zry2u)](images/prereg.png){fig-alt="The features of general-purpose preregistration services. See link for text version."}
+
+## Registered Reports
+
+![[osf.io/rr/](https://osf.io/rr/)](images/lego-registered-reports.png){fig-alt="LEGO minifigs measuring each other, next to a flow chart of the RR process: Develop idea, design study, stage 1 review,  collect and analyse data, write report, stage 2 review, publish report."}
+
+## Open Materials/Data/Code
+
+![](images/lego-open-code.png){fig-alt="A LEGO minifig version of Margaret Hamilton, lead of the Apollo mission NASA software team, holding a newspaper that says 'Men walk on the moon', standing next to a stack of computer code printouts"}
+
+
+## Reproducibile Code {.smaller}
+
+Of 35 articles published in *Cognition* with usable data, [Hardwicke et al. (2018)](https://doi.org/10.1098/rsos.180448) found:
+
+* only 11 could be reproduced independently 
+* 11 were reproducible with the original authors' help
+* 13 were not reproducible even by the original authors
+    
+An analysis by [Nuijten et al. (2016)](https://doi.org/10.3758/s13428-015-0664-2) of over 250K p-values reported in 8 major psych journals from 1985 to 2013 found that:
+
+* half the papers had at least one inconsistent p-value 
+* 1/8 of papers had errors that could affect conclusions
+* errors more likely to be erroneously significant than not
+    
+[Why Code?](https://debruine.github.io/why-code/) talk expanding on this
+
+[Applied Data Skills Microcredential](https://www.gla.ac.uk/study/microcredentials/applieddataskillsforprocessingandpresentingdata/) starts 23 January
+
+
+
+
+## Preprints
+
+::: {layout-ncol=5}
+
+![](images/preprints/arxiv.png){fig-alt="arXiv logo (word with the X like a chain link)"}
+
+![](images/preprints/africarxiv.png){fig-alt="AfricArXiv logo with Africa made of colourful stripes"}
+
+![](images/preprints/biorxiv.png){fig-alt="bioRxiv logo (word with red R)"}
+
+![](images/preprints/edarxiv.png){fig-alt="edArXiv logo (word with a quill and fountain for the i)"}
+
+![](images/preprints/metaarxiv.png){fig-alt="MetaArXiv logo (white Meta on a multicoloured background)"}
+
+![](images/preprints/medrxiv.png){fig-alt="medRxiv logo (word with blue R)"}
+
+![](images/preprints/psyarxiv.png){fig-alt="psyArXiv logo (Psi, A, and Chi in red boxes)"}
+
+![](images/preprints/eartharxiv.png){fig-alt="earthRxiv logo (padlock where half the round part is a globe)"}
+
+![](images/preprints/socarxiv.png){fig-alt="SocArXiv logo (white word on a black background)"}
+
+![](images/preprints/zenodo.png){fig-alt="zenodo logo (word on a blue background)"}
+
+:::
+
+[List of 62 preprint servers](https://asapbio.org/preprint-servers)
+
+## Contributorship
+
+:::: columns
+::: {.column width="50%"}
+
+* Conceptualization 
+* Data curation 
+* Formal analysis 
+* Funding acquisition 
+* Investigation 
+* Methodology 
+* Project administration 
+
+:::
+::: {.column width="50%"}
+
+* Resources 
+* Software 
+* Supervision 
+* Validation 
+* Visualization 
+* Writing (original draft)
+* Writing (review & editing)
+
+:::
+::::
+
+Tenzing: [App](https://rollercoaster.shinyapps.io/tenzing/)/[Paper](https://doi.org/10.1371/journal.pone.0244611)
+
+# Thank You!
+
+
+
+
+
+
