@@ -16,23 +16,84 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Key Concepts
 
+![[UofG Open Research Video](https://youtu.be/gGxtgEiRxYo)](images/open-research.png){fig-alt="Sketch of a 'map' to open research. There is a rainbow over the Glasgow Uni Building. Each stripe is labelled: Open research has many benefits, Visibilty, Transparency & reproducibility, Collaboration, Efficient use of funds, Credit for ideas, Public confidence."}
+
 ## Replication
 
-![From A manifesto for reproducible science, [10.1038/s41562-016-0021](https://doi.org/10.1038/s41562-016-0021)](images/lego-replication.png){fig-alt="An idealized version of the hypothetico-deductive model of the scientific method. Various potential threats to this model exist (indicated in red), including lack of replication, hypothesizing after the results are known (HARKing), poor study design, low statistical power, analytical flexibility, P-hacking, publication bias and lack of data sharing."}
+![From *A manifesto for reproducible science* [10.1038/s41562-016-0021](https://doi.org/10.1038/s41562-016-0021)](images/lego-replication.png){fig-alt="An idealized version of the hypothetico-deductive model of the scientific method. Various potential threats to this model exist (indicated in red), including lack of replication, hypothesizing after the results are known (HARKing), poor study design, low statistical power, analytical flexibility, P-hacking, publication bias and lack of data sharing."}
 
+## Reproducibility
+
+![via the [Turing Way](https://the-turing-way.netlify.app/reproducible-research/overview/overview-definitions.html)](images/reproducible-matrix.jpg){fig-alt="Reproducible: same data, same analysis; Replicable: different data, smae analysis; Robust: same data, different analysis; Generalisable: different data, different analysis"}
+
+
+
+::: {.notes}
+
+* Reproducible: A result is reproducible when the same analysis steps performed on the same dataset consistently produces the same answer.
+
+*  Replicable: A result is replicable when the same analysis performed on different datasets produces qualitatively similar answers.
+
+*  Robust: A result is robust when the same dataset is subjected to different analysis workflows to answer the same research question (for example one pipeline written in R and another written in Python) and a qualitatively similar or identical answer is produced. Robust results show that the work is not dependent on the specificities of the programming language chosen to perform the analysis.
+
+*  Generalisable: Combining replicable and robust findings allow us to form generalisable results. Note that running an analysis on a different software implementation and with a different dataset does not provide generalised results. There will be many more steps to know how well the work applies to all the different aspects of the research question. Generalisation is an important step towards understanding that the result is not dependent on a particular dataset nor a particular version of the analysis pipeline.
+
+:::
+
+
+## Reproducibile Code {.smaller}
+
+:::: columns
+::: {.column width="50%"}
+
+Of 35 articles published in *Cognition* with usable data, [Hardwicke et al. (2018)](https://doi.org/10.1098/rsos.180448) found:
+
+* only 11 could be reproduced independently 
+* 11 were reproducible with the original authors' help
+* 13 were not reproducible even by the original authors
+
+:::
+::: {.column width="50%"}
+    
+An analysis by [Nuijten et al. (2016)](https://doi.org/10.3758/s13428-015-0664-2) of over 250K p-values reported in 8 major psych journals from 1985 to 2013 found that:
+
+* half the papers had at least one inconsistent p-value 
+* 1/8 of papers had errors that could affect conclusions
+* errors more likely to be erroneously significant than not
+
+:::
+::::
+
+![](../images/ads.png){style="float: left; max-width: 10em;" fig-alt="Hexagon with rainbow borders; text inside reads Applied Data Skills"}
+    
+[Why Code?](https://debruine.github.io/why-code/) talk expanding on this
+
+[Applied Data Skills Microcredential](https://www.gla.ac.uk/study/microcredentials/applieddataskillsforprocessingandpresentingdata/) starts 23 January
+
+
+## Open Access
+
+::: {.notes}
+
+Open access is promoting the early and wide sharing of research.
+
+For research articles this means making the full text freely available on the web. This facilitates discovery and sharing of your work.
+
+We recommend that you consider open access options for journal articles and conference proceedings in advance of submission. The Research Excellence Framework (REF) and many funders have open access requirements and policies. 
+
+:::
+
+![](images/open-access.png){fig-alt=""}
+
+
+Can be funded via [Grant Funding](https://www.gla.ac.uk/myglasgow/openresearch/openaccess/fundsforopenaccess/) or [Publisher Agreements](https://www.gla.ac.uk/myglasgow/openresearch/openaccess/publisherarrangements/) (contact research-openaccess\@glasgow.ac.uk)
 
 
 # Key Practices
 
-## Easing into Open Science
-
-![Open Science research practices across the research cycle](images/easing_path.jpg){}
-
-https://doi.org/10.1525/collabra.18684
-
 ## Preregistration
 
-![Haroz (2022) Comparison of Preregistration Platforms, [10.31222/osf.io/zry2u](https://doi.org/10.31222/osf.io/zry2u)](images/prereg.png){fig-alt="The features of general-purpose preregistration services. See link for text version."}
+![Haroz (2022) [Comparison of Preregistration Platforms](https://doi.org/10.31222/osf.io/zry2u)](images/prereg.png){fig-alt="The features of general-purpose preregistration services. See link for text version."}
 
 ## Registered Reports
 
@@ -40,26 +101,16 @@ https://doi.org/10.1525/collabra.18684
 
 ## Open Materials/Data/Code
 
-![](images/lego-open-code.png){fig-alt="A LEGO minifig version of Margaret Hamilton, lead of the Apollo mission NASA software team, holding a newspaper that says 'Men walk on the moon', standing next to a stack of computer code printouts"}
+::: {layout-nrow=1}
 
+![[Protocols.io](https://www.gla.ac.uk/myglasgow/it/softwareandonlinetools/protocols-io/) ([webinar](https://www.protocols.io/webinars/UoG-protocolsio))](images/protocols.io.png){fig-alt="Raccoon face logo"}
 
-## Reproducibile Code {.smaller}
+![[Open Science Framework (OSF)](https://osf.io)](../images/osf.png){fig-alt="OSF logo"}
 
-Of 35 articles published in *Cognition* with usable data, [Hardwicke et al. (2018)](https://doi.org/10.1098/rsos.180448) found:
+![[GitHub](https://github.com)](../images/github.png){fig-alt="Shadow logo of a cat head with an octopus tentacle tail"}
 
-* only 11 could be reproduced independently 
-* 11 were reproducible with the original authors' help
-* 13 were not reproducible even by the original authors
-    
-An analysis by [Nuijten et al. (2016)](https://doi.org/10.3758/s13428-015-0664-2) of over 250K p-values reported in 8 major psych journals from 1985 to 2013 found that:
+:::
 
-* half the papers had at least one inconsistent p-value 
-* 1/8 of papers had errors that could affect conclusions
-* errors more likely to be erroneously significant than not
-    
-[Why Code?](https://debruine.github.io/why-code/) talk expanding on this
-
-[Applied Data Skills Microcredential](https://www.gla.ac.uk/study/microcredentials/applieddataskillsforprocessingandpresentingdata/) starts 23 January
 
 
 
@@ -92,6 +143,7 @@ An analysis by [Nuijten et al. (2016)](https://doi.org/10.3758/s13428-015-0664-2
 
 [List of 62 preprint servers](https://asapbio.org/preprint-servers)
 
+
 ## Contributorship
 
 :::: columns
@@ -121,10 +173,63 @@ An analysis by [Nuijten et al. (2016)](https://doi.org/10.3758/s13428-015-0664-2
 
 Tenzing: [App](https://rollercoaster.shinyapps.io/tenzing/)/[Paper](https://doi.org/10.1371/journal.pone.0244611)
 
+## ORCiD
+
+![](images/orcid-demo.png){fig-alt="Flowchart showing steps: Authenticate, Collect ID, Display in funding base, Connect to award, synchronize with ORCiD, and synchronize with other systems"}
+
+
+
+# Resources
+
+## Resources at UofG
+
+
+* [Code of Good Practice](https://www.gla.ac.uk/research/strategy/ourpolicies/) ![](images/uofgopen.jpg){fig-alt="Glasgow University shield above U of G, Open Research" style="float:right;" height="200px" width="200px" border-radius="100px"}
+* [Open Research](https://www.gla.ac.uk/myglasgow/openresearch/)
+    * [Research Data Management](https://www.gla.ac.uk/myglasgow/openresearch/researchdatamanagement/) (research-datamanagement@glasgow.ac.uk)
+    * [Open Access](https://www.gla.ac.uk/myglasgow/openresearch/openaccess/) (research-openaccess@glasgow.ac.uk)
+* [Moodle Training]( https://www.gla.ac.uk/myglasgow/openresearch/training/)
+* [Methods & MetaScience](https://samoa.dcs.gla.ac.uk/events/series.jsp?series=141)
+
+## External Resources
+
+:::{layout-nrow=1}
+
+[![UK Reproducibility Network](images/ukrn.jpg){fig-alt="Purple globe with UK in green and letters UKRN"}](https://www.ukrn.org/)
+
+[![Framework for Open and Reproducible Research Training](images/forrt.png){fig-alt="Grey hexagon with a castle tower insite and the word FORRT below"}](https://forrt.org/)
+
+[![ReproducibiliTea / @GlasgowTea](images/reproducibilitea.jpg){fig-alt="Blue hexagon with a teacup inside and the word ReproducibiliTea below"}](https://twitter.com/glasgowtea)
+
+:::
+
+## Open Research Across Disciplines
+
+[![](images/disciplines.png)](https://www.ukrn.org/disciplines/)
+
+## Next Steps
+
+:::: columns
+[Easing into Open Science](https://doi.org/10.1525/collabra.18684)
+
+::: {.column width="50%"}
+
+![Open Science research practices across the research cycle](images/easing_path.jpg){height="10em" fig-alt="Flowchart of main steps and practices. Conceptualisation: journal club, project workflow; Design: Preregistration, Registered reports, data sharing planning; Analysis: Reproducible code; Reporting: transparent writing; Dissemination: Preprints, data sharing"}
+
+:::
+::: {.column width="50%"}
+
+* Get an [ORCiD](https://orcid.org/register)
+* Ask your supervisor about open research practices and tools in your areas
+* Think about open research (especially open data) in the planning stages
+
+:::
+::::
+
+
 # Thank You!
 
-
-
+[![debruine.github.io/talks/UofG-OR-PGR-2022/](images/qr-code.svg){fig-alt="QR code for this link" height="500px"}](https://debruine.github.io/talks/UofG-OR-PGR-2022/)
 
 
 

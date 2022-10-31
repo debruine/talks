@@ -328,49 +328,124 @@
 <section id="key-concepts" class="title-slide slide level1 center">
 <h1>Key Concepts</h1>
 
-</section>
+<img data-src="images/open-research.png" alt="Sketch of a 'map' to open research. There is a rainbow over the Glasgow Uni Building. Each stripe is labelled: Open research has many benefits, Visibilty, Transparency &amp; reproducibility, Collaboration, Efficient use of funds, Credit for ideas, Public confidence." class="r-stretch quarto-figure-center"><p class="caption"><a href="https://youtu.be/gGxtgEiRxYo">UofG Open Research Video</a></p></section>
 <section id="replication" class="slide level2">
 <h2>Replication</h2>
 
-<img data-src="images/lego-replication.png" alt="An idealized version of the hypothetico-deductive model of the scientific method. Various potential threats to this model exist (indicated in red), including lack of replication, hypothesizing after the results are known (HARKing), poor study design, low statistical power, analytical flexibility, P-hacking, publication bias and lack of data sharing." class="r-stretch quarto-figure-center"><p class="caption">From A manifesto for reproducible science, <a href="https://doi.org/10.1038/s41562-016-0021">10.1038/s41562-016-0021</a></p></section></section>
-<section>
-<section id="key-practices" class="title-slide slide level1 center">
-<h1>Key Practices</h1>
-
+<img data-src="images/lego-replication.png" alt="An idealized version of the hypothetico-deductive model of the scientific method. Various potential threats to this model exist (indicated in red), including lack of replication, hypothesizing after the results are known (HARKing), poor study design, low statistical power, analytical flexibility, P-hacking, publication bias and lack of data sharing." class="r-stretch quarto-figure-center"><p class="caption">From <em>A manifesto for reproducible science</em> <a href="https://doi.org/10.1038/s41562-016-0021">10.1038/s41562-016-0021</a></p></section>
+<section id="reproducibility" class="slide level2">
+<h2>Reproducibility</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/reproducible-matrix.jpg" alt="Reproducible: same data, same analysis; Replicable: different data, smae analysis; Robust: same data, different analysis; Generalisable: different data, different analysis"></p>
+<p></p><figcaption>via the <a href="https://the-turing-way.netlify.app/reproducible-research/overview/overview-definitions.html">Turing Way</a></figcaption><p></p>
+</figure>
+</div>
+<aside class="notes">
+<ul>
+<li><p>Reproducible: A result is reproducible when the same analysis steps performed on the same dataset consistently produces the same answer.</p></li>
+<li><p>Replicable: A result is replicable when the same analysis performed on different datasets produces qualitatively similar answers.</p></li>
+<li><p>Robust: A result is robust when the same dataset is subjected to different analysis workflows to answer the same research question (for example one pipeline written in R and another written in Python) and a qualitatively similar or identical answer is produced. Robust results show that the work is not dependent on the specificities of the programming language chosen to perform the analysis.</p></li>
+<li><p>Generalisable: Combining replicable and robust findings allow us to form generalisable results. Note that running an analysis on a different software implementation and with a different dataset does not provide generalised results. There will be many more steps to know how well the work applies to all the different aspects of the research question. Generalisation is an important step towards understanding that the result is not dependent on a particular dataset nor a particular version of the analysis pipeline.</p></li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
-<section id="easing-into-open-science" class="slide level2">
-<h2>Easing into Open Science</h2>
-
-<img data-src="images/easing_path.jpg" class="r-stretch quarto-figure-center"><p class="caption">Open Science research practices across the research cycle</p><p>https://doi.org/10.1525/collabra.18684</p>
-</section>
-<section id="preregistration" class="slide level2">
-<h2>Preregistration</h2>
-
-<img data-src="images/prereg.png" alt="The features of general-purpose preregistration services. See link for text version." class="r-stretch quarto-figure-center"><p class="caption">Haroz (2022) Comparison of Preregistration Platforms, <a href="https://doi.org/10.31222/osf.io/zry2u">10.31222/osf.io/zry2u</a></p></section>
-<section id="registered-reports" class="slide level2">
-<h2>Registered Reports</h2>
-
-<img data-src="images/lego-registered-reports.png" alt="LEGO minifigs measuring each other, next to a flow chart of the RR process: Develop idea, design study, stage 1 review,  collect and analyse data, write report, stage 2 review, publish report." class="r-stretch quarto-figure-center"><p class="caption"><a href="https://osf.io/rr/">osf.io/rr/</a></p></section>
-<section id="open-materialsdatacode" class="slide level2">
-<h2>Open Materials/Data/Code</h2>
-
-<img data-src="images/lego-open-code.png" alt="A LEGO minifig version of Margaret Hamilton, lead of the Apollo mission NASA software team, holding a newspaper that says 'Men walk on the moon', standing next to a stack of computer code printouts" class="r-stretch"></section>
 <section id="reproducibile-code" class="slide level2 smaller">
 <h2>Reproducibile Code</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
 <p>Of 35 articles published in <em>Cognition</em> with usable data, <a href="https://doi.org/10.1098/rsos.180448">Hardwicke et al.&nbsp;(2018)</a> found:</p>
 <ul>
 <li>only 11 could be reproduced independently</li>
 <li>11 were reproducible with the original authors’ help</li>
 <li>13 were not reproducible even by the original authors</li>
 </ul>
+</div><div class="column" style="width:50%;">
 <p>An analysis by <a href="https://doi.org/10.3758/s13428-015-0664-2">Nuijten et al.&nbsp;(2016)</a> of over 250K p-values reported in 8 major psych journals from 1985 to 2013 found that:</p>
 <ul>
 <li>half the papers had at least one inconsistent p-value</li>
 <li>1/8 of papers had errors that could affect conclusions</li>
 <li>errors more likely to be erroneously significant than not</li>
 </ul>
-<p><a href="https://debruine.github.io/why-code/">Why Code?</a> talk expanding on this</p>
+</div>
+</div>
+
+<img data-src="../images/ads.png" style="float: left; max-width: 10em;" alt="Hexagon with rainbow borders; text inside reads Applied Data Skills" class="r-stretch"><p><a href="https://debruine.github.io/why-code/">Why Code?</a> talk expanding on this</p>
 <p><a href="https://www.gla.ac.uk/study/microcredentials/applieddataskillsforprocessingandpresentingdata/">Applied Data Skills Microcredential</a> starts 23 January</p>
+</section>
+<section id="open-access" class="slide level2">
+<h2>Open Access</h2>
+<aside class="notes">
+<p>Open access is promoting the early and wide sharing of research.</p>
+<p>For research articles this means making the full text freely available on the web. This facilitates discovery and sharing of your work.</p>
+<p>We recommend that you consider open access options for journal articles and conference proceedings in advance of submission. The Research Excellence Framework (REF) and many funders have open access requirements and policies.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<p><img data-src="images/open-access.png" alt=""></p>
+<p>Can be funded via <a href="https://www.gla.ac.uk/myglasgow/openresearch/openaccess/fundsforopenaccess/">Grant Funding</a> or <a href="https://www.gla.ac.uk/myglasgow/openresearch/openaccess/publisherarrangements/">Publisher Agreements</a> (contact research-openaccess@glasgow.ac.uk)</p>
+</section></section>
+<section>
+<section id="key-practices" class="title-slide slide level1 center">
+<h1>Key Practices</h1>
+
+</section>
+<section id="preregistration" class="slide level2">
+<h2>Preregistration</h2>
+
+<img data-src="images/prereg.png" alt="The features of general-purpose preregistration services. See link for text version." class="r-stretch quarto-figure-center"><p class="caption">Haroz (2022) <a href="https://doi.org/10.31222/osf.io/zry2u">Comparison of Preregistration Platforms</a></p></section>
+<section id="registered-reports" class="slide level2">
+<h2>Registered Reports</h2>
+
+<img data-src="images/lego-registered-reports.png" alt="LEGO minifigs measuring each other, next to a flow chart of the RR process: Develop idea, design study, stage 1 review,  collect and analyse data, write report, stage 2 review, publish report." class="r-stretch quarto-figure-center"><p class="caption"><a href="https://osf.io/rr/">osf.io/rr/</a></p></section>
+<section id="open-materialsdatacode" class="slide level2">
+<h2>Open Materials/Data/Code</h2>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/protocols.io.png" alt="Raccoon face logo"></p>
+<p></p><figcaption><a href="https://www.gla.ac.uk/myglasgow/it/softwareandonlinetools/protocols-io/">Protocols.io</a> (<a href="https://www.protocols.io/webinars/UoG-protocolsio">webinar</a>)</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../images/osf.png" alt="OSF logo"></p>
+<p></p><figcaption><a href="https://osf.io">Open Science Framework (OSF)</a></figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../images/github.png" alt="Shadow logo of a cat head with an octopus tentacle tail"></p>
+<p></p><figcaption><a href="https://github.com">GitHub</a></figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="preprints" class="slide level2">
 <h2>Preprints</h2>
@@ -438,11 +513,87 @@
 </div>
 </div>
 <p>Tenzing: <a href="https://rollercoaster.shinyapps.io/tenzing/">App</a>/<a href="https://doi.org/10.1371/journal.pone.0244611">Paper</a></p>
+</section>
+<section id="orcid" class="slide level2">
+<h2>ORCiD</h2>
+
+<img data-src="images/orcid-demo.png" alt="Flowchart showing steps: Authenticate, Collect ID, Display in funding base, Connect to award, synchronize with ORCiD, and synchronize with other systems" class="r-stretch"></section></section>
+<section>
+<section id="resources" class="title-slide slide level1 center">
+<h1>Resources</h1>
+
+</section>
+<section id="resources-at-uofg" class="slide level2">
+<h2>Resources at UofG</h2>
+<ul>
+<li><a href="https://www.gla.ac.uk/research/strategy/ourpolicies/">Code of Good Practice</a> <img data-src="images/uofgopen.jpg" style="float:right;" data-border-radius="100px" alt="Glasgow University shield above U of G, Open Research" width="200" height="200"></li>
+<li><a href="https://www.gla.ac.uk/myglasgow/openresearch/">Open Research</a>
+<ul>
+<li><a href="https://www.gla.ac.uk/myglasgow/openresearch/researchdatamanagement/">Research Data Management</a> (research-datamanagement@glasgow.ac.uk)</li>
+<li><a href="https://www.gla.ac.uk/myglasgow/openresearch/openaccess/">Open Access</a> (research-openaccess@glasgow.ac.uk)</li>
+</ul></li>
+<li><a href="https://www.gla.ac.uk/myglasgow/openresearch/training/">Moodle Training</a></li>
+<li><a href="https://samoa.dcs.gla.ac.uk/events/series.jsp?series=141">Methods &amp; MetaScience</a></li>
+</ul>
+</section>
+<section id="external-resources" class="slide level2">
+<h2>External Resources</h2>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-figure quarto-figure-center" style="flex-basis: 33.3%;justify-content: center;">
+<figure>
+<p><a href="https://www.ukrn.org/"><img data-src="images/ukrn.jpg" alt="Purple globe with UK in green and letters UKRN"></a></p>
+<p></p><figcaption>UK Reproducibility Network</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center" style="flex-basis: 33.3%;justify-content: center;">
+<figure>
+<p><a href="https://forrt.org/"><img data-src="images/forrt.png" alt="Grey hexagon with a castle tower insite and the word FORRT below"></a></p>
+<p></p><figcaption>Framework for Open and Reproducible Research Training</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center" style="flex-basis: 33.3%;justify-content: center;">
+<figure>
+<p><a href="https://twitter.com/glasgowtea"><img data-src="images/reproducibilitea.jpg" alt="Blue hexagon with a teacup inside and the word ReproducibiliTea below"></a></p>
+<p></p><figcaption>ReproducibiliTea / <span class="citation" data-cites="GlasgowTea">@GlasgowTea</span></figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="open-research-across-disciplines" class="slide level2">
+<h2>Open Research Across Disciplines</h2>
+
+<img data-src="images/disciplines.png" class="r-stretch quarto-figure-center"></section>
+<section id="next-steps" class="slide level2">
+<h2>Next Steps</h2>
+<div class="columns">
+<p><a href="https://doi.org/10.1525/collabra.18684">Easing into Open Science</a></p><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/easing_path.jpg" alt="Flowchart of main steps and practices. Conceptualisation: journal club, project workflow; Design: Preregistration, Registered reports, data sharing planning; Analysis: Reproducible code; Reporting: transparent writing; Dissemination: Preprints, data sharing" style="height:10em"></p>
+<p></p><figcaption>Open Science research practices across the research cycle</figcaption><p></p>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>Get an <a href="https://orcid.org/register">ORCiD</a></li>
+<li>Ask your supervisor about open research practices and tools in your areas</li>
+<li>Think about open research (especially open data) in the planning stages</li>
+</ul>
+</div>
+</div>
 </section></section>
 <section id="thank-you" class="title-slide slide level1 center">
 <h1>Thank You!</h1>
-
-<img src="images/or_logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="https://debruine.github.io/talks/UofG-OR-PGR-2022/"><img data-src="images/qr-code.svg" alt="QR code for this link" height="500"></a></p>
+<p></p><figcaption>debruine.github.io/talks/UofG-OR-PGR-2022/</figcaption><p></p>
+</figure>
+</div>
+<p><img src="images/or_logo.png" class="slide-logo"></p>
+<div class="footer footer-default">
 
 </div>
 </section>

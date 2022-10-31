@@ -27,6 +27,14 @@ h2 {
   padding-bottom: 0.5em;
 }
 
+p.caption {
+  text-align: right;
+}
+
+.quarto-figure img {
+  max-height: 100%;
+}
+
 .checklist li {
   list-style: none;
 }
