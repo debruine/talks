@@ -67,6 +67,8 @@ gganimate::anim_save("images/anim.gif",
           units = "in", res = 150)
 ```
 
+![](images/introdataviz.png){fig-alt="Hex sticker reading 'Intro Data Viz'" height="150px" style="float:left"} <br>[Data visualisation using R, for researchers who don’t use R](https://psyteachr.github.io/introdataviz/)
+
 :::
 ::: {.column width="40%"}
 ![](images/anim.gif)
@@ -293,7 +295,7 @@ Do not rely on code review to assess the appropriateness of your scientific deci
 :::
 
 ::: {.column width="60%"}
-![](images/xkcd-new-bug.png)
+![](images/xkcd-new-bug.png){fig-alt="XKCD comic. first panel: stick figure sitting at a desk, says 'can you take a look at the bug I just opened?', off-panel voice says 'uh oh'; second panel: stick figure turn to look at offscreen voice, who says 'Is this a NORMAL bug, or one f those horrifying ones that prove your whole projec is broken beyond repair and should be burned to the ground?'"}
 :::
 :::
 
@@ -474,6 +476,25 @@ subtest <- function(data, level) {
 analysisA <- subtest(df, "A")
 analysisB <- subtest(df, "B")
 ```
+
+## Unit Tests
+
+```{r, error = TRUE}
+library(testthat)
+
+# check the data has the expected number of rows
+expect_equal(
+  object = nrow(sim_data), 
+  expected = 240
+)
+
+# check that a column is a factor with the expected levels
+expect_equivalent(
+  object = levels(sim_data$species), 
+  expected = c("cat", "dog", "ferret")
+)
+```
+
 
 # Code Review Guide
 
