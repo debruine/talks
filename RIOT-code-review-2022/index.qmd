@@ -516,3 +516,4 @@ Anyone is welcome to get involved in the project.
 
 [debruine.github.io/talks/RIOT-code-review-2022/](https://debruine.github.io/talks/RIOT-code-review-2022/) ([code](https://github.com/debruine/talks/))
 
+![](images/ucu.png)
