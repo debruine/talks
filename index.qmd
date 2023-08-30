@@ -6,6 +6,8 @@ format:
     css: style.scss
 ---
 
+* [Code Review](code-review/) UofG 2023-08-31
+* [Fake it until you make it: How and why to simulate research data](EMPSEB-fake-it-2023/) EMPSEB 
 * [Code Review](RIOT-code-review-2022/) RIOT Science Club 2022-11-21
 * [What is Open Research?](UofG-OR-PGR-2022/) UofG PGR Webinar 2022-11-01
 * [UofG Open Research Workshop](UofG-open-res/) 2022-10-25
