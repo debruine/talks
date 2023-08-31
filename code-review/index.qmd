@@ -60,7 +60,7 @@ Of 62 Registered Reports in psychology published from 2014--2018, 36 had data an
 
 The process of methodically and systematically checking over code--your own or someone else's--after it has been written.
 
--   Is the code is legible and clear?
+-   Is the code legible and clear?
 -   Is the analysis reproducible?
 -   Are other outputs reproducible?
 -   Does the code do what was intended?
@@ -217,7 +217,7 @@ Do not rely on code review to assess the appropriateness of your scientific deci
 ## Project organisation
 
 * Make sure all files used in the code are in a single directory that is the working directory
-* Use RStudio projects to make this easy
+* Use RStudio projects or Jupyter notebooks to make this easy
 * Include a README that explains the purpose of all files
 * Danielle Navarro's [Project structure](https://djnavarro.net/slides-project-structure/)
 
