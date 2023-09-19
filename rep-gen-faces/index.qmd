@@ -1,0 +1,626 @@
+---
+title: "Replicability and Generalisability in Face Research"
+subtitle: "[debruine.github.io/talks/rep-gen-faces/](https://debruine.github.io/talks/rep-gen-faces/)"
+author: "Lisa DeBruine  \n![](images/mastodon.png){width=60 style='vertical-align:middle;'} [tech.lgbt/\\@debruine](https://tech.lgbt/@debruine)"
+bibliography: biblio.bib
+from: markdown+emoji
+format: 
+  revealjs:
+    logo: images/manyfaces.png
+    theme: [dark, style.scss]
+    transition: none
+    transition-speed: fast
+---
+
+# Abstract
+
+```{r, include = FALSE}
+# run this in the terminal to add fontawesome 
+# quarto add quarto-ext/fontawesome
+
+library(tidyverse)
+library(ggdark)
+library(gt)
+library(webmorphR)
+library(webmorphR.stim)
+library(papaja)
+
+knitr::opts_chunk$set(echo = FALSE)
+
+theme_set(dark_theme_gray(base_size = 17))
+wm_opts(fill = "#222222")
+```
+
+::: {style="font-size: smaller"}
+In this talk, I will discuss several initiatives to increase the replicability and generalisability of research on faces, with a special focus on big team science efforts, such as the Psychological Science Accelerator and ManyFaces. I will also make an argument for reproducible stimulus construction and introduce webmorphR, an R package for reproducibly scripting face stimulus creation. Additionally, I will explain how a common methodology in face research, the composite method, produces very high false positive rates, and explain alternatives to this, including the use of mixed effects models for analysing individual face ratings.
+:::
+
+
+# Reproducible Stimuli
+
+DeBruine, L. M., Holzleitner, I. J., Tiddeman, B., & Jones, B. C. [-@reprostim]. Reproducible Methods for Face Research. PsyArXiv.  <https://doi.org/10.31234/osf.io/j2754>
+
+## Vague Methods
+
+> Each of the images was rendered in gray-scale and morphed to a common shape using an in-house program based on bi-linear interpolation (see e.g., Gonzalez & Woods, 2002). Key points in the morphing grid were set manually, using a graphics program to align a standard grid to a set of facial points (eye corners, face outline, etc.). Images were then subject to automatic histogram equalization. [@burton2005robust, p. 263]
+
+::: {.notes}
+The reference to @gonzalez2002digital is a 190-page textbook. It mentions bilinear interpolation on pages 64--66 in the context of calculating pixel color when resizing images and it's unclear how this could be used to morph shape.
+:::
+
+## Photoshop
+
+<!--
+> If necessary, scanned pictures were rotated slightly, using Adobe Photoshop software, clockwise to counterclockwise until both pupil centres were on the same y-coordinate. Each picture was slightly lightened a constant amount by Adobe Photoshop. [@Scheib_1999, p. 1914]
+-->
+
+> These pictures were edited using Adobe Photoshop 6.0 to remove external features (hair, ears) and create a uniform grey background. [@sforza2010my, p. 150] 
+
+> The averaged composites and blends were sharpened in Adobe Photoshop to reduce any blurring introduced by blending. [@rhodes2001attractiveness, p. 615]
+
+## Scriptable Methods
+
+> The average pixel intensity of each image (ranging from 0 to 255) was set to 128 with a standard deviation of 40 using the SHINE toolbox (function lumMatch) (Willenbockel et al., 2010) in MATLAB (version 8.1.0.604, R2013a). [@visconti2014facilitated, p. 2]
+
+> We used the GraphicConverterTM application to crop the images around the cat face and make them all 1024x1024 pixels. One of the challenges of image matching is to do this process automatically. [@paluszek2019pattern, p.214]
+
+## Commerical morphing 
+
+> The faces were carefully marked with 112 nodes in FantaMorph™, 4th version: 28 nodes (face outline), 16 (nose), 5 (each ear), 20 (lips), 11 (each eye), and 8 (each eyebrow). To create the prototypes, I used FantaMorph Face Mixer, which averages node locations across faces. Prototypes are available online, in the Personality Faceaurus [http://www.nickholtzman.com/faceaurus.htm]. [@Holtzman_2011, p. 650]
+
+## WebMorphR
+
+<https://debruine.github.io/webmorphR/>
+
+```{r, echo = TRUE}
+orig <- demo_stim() # load demo images
+mirrored <- mirror(orig)
+cropped  <- crop(orig, width = 0.75, height = 0.75)
+resized  <- resize(orig, 0.75)
+rotated  <- rotate(orig, degrees = c(90, 180))
+padded   <- pad(orig, 30, fill = c("hotpink", "dodgerblue"))
+grey     <- greyscale(orig)
+```
+
+
+```{r}
+c(orig, mirrored, cropped, resized, rotated, padded, grey) |>
+  pad(80, 0, 0, 0) |>
+  to_size(keep_rels = TRUE) |>
+  label(c("original", "mirrored", "cropped", "resized", "rotated", "padded", "greyscale") |> rep(each = 2), 
+        gravity = "north", size = 60, color = "white") |>
+  plot_stim(nrow = 2, byrow = FALSE)
+```
+
+## Templates
+
+```{r, echo = TRUE}
+demo_stim() |> draw_tem()
+```
+
+
+## Masking
+
+```{r, echo = TRUE}
+demo_stim() |> mask()
+```
+
+## Custom Mask
+
+:::: columns
+::: {.column width="50%"}
+
+```{r, echo = TRUE}
+demo_stim()[1] |> 
+  mask(mask = c("face", "neck", "ears"), 
+       fill = "dodgerblue")
+```
+
+:::
+::: {.column width="50%"}
+
+```{r, echo = TRUE}
+demo_stim()[2] |>
+  mask(mask = c("eyes", "mouth"), 
+       fill = "#00000099", reverse = TRUE)
+```
+
+:::
+::::
+
+## "Standard" Oval Mask
+
+```{r, echo = TRUE}
+demo_stim() |> 
+  greyscale() |>
+  subset_tem(features("face")) |> # ignore hair, neck and ears
+  crop_tem(50) |>                 # crop to 50px around template
+  mask_oval(fill = "grey40")
+```
+
+## Composites
+
+```{r, echo = TRUE, eval = FALSE}
+neu_orig <- load_stim_neutral() |>
+  add_info(webmorphR.stim::london_info) |>
+  subset(face_gender == "female") |> 
+  subset(face_eth == "black") |> subset(1:5) 
+
+smi_orig <- load_stim_smiling() |>
+  add_info(webmorphR.stim::london_info) |>
+  subset(face_gender == "female") |> 
+  subset(face_eth == "black") |> subset(1:5)
+
+all <- c(neu_orig, smi_orig) |>
+  auto_delin("dlib70", replace = TRUE)
+
+aligned <- all |>
+  align(procrustes = TRUE, fill = patch(all)) |>
+  crop(.6, .8, y_off = 0.05)
+
+neu_avg <- subset(aligned, 1:5) |> avg(texture = FALSE)
+smi_avg <- subset(aligned, 6:10) |> avg(texture = FALSE)
+```
+
+## Composites
+
+![](images/webmorph/emo-avg.png)
+
+## Continuum
+
+```{r, echo = TRUE, eval = FALSE}
+steps <- continuum(
+  from_img = neu_avg, 
+  to_img = smi_avg, 
+  from = -0.5, 
+  to = 1.5, 
+  by = 0.25
+)
+```
+
+![](images/webmorph/continuum.png)
+
+## Word Stimuli
+
+```{r, echo = TRUE}
+# make a vector of the words and colours they should print in
+colours <- c(red = "red3", 
+             green = "darkgreen", 
+             blue = "dodgerblue3")
+
+# make vector of labels (each word in each colour)
+n <- length(colours)
+labels <- rep(names(colours), each = n)
+
+# make blank 800x200px images and add labels
+stroop <- blank(n*n, 800, 200) |>
+  label(labels, 
+        size = 100, 
+        color = colours, 
+        weight = 700,
+        gravity = "center")
+```
+
+
+```{r}
+plot(stroop, ncol = n, fill = "grey")
+```
+
+
+# Face Composites
+
+```{r, fig.width = 8, fig.height = 4}
+composites <- load_stim_composite(c(1:2, 4:7, 9:10))
+plot_stim(composites, nrow = 2)
+```
+
+DeBruine, L. M. [-@debruine_composite]. The Composite Method Produces High False Positive Rates. PsyArXiv. <https://doi.org/10.31234/osf.io/htrg9>
+
+## Composites
+
+:::: columns
+::: {.column width="50%"}
+![](images/cooperators_little_2013.jpg)
+:::
+::: {.column width="50%"}
+People chose the composite of people who self-reported a high probability to cooperate in a prisoners' dilemma as more likely to cooperate about 62% of the time [@Little2013PID]
+:::
+::::
+
+
+## Women's Height
+
+:::: columns
+::: {.column width="50%"}
+
+```{r, echo = TRUE}
+n <- 10
+mean <- 162
+sd <- 7
+
+# for reproducible simulation
+set.seed(42) 
+
+odd  <- rnorm(n, mean, sd)
+even <- rnorm(n, mean, sd)
+```
+
+
+:::
+::: {.column width="50%"}
+
+```{r}
+stim <- data.frame(
+  birthday = rep(c("odd", "even"), each = 10),
+  height = c(odd, even)
+)
+ggplot(stim, aes(birthday, height, color = birthday)) +
+  geom_jitter(height = 0, width = 0.25, alpha = 0.25) + 
+  geom_violin(alpha = 0) +
+  stat_summary(fun.data = mean_cl_normal) +
+  ylab("Height") + 
+  theme(legend.position = "none")
+```
+
+:::
+::::
+
+```{r}
+t <- t.test(odd, even, alternative = "greater")
+e <- effectsize::cohens_d(odd, even)
+stats <- glue::glue("$t_{{{apa_num(t$parameter)}}}$ = {apa_num(t$statistic)}, $p$ = {apa_p(t$p.value)}, $d$ = {apa_num(e$Cohens_d)}")
+```
+
+A t-test shows no significant difference (`r stats`), which is unsurprising. We simulated the data from the same distribution, so we know for sure there is no real difference here. 
+
+## Composite Height
+
+Odd Composite | Even Composite
+---|---
+`r mean(odd) |> round(1)` cm | `r mean(even) |> round(1)` cm
+<span style="font-size: 332px;">:standing_woman:</span> | <span style="font-size: 322px;">:standing_woman:</span>
+
+
+::: {.notes}
+Now we're going to average the height of the women with odd and even birthdays. So if we create a full-body composite of women born on odd days, she would be `r mean(odd) |> round(1)` cm tall, and a composite of women born on even days would be `r mean(even) |> round(1)` cm tall. 
+
+We know this difference is entirely due to chance, but if we ask raters to look at these two composites, side-by-side, and judge which one looks taller, what do you imagine would happen? It's likely all of them would judge the odd-birthday composite as taller. You only need 5 raters for statistical significance (with alpha = 0.05) on an exact binomial test.
+:::
+
+## Rating Height
+
+:::: columns
+::: {.column width="50%"}
+
+```{r, echo = TRUE}
+rater_n <- 50 # number of raters
+error_sd <- 10 # rater error
+
+# for reproducible simulation
+set.seed(1) 
+
+# add the error to the composite mean heights
+odd_est  <- mean(odd) + 
+  rnorm(rater_n, 0, error_sd)
+even_est <- mean(even) + 
+  rnorm(rater_n, 0, error_sd)
+```
+
+:::
+::: {.column width="50%"}
+
+```{r}
+stim <- data.frame(
+  birthday = rep(c("odd", "even"), each = 50),
+  height = c(odd_est, even_est)
+)
+ggplot(stim, aes(birthday, height, color = birthday)) +
+  geom_jitter(height = 0, width = 0.25, alpha = 0.25) + 
+  geom_violin(alpha = 0) +
+  stat_summary(fun.data = mean_cl_normal) +
+  ylab("Estimated Height") + 
+  theme(legend.position = "none")
+```
+
+:::
+::::
+
+```{r}
+t <- t.test(odd_est, even_est, paired = TRUE, alternative = "greater")
+
+e <- effectsize::cohens_d(odd_est, even_est)
+stats <- glue::glue("$t_{{{t$parameter}}}$ = {apa_num(t$statistic)}, $p$ = {apa_p(t$p.value)}, $d$ = {apa_num(e$Cohens_d)}")
+```
+
+Now the women with odd birthdays are significantly taller than the women with even birthdays (`r stats`)!
+
+
+::: {.notes}
+But let's say that raters have to judge the composites independently, and they are pretty bad with height estimation, so their estimates for each composite have error with a standard deviation of 10 cm. We can simulate such ratings from 50 raters and then compare the estimates for the odd-birthday composite with the estimates for the even-birthday composite.
+
+What changed? Essentially, we're no longer testing whether women born on odd days are taller than those born on even days, but whether raters can perceive the chance difference in height between the pair of composites. As long as there is any difference between the composites that exceeds the perceptual threshold for detection, we can find a significant result with enough raters.
+
+The effect has a 50% chance of being in the predicted direction, and whatever result we find with this pair is likely to be highly replicable in a new set of raters rating the same pair.
+:::
+
+## Is this a fluke?
+
+```{r}
+set.seed(13)
+simexp <- function(stim_n = 10, rater_n = 50) {
+  error_sd <- 10 # rater error
+  height_m <- 162
+  height_sd <- 7
+  
+  odd <- rnorm(stim_n, height_m, height_sd)
+  even <- rnorm(stim_n, height_m, height_sd)
+  t <- t.test(odd, even, alternative = "greater")
+
+  odd_est  <- mean(odd)  + rnorm(rater_n, 0, error_sd)
+  even_est <- mean(even) + rnorm(rater_n, 0, error_sd)
+
+  t_est <- t.test(odd_est, even_est, paired = TRUE, alternative = "greater")
+  t_nd <- t.test(odd_est, even_est, paired = TRUE)
+  
+  list(Individual = t$p.value,
+       CompositeD = t_est$p.value,
+       CompositeND = t_nd$p.value)
+}
+
+simdat <- map_df(1:10000, ~simexp())
+
+ind_false_positives <- (100 * mean(simdat$Individual < .05)) |> round(2)
+comp_false_positives <- (100 * mean(simdat$CompositeD < .05)) |> round(1)
+nd_false_positives <- (100 * mean(simdat$CompositeND < .05)) |> round(1)
+```
+
+::: {.notes}
+Maybe this is just a fluke of the original sample? We can repeat the procedure 10000 times and check the p-values of the individual analysis versus the composite method. We can see that the individual method has the expected uniform distribution of p-values, as there is no difference between the two groups. The proportion of false positives is `r ind_false_positives`%, which is close to the alpha criterion of 0.05. However, the composite method produced a false positive rate of `r comp_false_positives`% with a directional hypothesis, and `r nd_false_positives`% with a non-directional hypothesis. And as we'll see later, you can increase the false positive rate to near 50% for directional hypotheses and 100% for non-directional hypotheses by increasing the number of raters.
+:::
+
+```{r ind-comp, fig.cap="Individual versus composite method. The individual method shows the expected uniform distribution of p-values, while the composite method has an inflated false positive rate."}
+simdat |>
+  mutate(id = row_number()) |>
+  pivot_longer(Individual:CompositeND) |>
+  ggplot(aes(x = value, color = name)) +
+  geom_freqpoly(aes(y = (..count..)/10000), size = 1.5,
+                binwidth = 0.05, boundary = 0) +
+  scale_x_continuous(breaks = seq(0, 1, .1), 
+                     minor_breaks = seq(0, 1, .05),
+                     limits = c(0, 1)) +
+  scale_y_continuous(labels = scales::percent) +
+  scale_color_manual(values = c("goldenrod2", "hotpink", "skyblue"),
+                     labels = c("Composite (directional)",
+                                "Composite (non-directional)",
+                                "Individual")) +
+  labs(x = "p-value", y = "Percent of p-values in each 5% bin", 
+       color = "Method") +
+  theme(legend.position = c(.5, .7))
+```
+
+## Mixed Effects Models
+
+![](images/lmer.gif)
+
+DeBruine LM, Barr DJ. [-@debruine2021understanding]. Understanding Mixed-Effects Models Through Data Simulation. Advances in Methods and Practices in Psychological Science. 4(1). <https://doi.org/10.1177/2515245920965119>
+
+
+# Psychological Science Accelerator
+
+![](images/psa/logo.png)
+
+Jones, B.C., DeBruine, L.M., Flake, J.K. et al. (2021). To which world regions does the valence–dominance model of social perception apply?. Nature Human Behaviour 5, 159–169. <https://doi.org/10.1038/s41562-020-01007-2> 
+
+```{r}
+# function to create demo face tests
+facetest <- function(trait) {
+  side <- sample(c("high", "low"))
+  a <- side[1]
+  b <- side[2]
+  a_correct <- ifelse(a == "high", "{class=\"correct\"}", "")
+  b_correct <- ifelse(b == "high", "{class=\"correct\"}", "")
+  
+  glue::glue("## Which face looks more {trait}?
+
+:::: {{.columns .faces}}
+::: {{.column width=\"50%\"}}
+![](images/faces/{trait}_{a}.jpg)
+:::
+::: {{.column width=\"50%\"}}
+![](images/faces/{trait}_{b}.jpg)
+:::
+::::
+
+## Which face looks more {trait}?  {{visibility=\"uncounted\"}}
+
+:::: {{.columns .faces}}
+::: {{.column width=\"50%\"}}
+![](images/faces/{trait}_{a}.jpg){a_correct}
+:::
+::: {{.column width=\"50%\"}}
+![](images/faces/{trait}_{b}.jpg){b_correct}
+:::
+::::")
+}
+```
+
+`r facetest("trustworthy")`
+
+`r facetest("responsible")`
+
+`r facetest("dominant")`
+
+`r facetest("intelligent")`
+
+`r facetest("caring")`
+
+## Valence Dominance Model
+
+:::: {.columns}
+::: {.column width="50%"}
+1. Attractive
+2. Weird
+3. Mean
+4. Trustworthy
+5. Aggressive
+6. Caring
+7. Emotionally stable
+:::
+::: {.column width="50%"}
+8. Unhappy
+9. Responsible
+10. Sociable
+11. Dominant
+12. Confident
+13. Intelligent 
+:::
+::::
+
+## 
+
+<div style="text-align: center">How sociable (i.e., friendly or agreeable in company; companionable) is this person?</div>
+
+<div class="left-anchor">not at all</div>
+<div class="right-anchor">very</div>
+
+![](images/psa/demo.png){fig-align="center"}
+
+## 
+
+<div style="text-align: center">Hoe sociabel (d.w.z. vriendelijk of prettig in de omgang, gezellig) is deze persoon?</div>
+
+<div class="left-anchor">helemaal niet</div>
+<div class="right-anchor">helemaal erg</div>
+![](images/psa/demo.png){fig-align="center"}
+
+
+## Study Stats
+
+:::: {.columns}
+::: {.column width="50%"}
+
+* `>`3M data points  
+* 12,660 participants  
+* 11,570 post-exclusion  
+* 126 labs  
+* 44 countries  
+* 25 languages  
+* 243 authors  
+
+:::
+::: {.column width="50%"}
+
+![](images/psa/lego-people.png)
+
+:::
+::::
+
+## Authors / CRediT
+
+<div class="author-credit">
+<img src="images/psa/authors.png">
+</div>
+
+## PCA Loadings
+
+:::: {.columns}
+::: {.column width="50%"}
+
+![Original Data](images/psa/loadings-todorov.png)
+
+:::
+::: {.column width="50%"}
+
+![Western Europe](images/psa/loadings-western-europe.png)
+
+:::
+::::
+
+## PCA Loadings
+
+![Principal Components Analysis shows little regional variability](images/psa/loadings-pca-all.png)
+
+## EFA Loadings
+
+![Exploratory Factor Analysis shows more regional variability](images/psa/loadings-efa-all.png)
+
+
+## Secondary Data Challenge
+
+:::: {.columns style="font-size: 24px;"}
+::: {.column width="50%"}
+
+* Examining the “attractiveness halo effect” - Carlotta Batres, Victor Shiramizu (<jnl>Current Psychology</jnl>)  
+* Region- and Language-Level ICCs for Judgments of Faces - Neil Hester and Eric Hehman (<jnl>Psychological Science</jnl>)  
+* Variance & Homogeneity of Facial Trait Space Across World Regions - Sally Xie and Eric Hehman (<jnl>Psychological Science</jnl>)  
+* The Facial Width-to-Height Ratio (fWHR) and Perceived Dominance and Trustworthiness: Moderating Role of Social Identity Cues (Gender and Race) and Ecological Factor (Pathogen Prevalence) - Subramanya Prasad Chandrashekar  
+
+:::
+::: {.column width="50%"}
+
+* Is facial width-to-height ratio reliably associated with social inferences? A large cross-national examination - Patrick Durkee and Jessica Ayers  
+* Population diversity is associated with trustworthiness impressions from faces - Jared Martin, Adrienne Wood, and DongWon Oh (<jnl>Psychological Science</jnl>)  
+* Do regional gender and racial biases predict gender and racial biases in social face judgments? - DongWon Oh and Alexander Todorov  
+* Hierarchical Modelling of Facial Perceptions: A Secondary Analysis of Aggressiveness Ratings - Mark Adkins, Nataly Beribisky, Stefan Bonfield, and Linda Farmus
+
+:::
+::::
+
+[Blog Post](https://psysciacc.org/2020/09/14/incentivizing-discovery-through-the-psa001-secondary-analysis-challenge/)
+
+# ManyFaces
+
+![[https://manyfaces.team](https://manyfaces.team)](images/manyfaces.png)
+
+ManyFaces is a recently formed big team science group for face perception and face recognition research. 
+
+::: {.notes}
+Broadly, the aim of ManyFaces is to improve, diversify, and crowdsource key aspects of face research, including perception and recognition. This involves, for example, the collection and use of face stimuli; sharing existing stimulus sets; standardising stimulus collection procedures; and organising stimulus collection across multiple labs to obtain larger and more diverse face stimulus sets. ManyFaces also aims to crowdsource data collection across our members’ labs to test key research questions in face perception and recognition, enabling larger-scale designs and more diverse participant samples and generalisable findings. Finally, we aim to organise training workshops for key methods (e.g., morphing) and analyses (e.g., mixed effects models) used in face research.
+:::
+
+## Stimulus Meta-Database
+
+![](images/london-set.png)
+
+<https://osf.io/mbqt3/>
+
+::: {.notes}
+The stimulus meta-database working group has compiled a guide to face stimulus meta-databases and resource lists. Various researchers have created lists or meta-databases documenting the broad variety of face stimulus sets that are available for research use. However, these lists vary in how comprehensive they are and in the type of information they provide about each stimulus set. Our guide therefore provides an overview of the most useful of these lists, noting key information such as the kinds of stimuli included in each list, the information provided about each stimulus set, the user friendliness of the list, and the degree of overlap among lists. This guide should aid researchers in finding the most appropriate stimuli for their research and is now publicly available on the Open Science Framework <https://osf.io/mbqt3/>. This working group is also currently surveying ManyFaces members about any face stimulus sets they have and are willing to share directly with other researchers, with the aim of compiling a guide to stimulus sets that cannot be found via existing lists and databases.
+:::
+
+## Stimulus Collection
+
+Face image sets tend to suffer from one or more of:
+
+1. a lack of age and ethnic diversity
+2. insufficient diversity of poses or expressions
+3. a lack of standardisation (e.g., different lighting, backgrounds, camera-to-head distance, and other photographic properties) that makes it impossible to combine image sets
+4. restricted ability to share 
+5. unethical procurement
+
+::: {.notes}
+
+Pilot image collection
+Protocol refinement
+Image collection
+Image processing
+Perception tests
+
+:::
+
+## Get Involved
+
+
+
+# Thank You!
+
+![](images/manyfaces.png){width=80 style="vertical-align:middle;"} [debruine.github.io/talks/rep-gen-faces/](https://debruine.github.io/talks/rep-gen-faces/) 
+
+![](images/github.png){width=80 style="border-radius:50%; vertical-align:middle;"} [code](https://github.com/debruine/talks/)
+
+![](images/mastodon.png){width=80 style="vertical-align:middle;"} [tech.lgbt/\@debruine](https://tech.lgbt/@debruine)
+
+## References
+
+::: {#refs}
+:::
