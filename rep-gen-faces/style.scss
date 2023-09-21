@@ -88,3 +88,10 @@ jnl { color: var(--yellow)}
   height: 500px;
   overflow-y: scroll;
 }
+
+.right-float {
+  float: right;
+  position: relative;
+  top: 0px;
+  padding: 0 0 1em 1em;
+}

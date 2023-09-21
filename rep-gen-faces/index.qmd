@@ -6,7 +6,7 @@ bibliography: biblio.bib
 from: markdown+emoji
 format: 
   revealjs:
-    logo: images/manyfaces.png
+    logo: images/manyfaces/manyfaces.png
     theme: [dark, style.scss]
     transition: none
     transition-speed: fast
@@ -35,6 +35,193 @@ wm_opts(fill = "#222222")
 In this talk, I will discuss several initiatives to increase the replicability and generalisability of research on faces, with a special focus on big team science efforts, such as the Psychological Science Accelerator and ManyFaces. I will also make an argument for reproducible stimulus construction and introduce webmorphR, an R package for reproducibly scripting face stimulus creation. Additionally, I will explain how a common methodology in face research, the composite method, produces very high false positive rates, and explain alternatives to this, including the use of mixed effects models for analysing individual face ratings.
 :::
 
+# Psychological Science Accelerator
+
+![](images/psa/logo.png){style="float: right;"}
+
+Jones, B.C., DeBruine, L.M., Flake, J.K. et al. (2021). To which world regions does the valence–dominance model of social perception apply?. Nature Human Behaviour 5, 159–169. <https://doi.org/10.1038/s41562-020-01007-2> 
+
+```{r}
+# function to create demo face tests
+facetest <- function(trait) {
+  side <- sample(c("high", "low"))
+  a <- side[1]
+  b <- side[2]
+  a_correct <- ifelse(a == "high", "{class=\"correct\"}", "")
+  b_correct <- ifelse(b == "high", "{class=\"correct\"}", "")
+  
+  glue::glue("## Which face looks more {trait}?
+
+:::: {{.columns .faces}}
+::: {{.column width=\"50%\"}}
+![](images/faces/{trait}_{a}.jpg)
+:::
+::: {{.column width=\"50%\"}}
+![](images/faces/{trait}_{b}.jpg)
+:::
+::::
+
+## Which face looks more {trait}?  {{visibility=\"uncounted\"}}
+
+:::: {{.columns .faces}}
+::: {{.column width=\"50%\"}}
+![](images/faces/{trait}_{a}.jpg){a_correct}
+:::
+::: {{.column width=\"50%\"}}
+![](images/faces/{trait}_{b}.jpg){b_correct}
+:::
+::::")
+}
+```
+
+`r facetest("trustworthy")`
+
+`r facetest("responsible")`
+
+`r facetest("dominant")`
+
+`r facetest("intelligent")`
+
+`r facetest("caring")`
+
+## Face Ratings
+
+:::: {.columns}
+::: {.column width="50%"}
+1. Attractive
+2. Weird
+3. Mean
+4. Trustworthy
+5. Aggressive
+6. Caring
+7. Emotionally stable
+:::
+::: {.column width="50%"}
+8. Unhappy
+9. Responsible
+10. Sociable
+11. Dominant
+12. Confident
+13. Intelligent 
+:::
+::::
+
+
+## Valence-Dominance Model
+
+![](images/psa/valence-dominance-model.png)
+
+@todorov2008understanding
+
+## 
+
+<div style="text-align: center">How sociable (i.e., friendly or agreeable in company; companionable) is this person?</div>
+
+<div class="left-anchor">not at all</div>
+<div class="right-anchor">very</div>
+
+![](images/psa/demo.png){fig-align="center"}
+
+## 
+
+<div style="text-align: center">Hoe sociabel (d.w.z. vriendelijk of prettig in de omgang, gezellig) is deze persoon?</div>
+
+<div class="left-anchor">helemaal niet</div>
+<div class="right-anchor">helemaal erg</div>
+![](images/psa/demo.png){fig-align="center"}
+
+
+## Study Stats
+
+:::: {.columns}
+::: {.column width="50%"}
+
+* `>`3M data points  
+* 12,660 participants  
+* 11,570 post-exclusion  
+* 126 labs  
+* 44 countries  
+* 25 languages  
+* 243 authors  
+
+:::
+::: {.column width="50%"}
+
+![](images/psa/lego-people.png)
+
+:::
+::::
+
+## Team
+
+::: {layout="[1,1,1,1,1,1]"}
+![Ben Jones](images/psa/lego-ben.png)
+
+![Lisa DeBruine](images/psa/lego-lisa.png)
+
+![Jess Flake](images/psa/lego-jkflake.png)
+
+![Patrick Forscher](images/psa/lego-forscher.png)
+
+![Nicholas Coles](images/psa/lego-coles.png)
+
+![Chris Chartier](images/psa/lego-chartier.png)
+:::
+
+## CRediT
+
+<div class="author-credit">
+<img src="images/psa/authors.png">
+</div>
+
+## PCA Loadings
+
+:::: {.columns}
+::: {.column width="50%"}
+
+![Original Data](images/psa/loadings-todorov.png)
+
+:::
+::: {.column width="50%"}
+
+![Western Europe](images/psa/loadings-western-europe.png)
+
+:::
+::::
+
+## PCA Loadings
+
+![Principal Components Analysis shows little regional variability](images/psa/loadings-pca-all.png)
+
+## EFA Loadings
+
+![Exploratory Factor Analysis shows more regional variability](images/psa/loadings-efa-all.png)
+
+
+## Secondary Data Challenge
+
+:::: {.columns style="font-size: 24px;"}
+::: {.column width="50%"}
+
+* Examining the “attractiveness halo effect” - Carlotta Batres, Victor Shiramizu (<jnl>Current Psychology</jnl>)  
+* Region- and Language-Level ICCs for Judgments of Faces - Neil Hester and Eric Hehman (<jnl>Psychological Science</jnl>)  
+* Variance & Homogeneity of Facial Trait Space Across World Regions - Sally Xie and Eric Hehman (<jnl>Psychological Science</jnl>)  
+* The Facial Width-to-Height Ratio (fWHR) and Perceived Dominance and Trustworthiness: Moderating Role of Social Identity Cues (Gender and Race) and Ecological Factor (Pathogen Prevalence) - Subramanya Prasad Chandrashekar  
+
+:::
+::: {.column width="50%"}
+
+* Is facial width-to-height ratio reliably associated with social inferences? A large cross-national examination - Patrick Durkee and Jessica Ayers  
+* Population diversity is associated with trustworthiness impressions from faces - Jared Martin, Adrienne Wood, and DongWon Oh (<jnl>Psychological Science</jnl>)  
+* Do regional gender and racial biases predict gender and racial biases in social face judgments? - DongWon Oh and Alexander Todorov  
+* Hierarchical Modelling of Facial Perceptions: A Secondary Analysis of Aggressiveness Ratings - Mark Adkins, Nataly Beribisky, Stefan Bonfield, and Linda Farmus
+
+:::
+::::
+
+[Blog Post](https://psysciacc.org/2020/09/14/incentivizing-discovery-through-the-psa001-secondary-analysis-challenge/)
+
+
 
 # Reproducible Stimuli
 
@@ -42,7 +229,12 @@ DeBruine, L. M., Holzleitner, I. J., Tiddeman, B., & Jones, B. C. [-@reprostim].
 
 ## Vague Methods
 
+<div style="width: 25%; float: right;">
+![](images/webmorph/burton-example.jpg)
+</div>
+
 > Each of the images was rendered in gray-scale and morphed to a common shape using an in-house program based on bi-linear interpolation (see e.g., Gonzalez & Woods, 2002). Key points in the morphing grid were set manually, using a graphics program to align a standard grid to a set of facial points (eye corners, face outline, etc.). Images were then subject to automatic histogram equalization. [@burton2005robust, p. 263]
+
 
 ::: {.notes}
 The reference to @gonzalez2002digital is a 190-page textbook. It mentions bilinear interpolation on pages 64--66 in the context of calculating pixel color when resizing images and it's unclear how this could be used to morph shape.
@@ -58,6 +250,8 @@ The reference to @gonzalez2002digital is a 190-page textbook. It mentions biline
 
 > The averaged composites and blends were sharpened in Adobe Photoshop to reduce any blurring introduced by blending. [@rhodes2001attractiveness, p. 615]
 
+![](images/webmorph/rhodes-example.png)
+
 ## Scriptable Methods
 
 > The average pixel intensity of each image (ranging from 0 to 255) was set to 128 with a standard deviation of 40 using the SHINE toolbox (function lumMatch) (Willenbockel et al., 2010) in MATLAB (version 8.1.0.604, R2013a). [@visconti2014facilitated, p. 2]
@@ -65,6 +259,8 @@ The reference to @gonzalez2002digital is a 190-page textbook. It mentions biline
 > We used the GraphicConverterTM application to crop the images around the cat face and make them all 1024x1024 pixels. One of the challenges of image matching is to do this process automatically. [@paluszek2019pattern, p.214]
 
 ## Commerical morphing 
+
+![](images/webmorph/E.ExcitementSeeking.Female.Highest10.jpg){style="float: right;"}
 
 > The faces were carefully marked with 112 nodes in FantaMorph™, 4th version: 28 nodes (face outline), 16 (nose), 5 (each ear), 20 (lips), 11 (each eye), and 8 (each eyebrow). To create the prototypes, I used FantaMorph Face Mixer, which averages node locations across faces. Prototypes are available online, in the Personality Faceaurus [http://www.nickholtzman.com/faceaurus.htm]. [@Holtzman_2011, p. 650]
 
@@ -94,7 +290,7 @@ c(orig, mirrored, cropped, resized, rotated, padded, grey) |>
 
 ## Templates
 
-```{r, echo = TRUE}
+```{r}
 demo_stim() |> draw_tem()
 ```
 
@@ -102,31 +298,17 @@ demo_stim() |> draw_tem()
 ## Masking
 
 ```{r, echo = TRUE}
-demo_stim() |> mask()
+demo_stim() |> mask(fill = "black")
 ```
 
 ## Custom Mask
 
-:::: columns
-::: {.column width="50%"}
-
 ```{r, echo = TRUE}
-demo_stim()[1] |> 
-  mask(mask = c("face", "neck", "ears"), 
-       fill = "dodgerblue")
+demo_stim() |>  mask(mask = c("eyes", "mouth"), 
+                     fill = "#00000099", 
+                     reverse = TRUE)
 ```
 
-:::
-::: {.column width="50%"}
-
-```{r, echo = TRUE}
-demo_stim()[2] |>
-  mask(mask = c("eyes", "mouth"), 
-       fill = "#00000099", reverse = TRUE)
-```
-
-:::
-::::
 
 ## "Standard" Oval Mask
 
@@ -136,6 +318,25 @@ demo_stim() |>
   subset_tem(features("face")) |> # ignore hair, neck and ears
   crop_tem(50) |>                 # crop to 50px around template
   mask_oval(fill = "grey40")
+```
+
+## Alignment
+
+```{r, echo = TRUE}
+faces <- load_stim_neutral(22:26) 
+aligned <- faces |> align(fill = "dodgerblue")
+
+c(faces, aligned) |> plot(nrow = 2)
+```
+
+::: {.notes}
+Images are aligned by default to the average x- and y-coordinates of the two alignment points, but you can specify the coordinates and output width and height manually or from a reference image. You can also specify 1-point alignment, which does not resize or rotate the images. Procrustes alignment is available on platforms with OpenGL.
+:::
+
+## Alignment with Patch Fill
+
+```{r, echo = TRUE}
+faces |> align(fill = patch(faces))
 ```
 
 ## Composites
@@ -189,11 +390,10 @@ colours <- c(red = "red3",
              blue = "dodgerblue3")
 
 # make vector of labels (each word in each colour)
-n <- length(colours)
-labels <- rep(names(colours), each = n)
+labels <- names(colours) |> rep(each = 3)
 
 # make blank 800x200px images and add labels
-stroop <- blank(n*n, 800, 200) |>
+stroop <- blank(3*3, 800, 200) |>
   label(labels, 
         size = 100, 
         color = colours, 
@@ -203,7 +403,7 @@ stroop <- blank(n*n, 800, 200) |>
 
 
 ```{r}
-plot(stroop, ncol = n, fill = "grey")
+plot(stroop, ncol = 3, fill = "grey")
 ```
 
 
@@ -220,7 +420,7 @@ DeBruine, L. M. [-@debruine_composite]. The Composite Method Produces High False
 
 :::: columns
 ::: {.column width="50%"}
-![](images/cooperators_little_2013.jpg)
+![](images/composites/cooperators_little_2013.jpg)
 :::
 ::: {.column width="50%"}
 People chose the composite of people who self-reported a high probability to cooperate in a prisoners' dilemma as more likely to cooperate about 62% of the time [@Little2013PID]
@@ -398,179 +598,54 @@ simdat |>
   theme(legend.position = c(.5, .7))
 ```
 
+## Dark Triad
+
+![](images/composites/dark-triad.jpg)
+
+::: {.notes}
+A recent paper by @alper2021all used faces from the Faceaurus database [@holtzman2011facing] to test whether dark triad personality traits (Machiavellianism, narcissism, and psychopathy) are visible in the face. “Holtzman (2011) standardized the assessment scores, computed average scores of self- and peer-reports, and ranked the face images based on the resulting scores. Then, prototypes for each of the personality dimensions were created by digitally combining 10 faces with the highest, and 10 faces with the lowest scores on the personality trait in question (Holtzman, 2011).” This was done separately for male and female faces.
+:::
+
+@Holtzman_2011, replicated by @alper2021all
+
+## Simulate Composite Ratings
+
+Following @Holtzman_2011, we simulated 100 sets of 6 "image pairs" with no actual difference in appearance, and 105 raters giving -5 to +5 ratings for which face in each pair looks more Machiavellian, narcissistic, or psychopathic. By chance alone, some of the values will be significant in the predicted direction.
+
+![](images/composites/simulation.png)
+
+## More Raters?
+
+![](images/composites/power-curves.png)
+
+::: {.notes}
+A naive solution to this problem is to increase the number of raters, which should produce more accurate results, right? Actually, this makes the problem even worse. As you increase the number of raters, the power to detect even small (chance) differences in composites rises (Figure 8). Consequently, you can virtually guarantee significant results, even for tiny differences or traits that people are very bad at estimating.
+:::
+
+## Composite Size
+
+![](images/composites/composite-size.png)
+
+With only 10 stimuli per composite (like the Facesaurus composites), the median unsigned difference between composites from populations with no real difference is 0.31 SD.
+
+::: {.notes}
+How likely is it that there will be chance differences in the composites big enough to be a problem? More likely than you probably think, especially when there are a small number of stimuli in each composite. The smaller the number of stimuli that go into each composite, the larger the median (unsigned) size of this difference (Figure 9). With only 10 stimuli per composite (like the Facesaurus composites), the median unsigned effect size of the difference between composites from populations with no real difference is 0.31 (in units of SD of the original trait distribution). If our raters are accurate enough at perceiving this difference, or we run a very large number of raters, we are virtually guaranteed to find significant results every time. There is a 50% chance that these results will be in the predicted direction, and this direction will be replicable across different samples of raters for the same image set.
+:::
+
 ## Mixed Effects Models
 
-![](images/lmer.gif)
+![](images/lmer.gif){style="float: right;"}
 
 DeBruine LM, Barr DJ. [-@debruine2021understanding]. Understanding Mixed-Effects Models Through Data Simulation. Advances in Methods and Practices in Psychological Science. 4(1). <https://doi.org/10.1177/2515245920965119>
 
+## Random Composites
 
-# Psychological Science Accelerator
+![Five random pairs of composites from a sample of 20 faces (10 in each composite). Can you spot any differences?](images/composites/rand-pairs.png)
 
-![](images/psa/logo.png)
-
-Jones, B.C., DeBruine, L.M., Flake, J.K. et al. (2021). To which world regions does the valence–dominance model of social perception apply?. Nature Human Behaviour 5, 159–169. <https://doi.org/10.1038/s41562-020-01007-2> 
-
-```{r}
-# function to create demo face tests
-facetest <- function(trait) {
-  side <- sample(c("high", "low"))
-  a <- side[1]
-  b <- side[2]
-  a_correct <- ifelse(a == "high", "{class=\"correct\"}", "")
-  b_correct <- ifelse(b == "high", "{class=\"correct\"}", "")
-  
-  glue::glue("## Which face looks more {trait}?
-
-:::: {{.columns .faces}}
-::: {{.column width=\"50%\"}}
-![](images/faces/{trait}_{a}.jpg)
-:::
-::: {{.column width=\"50%\"}}
-![](images/faces/{trait}_{b}.jpg)
-:::
-::::
-
-## Which face looks more {trait}?  {{visibility=\"uncounted\"}}
-
-:::: {{.columns .faces}}
-::: {{.column width=\"50%\"}}
-![](images/faces/{trait}_{a}.jpg){a_correct}
-:::
-::: {{.column width=\"50%\"}}
-![](images/faces/{trait}_{b}.jpg){b_correct}
-:::
-::::")
-}
-```
-
-`r facetest("trustworthy")`
-
-`r facetest("responsible")`
-
-`r facetest("dominant")`
-
-`r facetest("intelligent")`
-
-`r facetest("caring")`
-
-## Valence Dominance Model
-
-:::: {.columns}
-::: {.column width="50%"}
-1. Attractive
-2. Weird
-3. Mean
-4. Trustworthy
-5. Aggressive
-6. Caring
-7. Emotionally stable
-:::
-::: {.column width="50%"}
-8. Unhappy
-9. Responsible
-10. Sociable
-11. Dominant
-12. Confident
-13. Intelligent 
-:::
-::::
-
-## 
-
-<div style="text-align: center">How sociable (i.e., friendly or agreeable in company; companionable) is this person?</div>
-
-<div class="left-anchor">not at all</div>
-<div class="right-anchor">very</div>
-
-![](images/psa/demo.png){fig-align="center"}
-
-## 
-
-<div style="text-align: center">Hoe sociabel (d.w.z. vriendelijk of prettig in de omgang, gezellig) is deze persoon?</div>
-
-<div class="left-anchor">helemaal niet</div>
-<div class="right-anchor">helemaal erg</div>
-![](images/psa/demo.png){fig-align="center"}
-
-
-## Study Stats
-
-:::: {.columns}
-::: {.column width="50%"}
-
-* `>`3M data points  
-* 12,660 participants  
-* 11,570 post-exclusion  
-* 126 labs  
-* 44 countries  
-* 25 languages  
-* 243 authors  
-
-:::
-::: {.column width="50%"}
-
-![](images/psa/lego-people.png)
-
-:::
-::::
-
-## Authors / CRediT
-
-<div class="author-credit">
-<img src="images/psa/authors.png">
-</div>
-
-## PCA Loadings
-
-:::: {.columns}
-::: {.column width="50%"}
-
-![Original Data](images/psa/loadings-todorov.png)
-
-:::
-::: {.column width="50%"}
-
-![Western Europe](images/psa/loadings-western-europe.png)
-
-:::
-::::
-
-## PCA Loadings
-
-![Principal Components Analysis shows little regional variability](images/psa/loadings-pca-all.png)
-
-## EFA Loadings
-
-![Exploratory Factor Analysis shows more regional variability](images/psa/loadings-efa-all.png)
-
-
-## Secondary Data Challenge
-
-:::: {.columns style="font-size: 24px;"}
-::: {.column width="50%"}
-
-* Examining the “attractiveness halo effect” - Carlotta Batres, Victor Shiramizu (<jnl>Current Psychology</jnl>)  
-* Region- and Language-Level ICCs for Judgments of Faces - Neil Hester and Eric Hehman (<jnl>Psychological Science</jnl>)  
-* Variance & Homogeneity of Facial Trait Space Across World Regions - Sally Xie and Eric Hehman (<jnl>Psychological Science</jnl>)  
-* The Facial Width-to-Height Ratio (fWHR) and Perceived Dominance and Trustworthiness: Moderating Role of Social Identity Cues (Gender and Race) and Ecological Factor (Pathogen Prevalence) - Subramanya Prasad Chandrashekar  
-
-:::
-::: {.column width="50%"}
-
-* Is facial width-to-height ratio reliably associated with social inferences? A large cross-national examination - Patrick Durkee and Jessica Ayers  
-* Population diversity is associated with trustworthiness impressions from faces - Jared Martin, Adrienne Wood, and DongWon Oh (<jnl>Psychological Science</jnl>)  
-* Do regional gender and racial biases predict gender and racial biases in social face judgments? - DongWon Oh and Alexander Todorov  
-* Hierarchical Modelling of Facial Perceptions: A Secondary Analysis of Aggressiveness Ratings - Mark Adkins, Nataly Beribisky, Stefan Bonfield, and Linda Farmus
-
-:::
-::::
-
-[Blog Post](https://psysciacc.org/2020/09/14/incentivizing-discovery-through-the-psa001-secondary-analysis-challenge/)
 
 # ManyFaces
 
-![[https://manyfaces.team](https://manyfaces.team)](images/manyfaces.png)
+![[https://manyfaces.team](https://manyfaces.team)](images/manyfaces/manyfaces.png)
 
 ManyFaces is a recently formed big team science group for face perception and face recognition research. 
 
@@ -580,7 +655,7 @@ Broadly, the aim of ManyFaces is to improve, diversify, and crowdsource key aspe
 
 ## Stimulus Meta-Database
 
-![](images/london-set.png)
+![](images/manyfaces/london-set.png)
 
 <https://osf.io/mbqt3/>
 
@@ -608,13 +683,31 @@ Perception tests
 
 :::
 
-## Get Involved
+## Protocol Development
 
+![](images/manyfaces/color-checker.png)
 
+[github.com/ManyFacesTeam/protocol-dev](https://github.com/ManyFacesTeam/protocol-dev)
+
+## Kit (~£800 total)
+
+![](images/manyfaces/manyfaces-kit.png){style="float:right;"}
+
+📷 camera: Canon EOS 250D Digital SLR Camera with 18-55mm IS STM Lens (£649)
+
+💾 memory card: SanDisk 32GB SDHC Card (£9)
+
+🌈 color checker: Calibrite ColorChecker Classic ~A4 (£66)
+
+💡 stand/light: Fovitec Bi-Colour LED Ring Light Kit (£71)
+
+## Image Collection Pilot
+
+![](images/manyfaces/alignment.png)
 
 # Thank You!
 
-![](images/manyfaces.png){width=80 style="vertical-align:middle;"} [debruine.github.io/talks/rep-gen-faces/](https://debruine.github.io/talks/rep-gen-faces/) 
+![](images/manyfaces/manyfaces.png){width=80 style="vertical-align:middle;"} [debruine.github.io/talks/rep-gen-faces/](https://debruine.github.io/talks/rep-gen-faces/) 
 
 ![](images/github.png){width=80 style="border-radius:50%; vertical-align:middle;"} [code](https://github.com/debruine/talks/)
 
