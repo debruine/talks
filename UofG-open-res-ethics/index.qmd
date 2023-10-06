@@ -58,7 +58,13 @@ Processes are documented for others to assess and learn from
 
 Registry of Research Data Repositories: [Re3Data](https://www.re3data.org/)
 
-[Glasgow Open Research Data Sharing](https://www.gla.ac.uk/myglasgow/openresearch/researchdatamanagement/repositoriesforfinaliseddata/)
+[Glasgow Open Research Data Repositories](https://www.gla.ac.uk/myglasgow/openresearch/researchdatamanagement/repositoriesforfinaliseddata/)
+
+## DMP for Personal Data
+
+![](images/Glasgow-DMP.png)
+
+[Glasgow Research Data Management](https://www.gla.ac.uk/myglasgow/openresearch/researchdatamanagement/)
 
 ## Analytic Reproducibility {.smaller}
     
@@ -128,4 +134,10 @@ Of 62 Registered Reports in psychology published from 2014--2018, 36 had data an
 
 * [The Turing Way](https://the-turing-way.netlify.app/)
 
+# Issues for Ethics Committees
 
+* Address data sharing in template consent forms
+* Consistency of data management plans across consent, info, DMP, DPIA
+* Registered report-friendly procedures
+* Team research-friendly procedures
+* Should ethics committees do methodological review? [(Lakens, 2023, Nature)](https://www.nature.com/articles/d41586-022-04504-8)
