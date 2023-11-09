@@ -6,6 +6,7 @@ format:
     css: style.scss
 ---
 
+* [Data Simulation and Code Review](CompCogSci-2023) U of Edinburgh CompCogSci 2023-11-09
 * [Ethics and Open Research](UofG-open-res-ethics) UofG CoSE Ethics 2023-10-06
 * [Replicability and Generalisability in Face Research](rep-gen-faces/) VU 2023-09-21
 * [Code Review](code-review/) UofG 2023-08-31
