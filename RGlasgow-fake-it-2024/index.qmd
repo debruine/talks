@@ -1,0 +1,240 @@
+---
+title: "Fake It Until You Make It"
+subtitle: "How and why to simulate research data\n\n![](images/RGlasgow-fakeit-400.png){width=320}\n\n[tinyurl.com/RGlasgow-fakeit](https://debruine.github.io/talks/RGlasgow-fake-it-2024/)"
+author: "Lisa DeBruine"
+format: 
+  revealjs:
+    logo: images/RGlasgow-logo.png
+    theme: [dark, style.scss]
+    transition: none
+    transition-speed: fast
+---
+
+# Abstract
+
+```{r, include = FALSE}
+library(tidyverse)
+library(ggdark)
+library(gt)
+library(faux)
+
+knitr::opts_chunk$set(echo = FALSE)
+
+theme_set(dark_theme_gray(base_size = 17))
+faux_options(plot = FALSE)
+set.seed(8675309)
+```
+
+::: {style="font-size: 24px;"}
+Being able to simulate data allows you to prep analysis scripts for pre-registration, calculate power and sensitivity for analyses that don’t have empirical methods, create reproducible examples when your data are too big or confidential to share, enhance your understanding of statistical concepts, and create demo data for teaching and tutorials. This talk will cover the basics of simulation using the R package {faux}. We will simulate data with factorial designs by specifying the within and between-subjects factor structure, each cell mean and standard deviation, and correlations between cells where appropriate. This can be used to create simulated data sets to be used in preparing the analysis code for pre-registrations, registered reports, or simulation-based power analyses.
+:::
+
+# Why Simulate Data?
+
+## Pre-Registration
+
+![Prep analysis scripts for pre-registration or registered reports](images/lego-registered-reports.png)
+
+## Power
+
+![Calculate power and sensitivity for analyses that don't have empirical methods](images/lego-power-sensitivity.png)
+
+## Reproducible Examples
+
+![Create reproducible examples when your data are too big or confidential to share](images/lego-rainbow.png)
+
+<!-- Pete Linforth/ Pixabay -->
+
+## Enhance Understanding
+
+![Enhance your understanding of statistical or other complex concepts](images/lego-grid.png)
+
+<!-- Stanford Online -->
+
+## Teaching Data
+
+![Create demo data for teaching and tutorials](images/lego-teacher.png)
+
+# Faux 
+
+![](images/faux.png)
+
+[Shiny app](https://rstudio-connect.psy.gla.ac.uk/faux/) or [R package](https://debruine.github.io/faux/)
+
+
+## Shiny App
+
+::: {#fauxapp .panel-tabset}
+
+### Plot
+
+![](images/faux_plot.png)]
+
+### Data
+
+![](images/faux_data.png)
+
+### Code
+
+![](images/faux_code.png)
+
+:::
+
+## Faux Code
+
+```{r, echo = TRUE}
+sim_data <- faux::sim_design(
+  within = list(version = c(V1 = "Version 1", V2 = "Version 2"), 
+                condition = c(ctl = "Control", exp = "Experimental")),
+  between = list(age_group = c(young = "Age 20-29", old = "Age 70-79")),
+  n = 30,
+  mu = c(100, 100, 100, 100, 100, 90, 110, 110),
+  sd = 20,
+  r = 0.5,
+  dv = c(score = "Score"),
+  id = c(id = "Subject ID"),
+  vardesc = list(version = "Task Version", 
+                 condition = "Experiment Condition", 
+                 age_group = "Age Group"),
+  long = TRUE
+)
+```
+
+## Faux Design Parameters
+
+```{r}
+# sim_data[c(1, 31, 61, 91, 121, 151, 181, 211), ] |>
+get_design(sim_data)$params |>
+  gt() |>
+  gtExtras::gt_theme_dark(table.font.size = px(20)) |>
+  tab_style(style = cell_text(size = px(25)),
+            locations = cells_column_labels(everything()))
+```
+
+
+## Faux Design Plot
+
+```{r, echo=TRUE, eval=FALSE}
+sim_data |> get_design() |> plot()
+```
+
+```{r}
+sim_data |> get_design() |> plot() + 
+  dark_theme_gray(base_size = 17) +
+  coord_cartesian(ylim = c(40, 160))
+```
+
+## Faux Data Plot
+
+```{r, echo=TRUE, eval=FALSE}
+sim_data |> plot(geoms = c("violin", "pointrangeSE"))
+```
+
+```{r}
+sim_data |> plot(geoms = c("violin", "pointrangeSE")) + 
+  dark_theme_gray(base_size = 17) +
+  coord_cartesian(ylim = c(40, 160))
+```
+
+## Power Simulation: Replicate Data
+
+```{r, echo = TRUE}
+sim_data <- faux::sim_design(
+  within = list(version = c(V1 = "Version 1", V2 = "Version 2"), 
+                condition = c(ctl = "Control", exp = "Experimental")),
+  between = list(age_group = c(young = "Age 20-29", old = "Age 70-79")),
+  n = 30,
+  mu = c(100, 100, 100, 100, 100, 90, 110, 110),
+  sd = 20,
+  r = 0.5,
+  dv = c(score = "Score"),
+  id = c(id = "Subject ID"),
+  vardesc = list(version = "Task Version", 
+                 condition = "Experiment Condition", 
+                 age_group = "Age Group"),
+  long = TRUE,
+  rep = 100
+)
+```
+
+## Power Simulation: Analysis Function
+
+```{r, echo = TRUE}
+# setup options to avoid annoying afex message & run faster
+afex::set_sum_contrasts()
+afex::afex_options(include_aov = FALSE) 
+
+analysis_func <- function(data) {
+  a <- afex::aov_ez(
+    id = "id", 
+    dv = "score", 
+    between = "age_group",
+    within = c("version", "condition"),
+    data = data)
+  
+  as_tibble(a$anova_table, rownames = "term") |>
+    rename(p = `Pr(>F)`)
+}
+```
+
+## Power Simulation: Analysis Result
+
+```{r, echo = TRUE, eval = FALSE}
+# test on first data set
+analysis_func(sim_data$data[[1]])
+```
+
+::: {style="font-size: 90%;"}
+```{r}
+analysis_func(sim_data$data[[1]]) |>
+  gt() |>
+  gt::fmt_number(MSE, decimals = 1) |>
+  gt::fmt_number(F, decimals = 2) |>
+  gt::fmt_number(ges:p, decimals = 3) |>
+  gtExtras::gt_theme_dark(table.font.size = px(15)) |>
+  tab_style(style = cell_text(size = px(15)),
+            locations = cells_column_labels(everything()))
+```
+:::
+
+## Power Simulation
+
+```{r, echo = TRUE}
+power <- sim_data |>
+  mutate(analysis = purrr::map(data, analysis_func)) |>
+  select(-data) |>
+  unnest(analysis) |>
+  group_by(term) |>
+  summarise(power = mean(p < .05))
+```
+
+::: {style="font-size: 80%;"}
+```{r}
+power |>
+  gt() |>
+  gtExtras::gt_theme_dark(table.font.size = px(15)) |>
+  tab_style(style = cell_text(size = px(20)),
+            locations = cells_column_labels(everything()))
+```
+:::
+
+# Further Resources
+
+:::{layout-nrow=1}
+
+[![PsyPag Simulation Summer School](images/simsummerschool.jpg)](https://simsummerschool.github.io/)
+
+[![Data Simulation Workshops](images/dsw.png)](https://debruine.github.io/data-sim-workshops/)
+
+:::
+
+
+# Thank You!
+
+:::{layout-nrow=1}
+
+[![tinyurl/RGlasgow-fakeit](images/RGlasgow-fakeit-400.png)](https://debruine.github.io/talks/RGlasgow-fake-it-2024/)
+
+[![psyteachr.github.io](images/psyteachr_hex.png)](https://psyteachr.github.io/)
+
+:::

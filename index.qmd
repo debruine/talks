@@ -6,6 +6,7 @@ format:
     css: style.scss
 ---
 
+* [Fake it until you make it: How and why to simulate research data](RGlasgow-fake-it-2024/) RGlasgow 2024-01-25 
 * [Data Simulation and Code Review](CompCogSci-2023) U of Edinburgh CompCogSci 2023-11-09
 * [Ethics and Open Research](UofG-open-res-ethics) UofG CoSE Ethics 2023-10-06
 * [Replicability and Generalisability in Face Research](rep-gen-faces/) VU 2023-09-21
