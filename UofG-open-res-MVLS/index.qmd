@@ -131,7 +131,7 @@ Of 62 Registered Reports in psychology published from 2014--2018, 36 had data an
 [Training Schedule](https://www.ukrn.org/training-schedule/)
 
 * 2024 June 5-6: Teaching Reproducible Research (Glasgow)
-* 2024 June: Introduction to Software for Open and Reproducible Research (Online)
+* 2024 July 1-4: Introduction to Software for Open and Reproducible Research (Online)
 
 # Resources
 
