@@ -1,0 +1,142 @@
+---
+title: "Open Research"
+subtitle: "[https://debruine.github.io/talks/UofG-open-res-MVLS/](https://debruine.github.io/talks/UofG-open-res-MVLS/)"
+author: "Lisa DeBruine  \n![](images/mastodon.png){width=60 style='vertical-align:middle;'} [tech.lgbt/@debruine](https://tech.lgbt/@debruine)"
+format: 
+  revealjs:
+    logo: images/or_logo.png
+    theme: [default, ../style.scss]
+    transition: none
+    transition-speed: fast
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Key concepts
+
+### Collaboration
+
+All research roles are appropriated valued and credited
+
+### Accessibility
+
+Stakeholders can access research outputs
+
+### Transparency
+
+Processes are documented for others to assess and learn from
+
+
+## Replication Crisis
+
+![From A manifesto for reproducible science, [10.1038/s41562-016-0021](https://doi.org/10.1038/s41562-016-0021)](images/lego-replication.png){fig-alt="An idealized version of the hypothetico-deductive model of the scientific method. Various potential threats to this model exist (indicated in red), including lack of replication, hypothesizing after the results are known (HARKing), poor study design, low statistical power, analytical flexibility, P-hacking, publication bias and lack of data sharing."}
+
+## Reproducibility
+
+![Scriberia. CC-BY 4.0. DOI: [10.5281/zenodo.3332807](https://doi.org/10.5281/zenodo.3332807)](images/reproducibility.jpg){fig-alt="Image of a map map showing the 'path' from data to tools to results to code"}
+
+# Key practices
+
+## Open Materials/Data/Code
+
+::: {layout-ncol=5}
+
+![Open Science Framework](images/archives/OSF.png){fig-alt="OSF logo - blue dots"}
+
+![UK Data Service](images/archives/UKDS.jpg){fig-alt="UKDS logo - a rainbow box"}
+
+![Databrary](images/archives/Databrary.jpg){fig-alt="Databrary logo - a leaf"}
+
+![Zenodo](images/archives/zenodo.png){fig-alt="Zenodo"}
+
+![GitHub](images/archives/github.png){fig-alt="GitHub logo - an octocat"}
+
+:::
+
+Registry of Research Data Repositories: [Re3Data](https://www.re3data.org/)
+
+[Glasgow Open Research Data Repositories](https://www.gla.ac.uk/myglasgow/openresearch/researchdatamanagement/repositoriesforfinaliseddata/)
+
+## DMP for Personal Data
+
+![](images/Glasgow-DMP.png)
+
+[Glasgow Research Data Management](https://www.gla.ac.uk/myglasgow/openresearch/researchdatamanagement/)
+
+## Analytic Reproducibility {.smaller}
+    
+An analysis by [Nuijten et al. (2016)](https://doi.org/10.3758/s13428-015-0664-2) of over 250K p-values reported in 8 major psych journals from 1985 to 2013 found that:
+
+* half the papers had at least one inconsistent p-value 
+* 1/8 of papers had errors that could affect conclusions
+* errors more likely to be erroneously significant than not
+
+Of 35 articles published in *Cognition* with usable data, [Hardwicke et al. (2018)](https://doi.org/10.1098/rsos.180448) found:
+
+* only 11 could be reproduced independently 
+* 11 were reproducible with the original authors' help
+* 13 were not reproducible even by the original authors
+    
+[Why Code?](https://debruine.github.io/why-code/) talk expanding on this
+
+## Computational Reproducibility
+
+Of 62 Registered Reports in psychology published from 2014--2018, 36 had data and analysis code, 31 could be run, and 21 reproduced all the main results ([Obels et al, 2020](https://doi.org/10.1177/2515245920918872))
+
+![](images/obels.png){alt-text="Flowchart of sample: starting from sampling frame of 188 paper, to 79 in psychology domian, to 62 in final data set, to 36 with data and code available, to 31 with runnable scripts, to 21 with reproducible results"}
+
+
+## Preregistration
+
+![Haroz (2022) Comparison of Preregistration Platforms, [10.31222/osf.io/zry2u](https://doi.org/10.31222/osf.io/zry2u)](images/prereg.png){fig-alt="The features of general-purpose preregistration services. See link for text version."}
+
+
+## Registered Reports
+
+![[osf.io/rr/](https://osf.io/rr/)](images/lego-registered-reports.png){fig-alt="LEGO minifigs measuring each other, next to a flow chart of the RR process: Develop idea, design study, stage 1 review,  collect and analyse data, write report, stage 2 review, publish report."}
+
+## Preprints
+
+::: {layout-ncol=5}
+
+![](images/preprints/arxiv.png){fig-alt="arXiv logo (word with the X like a chain link)"}
+
+![](images/preprints/africarxiv.png){fig-alt="AfricArXiv logo with Africa made of colourful stripes"}
+
+![](images/preprints/biorxiv.png){fig-alt="bioRxiv logo (word with red R)"}
+
+![](images/preprints/edarxiv.png){fig-alt="edArXiv logo (word with a quill and fountain for the i)"}
+
+![](images/preprints/metaarxiv.png){fig-alt="MetaArXiv logo (white Meta on a multicoloured background)"}
+
+![](images/preprints/medrxiv.png){fig-alt="medRxiv logo (word with blue R)"}
+
+![](images/preprints/psyarxiv.png){fig-alt="psyArXiv logo (Psi, A, and Chi in red boxes)"}
+
+![](images/preprints/eartharxiv.png){fig-alt="earthRxiv logo (padlock where half the round part is a globe)"}
+
+![](images/preprints/socarxiv.png){fig-alt="SocArXiv logo (white word on a black background)"}
+
+![](images/preprints/zenodo.png){fig-alt="zenodo logo (word on a blue background)"}
+
+:::
+
+[List of 62 preprint servers](https://asapbio.org/preprint-servers)
+
+# UKRN Train the Trainer
+
+[Training Schedule](https://www.ukrn.org/training-schedule/)
+
+* 2024 June 5-6: Teaching Reproducible Research (Glasgow)
+* 2024 June: Introduction to Software for Open and Reproducible Research (Online)
+
+# Resources
+
+* [Glasgow Open Research](https://www.gla.ac.uk/myglasgow/openresearch/)
+
+* [UK Reproducibility Network](https://www.ukrn.org/)
+
+* [The Turing Way](https://the-turing-way.netlify.app/)
