@@ -48,3 +48,35 @@ $presentation-heading-font: "PT Sans", sans !default;
 }
 
 #progress ul img { vertical-align: text-top; }
+
+
+.pointer {
+  width: 500px;
+  height: 50px;
+  position: relative;
+  background: #0B3865;
+  color: white;
+  margin: 0 10px;
+}
+.pointer:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 25px solid white;
+  border-top: 25px solid transparent;
+  border-bottom: 25px solid transparent;
+}
+.pointer:before {
+  content: "";
+  position: absolute;
+  right: -25px;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 25px solid #0B3865;
+  border-top: 25px solid transparent;
+  border-bottom: 25px solid transparent;
+}

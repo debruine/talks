@@ -6,16 +6,15 @@ format:
     logo: images/values_integrity_truth.svg
     theme: [default, style.scss]
     transition: none
+    css: https://fonts.googleapis.com/css?family=PT+Sans
     transition-speed: fast
 ---
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans">
 
 # Project
 
 ## Academic Lead for <br> Good Research Practice {.smaller}
 
-> In this role you will provide academic leadership, working with colleagues across the university research ecosystem and externally, to design and implement a framework to ensure the integration of activities relevant to improving good research practice, including, but not limited to, research integrity, research ethics (non-clinical), reproducible and transparent research, open research, responsible research and the use of AI in research.
+> In this role you will provide academic leadership, working with colleagues across the university research ecosystem and externally, to **design and implement a framework to ensure the integration of activities relevant to improving good research practice**, including, but not limited to, research integrity, research ethics (non-clinical), reproducible and transparent research, open research, responsible research and the use of AI in research.
 
 > The postholder will also drive the alignment of training, policies and awareness to ensure that our researchers apply the highest standards of practice in the planning, execution and reporting of their research.
 
@@ -97,12 +96,68 @@ Building connected communities of good research practice
 
 # Leadership
 
-## Insights, mindsets & techniques
+## Values
 
-## How I’ve grown as a leader
+What is important for you to live by day by day in your role as a leader? 
 
-## What have I discovered about myself
+* Openness and transparency
+* Humility
+* Non-hierarchical consensus building
 
-## How am I leading differently
+
+## Change Framework
+
+Make it:
+
+::: {layout-ncol=4}
+
+<span class="pointer">. &nbsp;   Essential &nbsp;</span> 
+
+<span class="pointer">. &nbsp;   Ready &nbsp;</span> 
+
+<span class="pointer">. &nbsp;   Happen &nbsp;</span> 
+
+<span class="pointer">. &nbsp;   Stick &nbsp;</span>
+
+Create urgency and commitment
+
+Identify stakeholders, requirements, risks, and benefits
+
+Drive and release implementation
+
+Celebrate and follow up
+
+:::
+
+## Culture Change Pyramid
+
+![](images/pyramid.jpg)
+
+## SCARF Model
+
+::: {layout-ncol=5}
+
+### Status
+
+<br>Valuing rigour over prestige
+
+### Certainty
+
+<br>Clear training and resources
+
+### Autonomy
+
+<br>Trusted discipline-specific advisors
+
+### Relatedness
+
+<br>Create communities of practice
+
+### Fairness
+
+<br>Fair recognition and reward
+
+:::
+
 
 # Questions?
