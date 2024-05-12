@@ -1,0 +1,50 @@
+/*-- scss:defaults --*/
+
+$body-bg: #FFF;
+$body-color: #0B3865;
+$presentation-heading-color: #0B3865;
+
+// headings
+$font-family-sans-serif: "PT Sans", sans !default;
+$presentation-heading-font: "PT Sans", sans !default;
+
+/*-- scss:rules --*/
+
+:root {
+  --red: #983E82;   /* hsl(315, 42%, 42%) */
+  --orange: #E2A458; /* hsl( 33, 70%, 62%) */
+  --yellow: #F5DC70; /* hsl( 49, 87%, 70%) */
+  --green: #59935B;  /* hsl(122, 25%, 46%) */
+  --blue: #467AAC;   /* hsl(209, 42%, 47%) */
+  --purple: #61589C; /* hsl(248, 28%, 48%) */
+}
+
+/* UofG WCT borders */
+.slide-background-content {
+  margin-top: 20px;
+  box-shadow: 0 -5px 0 0px var(--purple),
+              0 -10px 0 0px var(--blue),
+              0 -15px 0 0px var(--green),
+              0 -20px 0 0px var(--red);
+}
+
+.reveal blockquote {
+  color: var(--purple);
+}
+
+.reveal .slide-logo {
+  height: 50px;
+}
+
+#title-slide .subtitle img {
+  max-width: 320px;
+  max-height: 320px;
+}
+
+#progress ul {
+  list-style-type:none;
+  padding: 0;
+  margin: 0;
+}
+
+#progress ul img { vertical-align: text-top; }

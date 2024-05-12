@@ -1,0 +1,108 @@
+---
+title: "SLP Showcase"
+author: "Lisa DeBruine"
+format: 
+  revealjs:
+    logo: images/values_integrity_truth.svg
+    theme: [default, style.scss]
+    transition: none
+    transition-speed: fast
+---
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans">
+
+# Project
+
+## Academic Lead for <br> Good Research Practice {.smaller}
+
+> In this role you will provide academic leadership, working with colleagues across the university research ecosystem and externally, to design and implement a framework to ensure the integration of activities relevant to improving good research practice, including, but not limited to, research integrity, research ethics (non-clinical), reproducible and transparent research, open research, responsible research and the use of AI in research.
+
+> The postholder will also drive the alignment of training, policies and awareness to ensure that our researchers apply the highest standards of practice in the planning, execution and reporting of their research.
+
+## Duties {.scrollable .smaller}
+
+- to provide strategic leadership across the University on the University’s commitment to driving continuous improvement in research practice across all areas of research activity;
+- to provide academic expertise contributing to and shaping the University's strategic planning processes on matters relating to research practice improvement;
+- accountable for the reporting of activities to the University's Research Planning & Strategy Committee;
+- the role includes delegated academic oversight of various Concordats and sector agreements to which the University is a signatory, including the Concordat to Support Research Integrity, the Concordat on Open Research Data, as well as elements of the San Francisco Declaration on Research Assessment (DORA) and the Knowledge Exchange Concordat that relate to research practice improvement. The postholder will be the institutional lead for the UK Reproducibility Network (UKRN);
+- to provide academic direction to the Professional Services teams who support the development and promotion of good research practice;
+- to identify and champion innovations in ways of working that serve to improve research practice, taking into account how priorities vary across disciplines. Evaluate researchers ways of working across the University, and the provisions available to support improvement in research practice in-order to identify and development new & innovative solutions designed to improve overall research practices across the organisation;
+- to champion the development and implementation of policies, initiatives, training, and/or awareness-raising, to deliver continuous improvement in research practice across disciplines and career stages, including an evaluation of interventions;
+- to act as a role model and academic advocate for good research practice by applying exemplary standards of professionalism in the University’s pursuit of improved research practice, for example by applying rigour and transparency in the planning, execution, evaluation, and reporting of actions;
+- to represent and promote the University externally in activities led by funders and other relevant sectoral organisations, including as the University of Glasgow institutional lead for the UK Reproducibility Network (UKRN);
+- to establish and build strong relationships with key individuals in major external funders, including UKRI and its constituent Research Councils, and other relevant organisations, including the UK Committee on Research Integrity (CORI)that are mutually beneficial to the achievement of strategic objectives as detailed within the Research Strategy;
+- to provide situational awareness of, and steering institutional responses to, the evolving landscape for good research practice across the sector, ensuring this is reflected across the provisions and solutions available across the organisation which are developed and designed to enhance the University’s research practices;
+- to work closely with key internal stakeholders, including Deans of Research, Deans of Graduate Studies, Research Services, Research Information Management team, Research Integrity Champions and Advisors, and key individuals and groups in Schools, Colleges and University Services in order to further develop the University’s research environment and creating a positive research culture;
+- to identify and lead areas of activity in which the University can demonstrate a reputation as sector-leading in enhancing research quality;
+- to secure external sources of funding, as appropriate, to drive improvements in research quality and sector leadership.
+
+<!--
+## Details
+
+- 0.2 FTE reporting to Chris Pearce
+- Timeline
+    - Applications closed 19 November
+    - Interviewed 17 January
+    - Started 21 February 
+-->
+
+## UofG World Changers Together
+
+::: {layout-ncol=3}
+
+### Community
+
+![](images/community.png)
+
+### Connectivity
+
+![](images/connectivity.png)
+
+### Challenges
+
+![](images/challenges.png)
+
+:::
+
+Building connected communities of good research practice
+
+## Values
+
+::: {layout-ncol=4}
+
+### Ambition & Excellence
+![](images/values_ambition_excellence.svg)
+
+### Curiosity & Discovery
+![](images/values_curiosity_discovery.svg)
+
+### Integrity & Truth
+![](images/values_integrity_truth.svg)
+
+### Inclusive Community
+![](images/values_inclusive_community.svg)
+
+:::
+
+- “We value the quality of our research over its quantity” 
+- “How research is done is as important as what is done”
+
+## Progress
+
+- ![](images/community.png){width=2em} Building a clear picture of the OR landscape
+- ![](images/values_inclusive_community.svg){width=2em} Chairing the DORA working group
+- ![](images/values_integrity_truth.svg){width=2em} Revising the integrity advisor network ToR
+- ![](images/connectivity.png){width=2em} Recruiting a network of AI reps across Scottish unis
+- ![](images/values_ambition_excellence.svg){width=2em} Forming ideas for a _best_ research practice framework 
+
+# Leadership
+
+## Insights, mindsets & techniques
+
+## How I’ve grown as a leader
+
+## What have I discovered about myself
+
+## How am I leading differently
+
+# Questions?
