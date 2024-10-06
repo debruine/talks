@@ -1,0 +1,257 @@
+---
+title: "Professional Skills: Open Research"
+subtitle: "[debruine.github.io/talks/prof-skills-open-res/](https://debruine.github.io/talks/prof-skills-open-res/)"
+author: "Lisa DeBruine"
+format: 
+  revealjs:
+    logo: images/or_logo.png
+    theme: [default, ../style.scss]
+    transition: none
+    transition-speed: fast
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Key Concepts
+
+![[UofG Open Research Video](https://youtu.be/gGxtgEiRxYo)](images/open-research.png){fig-alt="Sketch of a 'map' to open research. There is a rainbow over the Glasgow Uni Building. Each stripe is labelled: Open research has many benefits, Visibilty, Transparency & reproducibility, Collaboration, Efficient use of funds, Credit for ideas, Public confidence."}
+
+## Replication
+
+![From *A manifesto for reproducible science* [10.1038/s41562-016-0021](https://doi.org/10.1038/s41562-016-0021)](images/lego-replication.png){fig-alt="An idealized version of the hypothetico-deductive model of the scientific method. Various potential threats to this model exist (indicated in red), including lack of replication, hypothesizing after the results are known (HARKing), poor study design, low statistical power, analytical flexibility, P-hacking, publication bias and lack of data sharing."}
+
+## Reproducibility
+
+![via the [Turing Way](https://the-turing-way.netlify.app/reproducible-research/overview/overview-definitions.html)](images/reproducible-matrix.jpg){fig-alt="Reproducible: same data, same analysis; Replicable: different data, smae analysis; Robust: same data, different analysis; Generalisable: different data, different analysis"}
+
+
+
+::: {.notes}
+
+* Reproducible: A result is reproducible when the same analysis steps performed on the same dataset consistently produces the same answer.
+
+*  Replicable: A result is replicable when the same analysis performed on different datasets produces qualitatively similar answers.
+
+*  Robust: A result is robust when the same dataset is subjected to different analysis workflows to answer the same research question (for example one pipeline written in R and another written in Python) and a qualitatively similar or identical answer is produced. Robust results show that the work is not dependent on the specificities of the programming language chosen to perform the analysis.
+
+*  Generalisable: Combining replicable and robust findings allow us to form generalisable results. Note that running an analysis on a different software implementation and with a different dataset does not provide generalised results. There will be many more steps to know how well the work applies to all the different aspects of the research question. Generalisation is an important step towards understanding that the result is not dependent on a particular dataset nor a particular version of the analysis pipeline.
+
+:::
+
+
+## Error Detection
+
+<div style="float:right;width:35%;margin-left: 1em;">
+![](images/statcheck.png)
+</div>
+
+An analysis by [Nuijten et al. (2016)](https://doi.org/10.3758/s13428-015-0664-2) of over 250K p-values reported in 8 major psych journals from 1985 to 2013 found that:
+
+* half the papers had at least one inconsistent p-value 
+* 1/8 of papers had errors that could affect conclusions
+* errors more likely to be erroneously significant than not
+
+
+    
+## Analysis Reproducibility
+
+Of 35 articles published in *Cognition* with usable data (but no code, [Hardwicke et al. (2018)](https://doi.org/10.1098/rsos.180448) found:
+
+- only 11 could be reproduced independently 
+- 11 were reproducible with the original authors' help
+- 13 were not reproducible even by the original authors
+
+## Code Reproducibility
+
+Of 62 Registered Reports in psychology published from 2014--2018, 36 had data and analysis code, 31 could be run, and 21 reproduced all the main results ([Obels et al, 2020](https://doi.org/10.1177/2515245920918872))
+
+![](images/obels.png){alt-text="Flowchart of sample: starting from sampling frame of 188 paper, to 79 in psychology domian, to 62 in final data set, to 36 with data and code available, to 31 with runnable scripts, to 21 with reproducible results"}
+
+
+
+# Key Practices
+
+## Open Access
+
+::: {.notes}
+
+Open access is promoting the early and wide sharing of research.
+
+For research articles this means making the full text freely available on the web. This facilitates discovery and sharing of your work.
+
+We recommend that you consider open access options for journal articles and conference proceedings in advance of submission. The Research Excellence Framework (REF) and many funders have open access requirements and policies. 
+
+:::
+
+![](images/open-access.png){fig-alt=""}
+
+
+Can be funded via [Grant Funding](https://www.gla.ac.uk/myglasgow/openresearch/openaccess/fundsforopenaccess/) or [Publisher Agreements](https://www.gla.ac.uk/myglasgow/openresearch/openaccess/publisherarrangements/) (contact research-openaccess\@glasgow.ac.uk)
+
+## Preregistration
+
+![Haroz (2022) [Comparison of Preregistration Platforms](https://doi.org/10.31222/osf.io/zry2u)](images/prereg.png){fig-alt="The features of general-purpose preregistration services. See link for text version."}
+
+## Registered Reports
+
+![[osf.io/rr/](https://osf.io/rr/)](images/lego-registered-reports.png){fig-alt="LEGO minifigs measuring each other, next to a flow chart of the RR process: Develop idea, design study, stage 1 review,  collect and analyse data, write report, stage 2 review, publish report."}
+
+[Ten simple rules for writing a Registered Report](https://doi.org/10.1371/journal.pcbi.1010571)
+
+## Open Materials/Data/Code
+
+::: {layout-nrow=1}
+
+![[Protocols.io](https://www.gla.ac.uk/myglasgow/it/softwareandonlinetools/protocols-io/) ([webinar](https://www.protocols.io/webinars/UoG-protocolsio))](images/protocols.io.png){fig-alt="Raccoon face logo"}
+
+![[Open Science Framework (OSF)](https://osf.io)](images/osf.png){fig-alt="OSF logo"}
+
+![[GitHub](https://github.com)](images/github.png){fig-alt="Shadow logo of a cat head with an octopus tentacle tail"}
+
+:::
+
+Ideally, give open materials a permanent reference, like a DOI.
+
+## Code Review
+
+The process of methodically and systematically checking over code--your own or someone else's--after it has been written.
+
+-   Is the code is legible and clear?
+-   Is the analysis reproducible?
+-   Are other outputs reproducible?
+-   Does the code do what was intended?
+-   Does the code follows best practices?
+
+Code Review [Slides](https://debruine.github.io/talks/RIOT-code-review-2022/)/[Video](https://www.youtube.com/watch?v=-e5EQIw9rAg)
+
+
+## Preprints
+
+::: {layout-ncol=5}
+
+![](images/preprints/arxiv.png){fig-alt="arXiv logo (word with the X like a chain link)"}
+
+![](images/preprints/africarxiv.png){fig-alt="AfricArXiv logo with Africa made of colourful stripes"}
+
+![](images/preprints/biorxiv.png){fig-alt="bioRxiv logo (word with red R)"}
+
+![](images/preprints/edarxiv.png){fig-alt="edArXiv logo (word with a quill and fountain for the i)"}
+
+![](images/preprints/metaarxiv.png){fig-alt="MetaArXiv logo (white Meta on a multicoloured background)"}
+
+![](images/preprints/medrxiv.png){fig-alt="medRxiv logo (word with blue R)"}
+
+![](images/preprints/psyarxiv.png){fig-alt="psyArXiv logo (Psi, A, and Chi in red boxes)"}
+
+![](images/preprints/eartharxiv.png){fig-alt="earthRxiv logo (padlock where half the round part is a globe)"}
+
+![](images/preprints/socarxiv.png){fig-alt="SocArXiv logo (white word on a black background)"}
+
+![](images/preprints/zenodo.png){fig-alt="zenodo logo (word on a blue background)"}
+
+:::
+
+[List of 62 preprint servers](https://asapbio.org/preprint-servers)
+
+
+## Contributorship
+
+:::: columns
+::: {.column width="50%"}
+
+* Conceptualization 
+* Data curation 
+* Formal analysis 
+* Funding acquisition 
+* Investigation 
+* Methodology 
+* Project administration 
+
+:::
+::: {.column width="50%"}
+
+* Resources 
+* Software 
+* Supervision 
+* Validation 
+* Visualization 
+* Writing (original draft)
+* Writing (review & editing)
+
+:::
+::::
+
+Tenzing: [App](https://rollercoaster.shinyapps.io/tenzing/)/[Paper](https://doi.org/10.1371/journal.pone.0244611)
+
+## ORCiD
+
+:::: columns
+::: {.column width="65%"}
+
+![](images/orcid-demo.png){fig-alt="Flowchart showing steps: Authenticate, Collect ID, Display in funding base, Connect to award, synchronize with ORCiD, and synchronize with other systems"}
+
+:::
+::: {.column width="35%"}
+
+* [ORCID iD](https://orcid.org/): a unique, persistent identifier
+* [ORCID record](https://orcid.org/0000-0002-7523-5539): organise outputs and grants
+* ORCID APIs: login and connection
+
+:::
+::::
+
+
+# Resources
+
+## Resources at UofG
+
+
+* [Code of Good Practice](https://www.gla.ac.uk/research/strategy/ourpolicies/) ![](images/uofgopen.jpg){fig-alt="Glasgow University shield above U of G, Open Research" style="float:right;" height="200px" width="200px" border-radius="100px"}
+* [Open Research](https://www.gla.ac.uk/myglasgow/openresearch/)
+    * [Research Data Management](https://www.gla.ac.uk/myglasgow/openresearch/researchdatamanagement/) (research-datamanagement@glasgow.ac.uk)
+    * [Open Access](https://www.gla.ac.uk/myglasgow/openresearch/openaccess/) (research-openaccess@glasgow.ac.uk)
+* [Moodle Training](https://www.gla.ac.uk/myglasgow/openresearch/training/)
+
+## External Resources
+
+:::{layout-nrow=1}
+
+![[UK Reproducibility Network](https://www.ukrn.org/)](images/ukrn.jpg){fig-alt="Purple globe with UK in green and letters UKRN"}
+
+![[Framework for Open and Reproducible Research Training](https://forrt.org/)](images/forrt.png){fig-alt="Grey hexagon with a castle tower insite and the word FORRT below"}
+
+![[ReproducibiliTea](https://reproducibilitea.org/)](images/reproducibilitea.jpg){fig-alt="Blue hexagon with a teacup inside and the word ReproducibiliTea below"}
+
+:::
+
+
+## Next Steps
+
+:::: columns
+
+::: {.column width="60%"}
+
+* Read [Easing into Open Science](https://doi.org/10.1525/collabra.18684)
+* Get an [ORCiD](https://orcid.org/register)
+* Ask your supervisor about open research practices and tools in your areas
+* Think about open research (especially open data) in the planning stages
+
+:::
+
+::: {.column width="40%"}
+
+![Open Science research practices across the research cycle](images/easing_path.jpg){height="10em" fig-alt="Flowchart of main steps and practices. Conceptualisation: journal club, project workflow; Design: Preregistration, Registered reports, data sharing planning; Analysis: Reproducible code; Reporting: transparent writing; Dissemination: Preprints, data sharing"}
+
+:::
+
+::::
+
+
+# Thank You!
+
+[![debruine.github.io/talks/prof-skills-open-res/](images/qr-code.svg){fig-alt="QR code for this link" height="500px"}](https://debruine.github.io/talks/prof-skills-open-res/)
+
+
+
