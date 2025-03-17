@@ -1,0 +1,15 @@
+Date saved: 17 Mar 2025, 22:13 
+Data frame with original data: scholar2 
+Number of synthetic data sets: 1 
+Output file(s):(csv) scholar_sa_syn.csv
+Additional file: synobject_scholar_sa_syn.RData
+Methods used:
+                            year padded_population_of_researchers 
+                        "sample"                           "cart" 
+          number_of_inmigrations          number_of_outmigrations 
+                          "cart"                           "cart" 
+                     countryname                      incomelevel 
+                          "cart"                           "cart" 
+                  gdp_per_capita                       population 
+                          "cart"                           "cart" 
+Seed used: 683359010 
