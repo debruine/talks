@@ -543,37 +543,35 @@ Lisa DeBruine<br>
 <li><p><label><input type="checkbox">Set up gh-pages branch</label></p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href=""></a><span class="ex">quarto</span> publish gh-pages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p><label><input type="checkbox">Create a file <code>.github/workflow/quarto.yml</code></label></p></li>
-<li><p><label><input type="checkbox">Add the following text</label></p></li>
-</ul>
-<pre><code>name: Render and Publish
-on:
-  push:
-    branches:
-      - main  
-
-jobs:
-  build-deploy:
-      runs-on: ubuntu-latest
-      permissions:
-        contents: write
-      steps:
-        - name: Check out repository
-          uses: actions/checkout@v4
-
-        - name: Set up Quarto
-          uses: quarto-dev/quarto-actions/setup@v2
-          with:
-            version: 1.5.57
-
-        - name: Publish to GitHub Pages (and render)
-          uses: quarto-dev/quarto-actions/publish@v2
-          with:
-            target: gh-pages
-          env:
-            QUARTO_PROFILE: website
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}</code></pre>
-<ul class="task-list">
-<li><label><input type="checkbox">Save, commit, and push</label></li>
+<li><p><label><input type="checkbox">Add the following text</label></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb9-1"><a href=""></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Render and Publish</span></span>
+<span id="cb9-2"><a href=""></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="cb9-3"><a href=""></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
+<span id="cb9-4"><a href=""></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span></span>
+<span id="cb9-5"><a href=""></a><span class="at">      </span><span class="kw">-</span><span class="at"> main  </span></span>
+<span id="cb9-6"><a href=""></a></span>
+<span id="cb9-7"><a href=""></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb9-8"><a href=""></a><span class="at">  </span><span class="fu">build-deploy</span><span class="kw">:</span></span>
+<span id="cb9-9"><a href=""></a><span class="at">      </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb9-10"><a href=""></a><span class="at">      </span><span class="fu">permissions</span><span class="kw">:</span></span>
+<span id="cb9-11"><a href=""></a><span class="at">        </span><span class="fu">contents</span><span class="kw">:</span><span class="at"> write</span></span>
+<span id="cb9-12"><a href=""></a><span class="at">      </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb9-13"><a href=""></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Check out repository</span></span>
+<span id="cb9-14"><a href=""></a><span class="at">          </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v4</span></span>
+<span id="cb9-15"><a href=""></a></span>
+<span id="cb9-16"><a href=""></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Set up Quarto</span></span>
+<span id="cb9-17"><a href=""></a><span class="at">          </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> quarto-dev/quarto-actions/setup@v2</span></span>
+<span id="cb9-18"><a href=""></a><span class="at">          </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb9-19"><a href=""></a><span class="at">            </span><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="fl">1.5.57</span></span>
+<span id="cb9-20"><a href=""></a></span>
+<span id="cb9-21"><a href=""></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Publish to GitHub Pages (and render)</span></span>
+<span id="cb9-22"><a href=""></a><span class="at">          </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> quarto-dev/quarto-actions/publish@v2</span></span>
+<span id="cb9-23"><a href=""></a><span class="at">          </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb9-24"><a href=""></a><span class="at">            </span><span class="fu">target</span><span class="kw">:</span><span class="at"> gh-pages</span></span>
+<span id="cb9-25"><a href=""></a><span class="at">          </span><span class="fu">env</span><span class="kw">:</span></span>
+<span id="cb9-26"><a href=""></a><span class="at">            </span><span class="fu">QUARTO_PROFILE</span><span class="kw">:</span><span class="at"> website</span></span>
+<span id="cb9-27"><a href=""></a><span class="at">            </span><span class="fu">GITHUB_TOKEN</span><span class="kw">:</span><span class="at"> ${{ secrets.GITHUB_TOKEN }}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><label><input type="checkbox">Save, commit, and push</label></p></li>
 </ul>
 </section>
 <section id="base-repo" class="slide level2">
@@ -593,6 +591,21 @@ jobs:
 <li><label><input type="checkbox">Send a pull request</label></li>
 <li><label><input type="checkbox">Review and accept any pull requests on your repo</label></li>
 </ul>
+</section>
+<section id="further-resources" class="slide level2">
+<h2>Further Resources</h2>
+<ul>
+<li><a href="https://happygitwithr.com/">Happy Git with R</a></li>
+<li><a href="https://skills.github.com/">GitHub Skills</a></li>
+<li><a href="docs.github.com/en/pages">GitHub Pages</a></li>
+<li><a href="https://quarto.org/docs/websites/">Quarto Websites</a></li>
+<li><a href="https://psyteachr.github.io/intro-r-pkgs/09-sharing.html">Intro to R Packages: Sharing your Package</a></li>
+</ul>
+</section>
+<section id="thank-you" class="title-slide slide level1 center">
+<h1>Thank You!</h1>
+<p><img data-src="images/qrcode.svg"></p>
+<p><a href="https://debruine.github.io/talks/rostock-github/">https://debruine.github.io/talks/rostock-github/</a></p>
 <div class="quarto-auto-generated-content">
 <p><img src="images/psyteachr_hex.png" class="slide-logo"></p>
 <div class="footer footer-default">

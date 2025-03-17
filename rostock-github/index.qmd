@@ -194,35 +194,35 @@ git clone https://github.com/debruine/rostock-debruine
 - [ ] Create a file `.github/workflow/quarto.yml`
 - [ ] Add the following text
 
-```
-name: Render and Publish
-on:
-  push:
-    branches:
-      - main  
-
-jobs:
-  build-deploy:
-      runs-on: ubuntu-latest
-      permissions:
-        contents: write
-      steps:
-        - name: Check out repository
-          uses: actions/checkout@v4
-
-        - name: Set up Quarto
-          uses: quarto-dev/quarto-actions/setup@v2
-          with:
-            version: 1.5.57
-
-        - name: Publish to GitHub Pages (and render)
-          uses: quarto-dev/quarto-actions/publish@v2
-          with:
-            target: gh-pages
-          env:
-            QUARTO_PROFILE: website
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-```
+    ``` yaml
+    name: Render and Publish
+    on:
+      push:
+        branches:
+          - main  
+    
+    jobs:
+      build-deploy:
+          runs-on: ubuntu-latest
+          permissions:
+            contents: write
+          steps:
+            - name: Check out repository
+              uses: actions/checkout@v4
+    
+            - name: Set up Quarto
+              uses: quarto-dev/quarto-actions/setup@v2
+              with:
+                version: 1.5.57
+    
+            - name: Publish to GitHub Pages (and render)
+              uses: quarto-dev/quarto-actions/publish@v2
+              with:
+                target: gh-pages
+              env:
+                QUARTO_PROFILE: website
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    ```
 
 - [ ] Save, commit, and push 
 
@@ -239,3 +239,17 @@ jobs:
 - [ ] Make a change to one of the `index.qmd` files
 - [ ] Send a pull request
 - [ ] Review and accept any pull requests on your repo
+
+## Further Resources
+
+- [Happy Git with R](https://happygitwithr.com/)
+- [GitHub Skills](https://skills.github.com/)
+- [GitHub Pages](docs.github.com/en/pages)
+- [Quarto Websites](https://quarto.org/docs/websites/)
+- [Intro to R Packages: Sharing your Package](https://psyteachr.github.io/intro-r-pkgs/09-sharing.html)
+
+# Thank You!
+
+![](images/qrcode.svg)
+
+[`r url`](`r url`)
