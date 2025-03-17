@@ -6,6 +6,8 @@ format:
     css: style.scss
 ---
 
+* [Advanced GitHub](rostock-github) for Rostock Open Science Workshop 2025-03-17
+* [Good Research Practice Advisors](GRP-advisors) 2025-03-11
 * [Academic Lead for Good Research Practice](ALfGRP) for CoSE R&I 2024-10-17
 * [Professional Skils: Open Research](prof-skills-open-res) 2024-10-07
 * [Data Simulation with {faux} for mixed designs](lmemsim-2024/) 2024-04-09

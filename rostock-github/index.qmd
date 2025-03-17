@@ -1,0 +1,241 @@
+```{r, include=FALSE}
+url <- "https://debruine.github.io/talks/rostock-github/"
+subtitle <- sprintf("[%s](%s)", url, url)
+# make QR code
+qrcode::qr_code(url) |> qrcode::generate_svg("images/qrcode.svg")
+```
+---
+title: "Advanced GitHub"
+subtitle: "`r subtitle`"
+author: "Lisa DeBruine  \n![](images/qrcode.svg){width=300}"
+format: 
+  revealjs:
+    logo: images/psyteachr_hex.png
+    theme: [default, ../style.scss]
+    transition: none
+    transition-speed: fast
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Task List {.scrollable .smaller}
+
+- [ ] Set up a GitHub organisation for the 2025 Rostock Open Science Workshop attendees
+- [ ] Add all of the workshop attendees as members
+- [ ] Create your own GitHub repository in this org
+- [ ] Fork your own repo to your own account
+- [ ] Clone the repo to your own computer
+- [ ] Create a simple webpage using quarto
+- [ ] Commit the changes to your computer
+- [ ] Push the changes to your forked repo
+- [ ] Set up GitHub Pages on the forked repo
+- [ ] Send a pull request to the base repo on the org
+- [ ] Merge the pull request
+- [ ] Set up GitHub Pages on the base repo
+- [ ] Set up GitHub actions to render your quarto website
+- [ ] Make a pull request to someone else's repo
+
+## GitHub Org
+
+:::: {.columns}
+::: {.column width="60%"}
+
+- [ ] Lisa will [create a new organisation](https://github.com/settings/organizations)
+- [ ] Everyone send your github username in the chat
+- [ ] Accept the membership request
+
+:::
+::: {.column width="40%"}
+![](images/new_org.png)
+:::
+::::
+
+
+## Create Your GitHub Repo
+
+:::: {.columns}
+::: {.column width="60%"}
+
+- [ ] [Create a new repository](https://github.com/organizations/rostock2025/repositories/new) in the org
+- [ ] Give it your name or github username
+- [ ] Make it public
+- [ ] Include a README
+- [ ] Choose a license
+
+:::
+::: {.column width="40%"}
+![](images/new_repo.png)
+:::
+::::
+
+
+## Fork
+
+:::: {.columns}
+::: {.column width="60%"}
+
+- [ ] Fork your own repository to your own account
+- [ ] You can preface the name with rostock- if there is a conflict
+
+:::
+::: {.column width="40%"}
+![](images/fork.png)
+:::
+::::
+
+## Clone the Repo
+
+### RStudio
+
+``` r
+usethis::create_from_github("debruine/rostock-debruine")
+```
+
+### Command Line
+
+``` bash
+git clone https://github.com/debruine/rostock-debruine
+```
+
+## Create a Website {.scrollable .smaller}
+
+- [ ] Create a file called `index.qmd`
+- [ ] Add some markdown content
+- [ ] Create a file called `_quarto.yml`
+- [ ] Add the following text:
+
+    ``` yaml
+    project:
+      type: website
+      output-dir: docs
+      
+    website:
+      title: "Lisa's Advanced Github Notes"
+      
+    format:
+      html:
+        theme: slate
+    ```
+    
+- Render the website
+
+    ``` bash
+    quarto render
+    ```
+
+## Commit and Push
+
+- [ ] Save your files
+- [ ] Check and stage the files
+
+    ``` bash
+    git status
+    git add *
+    ```
+    
+- [ ] Commit the new files
+
+    ``` bash
+    git commit -m "First commit"
+    ```
+
+- [ ] Push the commit
+
+    ``` bash
+    git push
+    ```
+
+## GitHub Pages
+
+- [ ] Go to the GitHub repo online
+- [ ] Go to Settings and then Pages
+- [ ] Select `main` as the branch
+- [ ] Select `/docs` as the folder, and save
+
+![](images/github_pages.png)
+
+## Pull Request
+
+:::: {.columns}
+::: {.column width="50%"}
+
+- [ ] Open a pull request to send changes to the base repo
+- [ ] Merge the pull request from the base repo
+
+![](images/merge_pull_request.png)
+
+:::
+::: {.column width="50%"}
+
+![](images/pull_request.png)
+
+:::
+::::
+
+## GitHub Pages (again)
+
+- [ ] Go to the base repo online
+- [ ] Go to Settings and then Pages
+- [ ] Select `main` as the branch
+- [ ] Select `/docs` as the folder, and save
+
+![](images/github_pages.png)
+
+## GitHub Actions {.scrollable}
+
+- [ ] Set up gh-pages branch
+
+    ``` bash
+    quarto publish gh-pages
+    ```
+    
+- [ ] Create a file `.github/workflow/quarto.yml`
+- [ ] Add the following text
+
+```
+name: Render and Publish
+on:
+  push:
+    branches:
+      - main  
+
+jobs:
+  build-deploy:
+      runs-on: ubuntu-latest
+      permissions:
+        contents: write
+      steps:
+        - name: Check out repository
+          uses: actions/checkout@v4
+
+        - name: Set up Quarto
+          uses: quarto-dev/quarto-actions/setup@v2
+          with:
+            version: 1.5.57
+
+        - name: Publish to GitHub Pages (and render)
+          uses: quarto-dev/quarto-actions/publish@v2
+          with:
+            target: gh-pages
+          env:
+            QUARTO_PROFILE: website
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+- [ ] Save, commit, and push 
+
+## Base Repo
+
+- [ ] Create a new branch called `gh-pages` on the base repo
+- [ ] Send a pull request from your forked repo
+- [ ] Merge the pull request into your base repo
+- [ ] Check the actions
+
+## Pull Request Another Repo
+
+- [ ] Look at the other repos in the org
+- [ ] Make a change to one of the `index.qmd` files
+- [ ] Send a pull request
+- [ ] Review and accept any pull requests on your repo
