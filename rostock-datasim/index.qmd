@@ -33,7 +33,7 @@ set.seed(8675309)
 ```
 
 ::: {style="font-size: 24px;"}
-Being able to simulate data allows you to prep analysis scripts for pre-registration, calculate power and sensitivity for analyses that don’t have empirical methods, create reproducible examples when your data are too big or confidential to share, enhance your understanding of statistical concepts, and create demo data for teaching and tutorials. This talk will cover the basics of simulation using the R package {faux}. We will simulate data with factorial designs by specifying the within and between-subjects factor structure, each cell mean and standard deviation, and correlations between cells where appropriate. This can be used to create simulated data sets to be used in preparing the analysis code for pre-registrations, registered reports, or simulation-based power analyses.
+Being able to simulate data allows you to prep analysis scripts for pre-registration, calculate power and sensitivity for analyses that don’t have empirical methods, create reproducible examples when your data are too big or confidential to share, enhance your understanding of statistical concepts, and create demo data for teaching and tutorials. This talk will cover the basics of simulation using the R package {faux} to simulate data with factorial designs by specifying the within and between-subjects factor structure, each cell mean and standard deviation, and correlations between cells where appropriate. We will also explore the R package {synthpop}, to simulate data from existing datasets. 
 :::
 
 # Why Simulate Data?
@@ -236,7 +236,33 @@ power |>
 :::
 ::: {.column width="50%"}
 
-R package and [shiny app](https://synthpop.shinyapps.io/synthpop/){target = "_blank"} for generating synthetic versions of sensitive microdata for statistical disclosure control. 
+R package and [shiny app](https://synthpop.shinyapps.io/synthpop/) for generating synthetic versions of sensitive microdata for statistical disclosure control. 
+
+:::
+::::
+
+## Example Use
+
+:::: {.columns}
+::: {.column width="50%"}
+![](images/sylls.png)
+
+[SYLLS Synthetic Data](https://sls.lscs.ac.uk/guides-resources/synthetic-data/)
+:::
+::: {.column width="50%"}
+Synthetic data are given only to approved researchers who are granted access to the original sensitive data after signing a disclaimer.
+
+<!--
+Researchers are provided with a single synthetic version of a project-specific extract.
+
+Data are labelled appropriately to make it clear that they are synthetic.
+
+Synthetic data are used for preliminary analysis and the development of data cleaning and analysis code.
+
+Final analyses have to be run on the original data.
+-->
+
+Substantial costs and time savings related to visits to safe havens by researchers can be made.
 
 :::
 ::::
@@ -247,13 +273,9 @@ Read in data from the [Scholarly Migration Database](https://www.scholarlymigrat
 
 ```{r, echo = TRUE}
 file <- "https://raw.githubusercontent.com/MPIDR/Global-flows-and-rates-of-international-migration-of-scholars/master/data_processed/scopus_2024_V1_scholarlymigration_country_enriched.csv"
-
 scholar <- readr::read_csv(file)
-
-scholar_sa <- scholar |> 
-  filter(region == "South Asia")
-
-scholar_sa[1, ] |> glimpse()
+scholar_sa <- filter(scholar, region == "South Asia")
+head(scholar_sa, 1) |> glimpse()
 ```
 
 
@@ -267,19 +289,25 @@ synthpop::codebook.syn(scholar_sa)$tab
 
 - Remove identifiers
 - Change any character (text) variables into factors
-- Note non-NA missing values and include as the `cont.na` argument to `syn()`
-- Remove variables that are redundant or derivable from others
-- Note  variables that depend on other variables. You can set the rules with the parameters `rules` and `rvalues` of the `syn()` function.
+- Include non-NA missing values in `cont.na` argument to `syn()`
+- Remove redundant or derivable variables
+- Note variables that depend on other variables (set with `rules` and `rvalues` of `syn()`, or manually add after synthesis)
+- If >12 variables or any factors with >20 levels, create a smaller and simpler data frame
 
-## Get Ready
+## Clean Dataset
 
 ```{r, echo = TRUE}
 scholar2 <- scholar_sa |>
+  # remove redundant to countryname
   select(-countrycode, -iso2code, -iso3code, -region) |>
+  
   # netmigration = number_of_inmigrations - number_of_outmigrations
   select(-netmigration) |>
+  
   # calculated from padded_population_of_researchers
   select(-c(outmigrationrate:netmigrationrate)) |>
+  
+  # text columns as factors, order incomelevel
   mutate(
     countryname = factor(countryname),
     incomelevel = factor(incomelevel, c("LIC", "LMC", "UMC", "HIC", "INX"))

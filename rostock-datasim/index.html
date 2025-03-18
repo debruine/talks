@@ -407,7 +407,7 @@ Lisa DeBruine<br>
 <section id="abstract" class="title-slide slide level1 center">
 <h1>Abstract</h1>
 <div style="font-size: 24px;">
-<p>Being able to simulate data allows you to prep analysis scripts for pre-registration, calculate power and sensitivity for analyses that don’t have empirical methods, create reproducible examples when your data are too big or confidential to share, enhance your understanding of statistical concepts, and create demo data for teaching and tutorials. This talk will cover the basics of simulation using the R package {faux}. We will simulate data with factorial designs by specifying the within and between-subjects factor structure, each cell mean and standard deviation, and correlations between cells where appropriate. This can be used to create simulated data sets to be used in preparing the analysis code for pre-registrations, registered reports, or simulation-based power analyses.</p>
+<p>Being able to simulate data allows you to prep analysis scripts for pre-registration, calculate power and sensitivity for analyses that don’t have empirical methods, create reproducible examples when your data are too big or confidential to share, enhance your understanding of statistical concepts, and create demo data for teaching and tutorials. This talk will cover the basics of simulation using the R package {faux} to simulate data with factorial designs by specifying the within and between-subjects factor structure, each cell mean and standard deviation, and correlations between cells where appropriate. We will also explore the R package {synthpop}, to simulate data from existing datasets.</p>
 </div>
 </section>
 
@@ -2176,7 +2176,27 @@ Lisa DeBruine<br>
 <p><img data-src="images/synthpop.png"></p>
 <p><a href="https://synthpop.org.uk/">synthpop.org.uk</a></p>
 </div><div class="column" style="width:50%;">
-<p>R package and <a href="https://synthpop.shinyapps.io/synthpop/">shiny app</a>{target = “_blank”} for generating synthetic versions of sensitive microdata for statistical disclosure control.</p>
+<p>R package and <a href="https://synthpop.shinyapps.io/synthpop/">shiny app</a> for generating synthetic versions of sensitive microdata for statistical disclosure control.</p>
+</div></div>
+</section>
+<section id="example-use" class="slide level2">
+<h2>Example Use</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="images/sylls.png"></p>
+<p><a href="https://sls.lscs.ac.uk/guides-resources/synthetic-data/">SYLLS Synthetic Data</a></p>
+</div><div class="column" style="width:50%;">
+<p>Synthetic data are given only to approved researchers who are granted access to the original sensitive data after signing a disclaimer.</p>
+<!--
+Researchers are provided with a single synthetic version of a project-specific extract.
+
+Data are labelled appropriately to make it clear that they are synthetic.
+
+Synthetic data are used for preliminary analysis and the development of data cleaning and analysis code.
+
+Final analyses have to be run on the original data.
+-->
+<p>Substantial costs and time savings related to visits to safe havens by researchers can be made.</p>
 </div></div>
 </section>
 <section id="getting-started" class="slide level2">
@@ -2184,13 +2204,9 @@ Lisa DeBruine<br>
 <p>Read in data from the <a href="https://www.scholarlymigration.org/data.html">Scholarly Migration Database</a></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>file <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/MPIDR/Global-flows-and-rates-of-international-migration-of-scholars/master/data_processed/scopus_2024_V1_scholarlymigration_country_enriched.csv"</span></span>
-<span id="cb8-2"><a href=""></a></span>
-<span id="cb8-3"><a href=""></a>scholar <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(file)</span>
-<span id="cb8-4"><a href=""></a></span>
-<span id="cb8-5"><a href=""></a>scholar_sa <span class="ot">&lt;-</span> scholar <span class="sc">|&gt;</span> </span>
-<span id="cb8-6"><a href=""></a>  <span class="fu">filter</span>(region <span class="sc">==</span> <span class="st">"South Asia"</span>)</span>
-<span id="cb8-7"><a href=""></a></span>
-<span id="cb8-8"><a href=""></a>scholar_sa[<span class="dv">1</span>, ] <span class="sc">|&gt;</span> <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-2"><a href=""></a>scholar <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(file)</span>
+<span id="cb8-3"><a href=""></a>scholar_sa <span class="ot">&lt;-</span> <span class="fu">filter</span>(scholar, region <span class="sc">==</span> <span class="st">"South Asia"</span>)</span>
+<span id="cb8-4"><a href=""></a><span class="fu">head</span>(scholar_sa, <span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 1
 Columns: 16
@@ -2243,24 +2259,30 @@ $ population                       &lt;dbl&gt; 19262847</code></pre>
 <ul>
 <li>Remove identifiers</li>
 <li>Change any character (text) variables into factors</li>
-<li>Note non-NA missing values and include as the <code>cont.na</code> argument to <code>syn()</code></li>
-<li>Remove variables that are redundant or derivable from others</li>
-<li>Note variables that depend on other variables. You can set the rules with the parameters <code>rules</code> and <code>rvalues</code> of the <code>syn()</code> function.</li>
+<li>Include non-NA missing values in <code>cont.na</code> argument to <code>syn()</code></li>
+<li>Remove redundant or derivable variables</li>
+<li>Note variables that depend on other variables (set with <code>rules</code> and <code>rvalues</code> of <code>syn()</code>, or manually add after synthesis)</li>
+<li>If &gt;12 variables or any factors with &gt;20 levels, create a smaller and simpler data frame</li>
 </ul>
 </section>
-<section id="get-ready" class="slide level2">
-<h2>Get Ready</h2>
+<section id="clean-dataset" class="slide level2">
+<h2>Clean Dataset</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>scholar2 <span class="ot">&lt;-</span> scholar_sa <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href=""></a>  <span class="fu">select</span>(<span class="sc">-</span>countrycode, <span class="sc">-</span>iso2code, <span class="sc">-</span>iso3code, <span class="sc">-</span>region) <span class="sc">|&gt;</span></span>
-<span id="cb12-3"><a href=""></a>  <span class="co"># netmigration = number_of_inmigrations - number_of_outmigrations</span></span>
-<span id="cb12-4"><a href=""></a>  <span class="fu">select</span>(<span class="sc">-</span>netmigration) <span class="sc">|&gt;</span></span>
-<span id="cb12-5"><a href=""></a>  <span class="co"># calculated from padded_population_of_researchers</span></span>
-<span id="cb12-6"><a href=""></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(outmigrationrate<span class="sc">:</span>netmigrationrate)) <span class="sc">|&gt;</span></span>
-<span id="cb12-7"><a href=""></a>  <span class="fu">mutate</span>(</span>
-<span id="cb12-8"><a href=""></a>    <span class="at">countryname =</span> <span class="fu">factor</span>(countryname),</span>
-<span id="cb12-9"><a href=""></a>    <span class="at">incomelevel =</span> <span class="fu">factor</span>(incomelevel, <span class="fu">c</span>(<span class="st">"LIC"</span>, <span class="st">"LMC"</span>, <span class="st">"UMC"</span>, <span class="st">"HIC"</span>, <span class="st">"INX"</span>))</span>
-<span id="cb12-10"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-2"><a href=""></a>  <span class="co"># remove redundant to countryname</span></span>
+<span id="cb12-3"><a href=""></a>  <span class="fu">select</span>(<span class="sc">-</span>countrycode, <span class="sc">-</span>iso2code, <span class="sc">-</span>iso3code, <span class="sc">-</span>region) <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a href=""></a>  </span>
+<span id="cb12-5"><a href=""></a>  <span class="co"># netmigration = number_of_inmigrations - number_of_outmigrations</span></span>
+<span id="cb12-6"><a href=""></a>  <span class="fu">select</span>(<span class="sc">-</span>netmigration) <span class="sc">|&gt;</span></span>
+<span id="cb12-7"><a href=""></a>  </span>
+<span id="cb12-8"><a href=""></a>  <span class="co"># calculated from padded_population_of_researchers</span></span>
+<span id="cb12-9"><a href=""></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(outmigrationrate<span class="sc">:</span>netmigrationrate)) <span class="sc">|&gt;</span></span>
+<span id="cb12-10"><a href=""></a>  </span>
+<span id="cb12-11"><a href=""></a>  <span class="co"># text columns as factors, order incomelevel</span></span>
+<span id="cb12-12"><a href=""></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-13"><a href=""></a>    <span class="at">countryname =</span> <span class="fu">factor</span>(countryname),</span>
+<span id="cb12-14"><a href=""></a>    <span class="at">incomelevel =</span> <span class="fu">factor</span>(incomelevel, <span class="fu">c</span>(<span class="st">"LIC"</span>, <span class="st">"LMC"</span>, <span class="st">"UMC"</span>, <span class="st">"HIC"</span>, <span class="st">"INX"</span>))</span>
+<span id="cb12-15"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="simulate-data" class="slide level2">
