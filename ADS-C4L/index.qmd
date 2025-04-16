@@ -140,7 +140,7 @@ Attendance at 75% of sessions will be required to be awarded credit. Sessions wi
 - 7.5% Peer review: You will be asked to peer review other submissions for the backwards engineering task
 - 75% Technical brief: You will be given a choice of two datasets and a technical brief for the content of the report. Your task is to write a fully reproducible report using R that clearly and effectively presents and summarises the data to provides key insights.
 
-## Testimonials
+## Testimonials {.smaller}
 
 > I thought you might like to know that this morning I sent out my first report across colleagues in People and OD. It starts with an export from the University Helpdesk and comprises data / insights about their enquiry mgt data – i.e. what are our staff asking HR - and kicks out response times, trends and links to guidance and support.
 
