@@ -24,6 +24,40 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ![[UofG Open Research Video](https://youtu.be/gGxtgEiRxYo)](images/open-research.png){fig-alt="Sketch of a 'map' to open research. There is a rainbow over the Glasgow Uni Building. Each stripe is labelled: Open research has many benefits, Visibilty, Transparency & reproducibility, Collaboration, Efficient use of funds, Credit for ideas, Public confidence."}
 
+## Why Code?
+
+:::: {.columns}
+::: {.column width="60%" class="plotcode"}
+
+```{r, echo = TRUE, eval = FALSE}
+ggplot(pop_data, aes(age, pcnt2, fill = sex)) +
+  geom_col(show.legend = FALSE) +
+  coord_flip(ylim = c(-.08, .08)) +
+  labs(title = "Population by Age and Gender: 
+                {floor(frame_time/5)*5}",
+       x = "Age", y = "Percent of Population") +
+  scale_fill_manual(
+    values = c("hotpink3", "dodgerblue3")) +
+  scale_y_continuous(
+    breaks = seq(-.08, .08, .02),
+    labels = abs(seq(-8, 8, 2)) |> paste0("%")) +
+  annotate("text", label = "Female", size = 8, 
+    color = "hotpink3", x = 20, y = .05) +
+  annotate("text", label = "Male", size = 8, 
+    color = "dodgerblue3", x = 20, y = -.05) +
+  gganimate::transition_time(year)
+```
+
+
+![](images/introdataviz.png){fig-alt="Hex sticker reading 'Intro Data Viz'" height="150px" style="float:left"} <br>[Data visualisation using R, for researchers who don’t use R](https://psyteachr.github.io/introdataviz/)
+
+:::
+::: {.column width="40%"}
+![](images/anim.gif)
+:::
+::::
+
+
 ## Replication
 
 ![From *A manifesto for reproducible science* [10.1038/s41562-016-0021](https://doi.org/10.1038/s41562-016-0021)](images/lego-replication.png){fig-alt="An idealized version of the hypothetico-deductive model of the scientific method. Various potential threats to this model exist (indicated in red), including lack of replication, hypothesizing after the results are known (HARKing), poor study design, low statistical power, analytical flexibility, P-hacking, publication bias and lack of data sharing."}
