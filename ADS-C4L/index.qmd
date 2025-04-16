@@ -1,0 +1,154 @@
+```{r, include=FALSE}
+url <- "https://debruine.github.io/talks/ADS-C4L/"
+subtitle <- sprintf("[%s](%s)", url, url)
+# make QR code
+qrcode::qr_code(url) |> qrcode::generate_svg("images/qrcode.svg")
+```
+---
+title: "Applied Data Skills"
+subtitle: "`r subtitle`"
+author: "Emily Nordmann & Lisa DeBruine  \n![](images/qrcode.svg){width=300}"
+format: 
+  revealjs:
+    logo: images/psyteachr_hex.png
+    theme: [default, ../style.scss]
+    transition: none
+    transition-speed: fast
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Key Concepts
+
+![[UofG Open Research Video](https://youtu.be/gGxtgEiRxYo)](images/open-research.png){fig-alt="Sketch of a 'map' to open research. There is a rainbow over the Glasgow Uni Building. Each stripe is labelled: Open research has many benefits, Visibilty, Transparency & reproducibility, Collaboration, Efficient use of funds, Credit for ideas, Public confidence."}
+
+## Replication
+
+![From *A manifesto for reproducible science* [10.1038/s41562-016-0021](https://doi.org/10.1038/s41562-016-0021)](images/lego-replication.png){fig-alt="An idealized version of the hypothetico-deductive model of the scientific method. Various potential threats to this model exist (indicated in red), including lack of replication, hypothesizing after the results are known (HARKing), poor study design, low statistical power, analytical flexibility, P-hacking, publication bias and lack of data sharing."}
+
+## Reproducibility
+
+![via the [Turing Way](https://the-turing-way.netlify.app/reproducible-research/overview/overview-definitions.html)](images/reproducible-definition-grid.jpg){fig-alt="Reproducible: same data, same analysis; Replicable: different data, smae analysis; Robust: same data, different analysis; Generalisable: different data, different analysis"}
+
+
+
+::: {.notes}
+
+* Reproducible: A result is reproducible when the same analysis steps performed on the same dataset consistently produces the same answer.
+
+*  Replicable: A result is replicable when the same analysis performed on different datasets produces qualitatively similar answers.
+
+*  Robust: A result is robust when the same dataset is subjected to different analysis workflows to answer the same research question (for example one pipeline written in R and another written in Python) and a qualitatively similar or identical answer is produced. Robust results show that the work is not dependent on the specificities of the programming language chosen to perform the analysis.
+
+*  Generalisable: Combining replicable and robust findings allow us to form generalisable results. Note that running an analysis on a different software implementation and with a different dataset does not provide generalised results. There will be many more steps to know how well the work applies to all the different aspects of the research question. Generalisation is an important step towards understanding that the result is not dependent on a particular dataset nor a particular version of the analysis pipeline.
+
+:::
+
+
+## Error Detection
+
+<div style="float:right;width:35%;margin-left: 1em;">
+![](images/statcheck.png)
+</div>
+
+An analysis by [Nuijten et al. (2016)](https://doi.org/10.3758/s13428-015-0664-2) of over 250K p-values reported in 8 major psych journals from 1985 to 2013 found that:
+
+* half the papers had at least one inconsistent p-value 
+* 1/8 of papers had errors that could affect conclusions
+* errors more likely to be erroneously significant than not
+
+
+    
+## Analysis Reproducibility
+
+Of 35 articles published in *Cognition* with usable data (but no code, [Hardwicke et al. (2018)](https://doi.org/10.1098/rsos.180448) found:
+
+- only 11 could be reproduced independently 
+- 11 were reproducible with the original authors' help
+- 13 were not reproducible even by the original authors
+
+## Code Reproducibility
+
+Of 62 Registered Reports in psychology published from 2014--2018, 36 had data and analysis code, 31 could be run, and 21 reproduced all the main results ([Obels et al, 2020](https://doi.org/10.1177/2515245920918872))
+
+![](images/obels.png){alt-text="Flowchart of sample: starting from sampling frame of 188 paper, to 79 in psychology domian, to 62 in final data set, to 36 with data and code available, to 31 with runnable scripts, to 21 with reproducible results"}
+
+
+## Code Review
+
+The process of methodically and systematically checking over code--your own or someone else's--after it has been written.
+
+-   Is the code is legible and clear?
+-   Is the analysis reproducible?
+-   Are other outputs reproducible?
+-   Does the code do what was intended?
+-   Does the code follows best practices?
+
+Code Review [Slides](https://debruine.github.io/talks/RIOT-code-review-2022/)/[Video](https://www.youtube.com/watch?v=-e5EQIw9rAg)
+
+# The Course {.smaller}
+
+![](images/ads.png){style="float:right; width: 10em;"}
+
+Applied Data Skills will empower learners to transform raw data into meaningful insights and solutions for societal challenges. The course will require students to **interact** with interdisciplinary datasets focused on sustainability but will also place a key emphasis on pair programming and peer collaboration. The course **disrupts** traditional learning by blending technical skills in R programming with real-world applications. Students will also learn to use AI ethically and responsibly for coding; our truly authentic assessment enables us to do this without compromising academic integrity. ADS will **enhance** students’ understanding of how the positionality of the researcher can impact how data are analysed, reported and interpreted. Finally, students will **apply** their knowledge by designing reproducible reports that can address both local and global challenges, and promoting sustainability. This course aligns with C4L’s aims by equipping students to become agents of change, global citizens, and creative leaders in the digital era.
+
+## Thematic Alignment with C4L {.smaller}
+
+- This course emphasises **Change Maker** skills by teaching students to process and visualize data to identify solutions to societal challenges. 
+- The **Creative Leader** badge is achieved through using data to make an evidence-based argument. The Creative Leader badge is also evidence in the nature of learning programming that requires constant error detection and correction of one’s own work and persistent practice. 
+- **Global Citizen** characteristics are fostered through learning how to present data in a way that is easily digestible. 
+- Finally, students act as **Social Innovators** by designing practical, impactful data solutions that enhance decision-making across industries.
+
+## Aims {.smaller}
+
+* Develop practical programming skills in R for real-world data analysis and visualisation.
+* Enable students to structure projects and produce reproducible, professional-grade reports.
+* Equip students to clean, transform, and visualise data using tidyverse tools and pipelines.
+* Support critical and ethical engagement with generative AI for code development.
+* Foster effective communication of data insights and collaboration through peer programming.
+
+## ILOs {.smaller}
+
+* Set up and navigate an R environment, including installing and using packages.
+* Structure analysis projects and create reproducible reports.
+* Import, clean, and wrangle data using tidyverse tools and piped workflows.
+* Join, reshape, and summarise data from multiple files and tables.
+* Select and create appropriate visualisations using ggplot2.
+* Use AI tools to write and troubleshoot code, and critically assess their output.
+* Handle missing values and prepare data for analysis.
+* Communicate results clearly through professional, reproducible reports. 
+
+## Ways of Learning {.smaller}
+
+- [course book](https://psyteachr.github.io/ads/) written by the instructors
+- 10 weeks (weeks 1-5 and 7-10 of semester 2)
+    - break for reading week and an optional drop-in GTA session in week 11
+- 1 weekly two-hour workshop 
+    - ~15 minute lecture
+    - coding exercises building on skills and introducing new functions
+- 1 weekly one-hour workshop
+    - coding exercises that reinforce new concepts & support the summative assessment
+
+Attendance at 75% of sessions will be required to be awarded credit. Sessions will have a lecturer and GTA present to support. Exercises will implement pair programming. 
+
+## Assessment {.smaller}
+
+- 10% Weekly MCQs: administered on Moodle, tests and consolidates the functions and concepts learned that week, two attempts on each quiz
+- 7.5% Backwards engineer: You will be given a dataset and a finished report on that data. Your task is to write the code that produces the report
+- 7.5% Peer review: You will be asked to peer review other submissions for the backwards engineering task
+- 75% Technical brief: You will be given a choice of two datasets and a technical brief for the content of the report. Your task is to write a fully reproducible report using R that clearly and effectively presents and summarises the data to provides key insights.
+
+## Testimonials
+
+> I thought you might like to know that this morning I sent out my first report across colleagues in People and OD. It starts with an export from the University Helpdesk and comprises data / insights about their enquiry mgt data – i.e. what are our staff asking HR - and kicks out response times, trends and links to guidance and support.
+
+> Normally these reports would take me about three and a half days to produce but using R I sent seven of them out in a single day. The deputy director now wants her own version consolidating the rest and I could weep with happiness because I actually have time to produce it.”
+
+# Thank You!
+
+[![debruine.github.io/talks/ADS-C4L/](images/qrcode.svg){fig-alt="QR code for this link" height="500px"}](https://debruine.github.io/talks/ADS-C4L/)
+
+
+
