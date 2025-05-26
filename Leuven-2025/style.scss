@@ -41,22 +41,8 @@ $body-bg: #222;
   font-size: .8em;
 }
 
-#figtwitter img {
-  border-radius: 50%;
-}
-
-#figtwitter .quarto-figure {
-  margin: 0;
-}
-
-#figtwitter figcaption {
-  position: relative;
-  top: -1em;
-  text-align: center;
-}
-
 #fauxapp li {
   font-size: 50%;
 }
 
-.gt_col_heading { font-size: 50px; }
+code.sourceCode { padding-bottom: 1em !important; }

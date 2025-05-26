@@ -21,25 +21,19 @@ format:
 library(tidyverse)
 library(ggdark)
 library(flextable)
-library(faux)
 library(afex)
+library(faux)
 
 knitr::opts_chunk$set(echo = FALSE)
 
-set_flextable_defaults(font.size = 20)
+set_flextable_defaults(font.size = 20, padding.top = )
 theme_set(dark_theme_gray(base_size = 17))
 faux_options(plot = FALSE)
 set.seed(8675309)
 ```
 
 ::: {style="font-size: 24px;"}
-Being able to simulate data allows you to prep analysis scripts for pre-
-registration, calculate power and sensitivity for analyses that don’t have
-empirical methods, create reproducible examples when your data are too big or
-confidential to share, enhance your understanding of statistical concepts, and
-create demo data for teaching and tutorials. I will introduce the R package
-{faux} for data simulation from descriptive statistics. I will also give several
-examples of how to use data simulation in teaching statistical concepts.
+Being able to simulate data allows you to prep analysis scripts for pre-registration, calculate power and sensitivity for analyses that don’t have empirical methods, create reproducible examples when your data are too big or confidential to share, enhance your understanding of statistical concepts, and create demo data for teaching and tutorials. I will introduce the R package {faux} for data simulation from descriptive statistics. I will also give several examples of how to use data simulation in teaching statistical concepts.
 :::
 
 # Why Simulate Data?
@@ -470,7 +464,8 @@ lmem_dat <- design |>
 lmem_dat |>
   flextable() |>
   colformat_double(j = c("err", "subj_i", "subj_cond", "item_i", "item_cond", "dv"), digits = 2) |>
-  theme_vader()
+  theme_vader() |>
+  fontsize(size = 18, part = "all")
 ```
 
 ## Parameters
@@ -601,6 +596,7 @@ sim_func()
 
 ```{r}
 sim_func() |>
+  select(-iteration) |>
   flextable() |>
   colformat_double(digits = 2) |>
   theme_vader()
@@ -613,6 +609,7 @@ sim_func()
 
 ```{r}
 sim_func() |>
+  select(-iteration) |>
   flextable() |>
   colformat_double(digits = 2) |>
   theme_vader()
@@ -625,6 +622,7 @@ sim_func(cond_eff = 10)
 
 ```{r}
 sim_func(cond_eff = 10) |>
+  select(-iteration) |>
   flextable() |>
   colformat_double(digits = 2) |>
   theme_vader()
@@ -642,6 +640,7 @@ sim_results <- map_df(1:10, sim_func, cond_eff = 10)
 head(sim_results) |>
   flextable() |>
   colformat_double(digits = 2) |>
+  colformat_double(j = "iteration", digits = 0) |>
   theme_vader()
 ```
 
