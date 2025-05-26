@@ -20,11 +20,13 @@ format:
 ```{r, include = FALSE}
 library(tidyverse)
 library(ggdark)
-library(gt)
+library(flextable)
 library(faux)
+library(afex)
 
 knitr::opts_chunk$set(echo = FALSE)
 
+set_flextable_defaults(font.size = 20)
 theme_set(dark_theme_gray(base_size = 17))
 faux_options(plot = FALSE)
 set.seed(8675309)
@@ -42,6 +44,16 @@ examples of how to use data simulation in teaching statistical concepts.
 
 # Why Simulate Data?
 
+## Reproducible Examples
+
+![Create reproducible examples when your data are too big or confidential to share](images/lego-rainbow.png)
+
+<!-- Pete Linforth/ Pixabay -->
+
+<span style="font-size: smaller;">
+Talk: [Replicability of results in the context of private non-sharable data](https://debruine.github.io/talks/rostock-datasim/)
+</span>
+
 ## Pre-Registration
 
 ![Prep analysis scripts for pre-registration or registered reports](images/lego-registered-reports.png)
@@ -50,11 +62,7 @@ examples of how to use data simulation in teaching statistical concepts.
 
 ![Calculate power and sensitivity for analyses that don't have empirical methods](images/lego-power-sensitivity.png)
 
-## Reproducible Examples
 
-![Create reproducible examples when your data are too big or confidential to share](images/lego-rainbow.png)
-
-<!-- Pete Linforth/ Pixabay -->
 
 ## Enhance Understanding
 
@@ -68,9 +76,23 @@ examples of how to use data simulation in teaching statistical concepts.
 
 # Faux 
 
+:::: {.columns}
+
+::: {.column width="50%"}
 ![](images/faux.png)
 
-[Shiny app](https://rstudio-connect.psy.gla.ac.uk/faux/) or [R package](https://debruine.github.io/faux/)
+[Shiny app or scriptable](https://debruine.github.io/faux/)
+
+:::
+
+::: {.column width="50%"}
+
+![](images/faux-articles.png)
+
+[Extensive Documentation](https://debruine.github.io/faux/)
+
+:::
+::::
 
 
 ## Shiny App
@@ -95,8 +117,8 @@ examples of how to use data simulation in teaching statistical concepts.
 
 ```{r, echo = TRUE}
 sim_data <- faux::sim_design(
-  within = list(version = c(V1 = "Version 1", V2 = "Version 2"), 
-                condition = c(ctl = "Control", exp = "Experimental")),
+  within = list( version   = c(V1 = "Version 1",    V2 = "Version 2"), 
+                 condition = c(ctl = "Control",     exp = "Experimental")),
   between = list(age_group = c(young = "Age 20-29", old = "Age 70-79")),
   n = 30,
   mu = c(100, 100, 100, 100, 100, 90, 110, 110),
@@ -104,7 +126,7 @@ sim_data <- faux::sim_design(
   r = 0.5,
   dv = c(score = "Score"),
   id = c(id = "Subject ID"),
-  vardesc = list(version = "Task Version", 
+  vardesc = list(version   = "Task Version", 
                  condition = "Experiment Condition", 
                  age_group = "Age Group"),
   long = TRUE
@@ -116,10 +138,8 @@ sim_data <- faux::sim_design(
 ```{r}
 # sim_data[c(1, 31, 61, 91, 121, 151, 181, 211), ] |>
 get_design(sim_data)$params |>
-  gt() |>
-  gtExtras::gt_theme_dark(table.font.size = px(20)) |>
-  tab_style(style = cell_text(size = px(25)),
-            locations = cells_column_labels(everything()))
+  flextable() |>
+  theme_vader()
 ```
 
 
@@ -198,13 +218,20 @@ analysis_func(sim_data$data[[1]])
 ::: {style="font-size: 90%;"}
 ```{r}
 analysis_func(sim_data$data[[1]]) |>
-  gt() |>
-  gt::fmt_number(MSE, decimals = 1) |>
-  gt::fmt_number(F, decimals = 2) |>
-  gt::fmt_number(ges:p, decimals = 3) |>
-  gtExtras::gt_theme_dark(table.font.size = px(15)) |>
-  tab_style(style = cell_text(size = px(15)),
-            locations = cells_column_labels(everything()))
+  flextable() |>
+  colformat_double(j = "MSE", digits = 1) |>
+  colformat_double(j = "F", digits = 2) |>
+  colformat_double(j = c("ges", "p"), digits = 3) |>
+  theme_vader()
+
+# |>
+#   gt() |>
+#   gt::fmt_number(MSE, decimals = 1) |>
+#   gt::fmt_number(F, decimals = 2) |>
+#   gt::fmt_number(ges:p, decimals = 3) |>
+#   gtExtras::gt_theme_dark(table.font.size = px(15)) |>
+#   tab_style(style = cell_text(size = px(15)),
+#             locations = cells_column_labels(everything()))
 ```
 :::
 
@@ -222,12 +249,416 @@ power <- sim_data |>
 ::: {style="font-size: 80%;"}
 ```{r}
 power |>
-  gt() |>
-  gtExtras::gt_theme_dark(table.font.size = px(15)) |>
-  tab_style(style = cell_text(size = px(20)),
-            locations = cells_column_labels(everything()))
+  flextable() |>
+  theme_vader()
 ```
 :::
+
+# Mixed Effects
+
+## Random factors
+
+```{r, echo = TRUE}
+subj_n <- 2 # number of subjects
+
+lmem_dat <- add_random(subj = subj_n)
+```
+
+```{r}
+lmem_dat |>
+  flextable() |>
+  theme_vader()
+```
+
+
+
+## Crossed random factors
+
+```{r, echo = TRUE}
+item_n <- 2 # number of items
+
+lmem_dat <- add_random(subj = subj_n) |>
+  add_random(item = item_n)
+```
+
+```{r}
+(lmem_dat) |>
+  flextable() |>
+  theme_vader()
+```
+
+## Nested random factors
+
+```{r, echo = TRUE}
+lmem_dat <- add_random(subj = subj_n) |>
+  add_random(item = item_n, .nested_in = "subj")
+```
+
+```{r}
+lmem_dat |>
+  flextable() |>
+  theme_vader()
+```
+
+## Fixed factors (within)
+
+```{r, echo = TRUE}
+lmem_dat <- add_random(subj = subj_n) |>
+  add_random(item = item_n) |>
+  add_within(condition = c("control", "experimental"))
+```
+
+```{r}
+lmem_dat |>
+  flextable() |>
+  theme_vader()
+```
+
+## Fixed factors (between)
+
+```{r, echo = TRUE}
+gender_prob <- c(20, 75, 5) # gender category distribution
+
+lmem_dat <- add_random(subj = subj_n) |>
+  add_random(item = item_n) |>
+  add_within(condition = c("control", "experimental")) |>
+  add_between("subj", gender = c("M", "F", "NB"), .prob = gender_prob)
+```
+
+```{r}
+lmem_dat |>
+  flextable() |>
+  theme_vader()
+```
+
+## Contrast Coding
+
+::: {style="font-size: 55%;"}
+| My name | Other names | R function | faux function |
+|:--------|:------------|:-----------|:--------------|
+| Treatment | Treatment ([2](https://talklab.psy.gla.ac.uk/tvw/catpred/#what-are-the-key-coding-schemes)), Dummy ([1](https://marissabarlaz.github.io/portfolio/contrastcoding/#dummy-coding), [4](https://stats.oarc.ucla.edu/r/library/r-library-contrast-coding-systems-for-categorical-variables/#dummy), [6](https://phillipalday.com/stats/coding.html#simple-regression-dummy-coding)), Simple ([5](https://gamlj.github.io/rosetta_contrasts.html#Contrast:_Simple__Dummy)) | `contr.treatment` | `contr_code_treatment` |
+| Anova | Deviation ([2](https://talklab.psy.gla.ac.uk/tvw/catpred/#what-are-the-key-coding-schemes)), Contrast ([1](https://marissabarlaz.github.io/portfolio/contrastcoding/#contrast-coding)), Simple ([4](https://stats.oarc.ucla.edu/r/library/r-library-contrast-coding-systems-for-categorical-variables/#SIMPLE)) | `contr.treatment - 1/k` | `contr_code_anova` |
+| Sum| Sum ([1](https://marissabarlaz.github.io/portfolio/contrastcoding/#sum-coding), [2](https://talklab.psy.gla.ac.uk/tvw/catpred/#what-are-the-key-coding-schemes), [6](https://phillipalday.com/stats/coding.html#simple-regression-sum-coding)), Effects ([3](https://doi.org/10.6339/JDS.2010.08(1).563)), Deviation ([4](https://stats.oarc.ucla.edu/r/library/r-library-contrast-coding-systems-for-categorical-variables/#SIMPLE), [5](https://gamlj.github.io/rosetta_contrasts.html#Contrast:_Deviation)), Unweighted Effects ([7](https://doi.org/10.1111/j.1467-6494.1996.tb00813.x)) | `contr.sum` | `contr_code_sum` |
+| Difference | Contrast ([3](https://doi.org/10.6339/JDS.2010.08(1).563)), Forward/Backward ([4](https://stats.oarc.ucla.edu/r/library/r-library-contrast-coding-systems-for-categorical-variables/#forward)), Repeated ([5](https://gamlj.github.io/rosetta_contrasts.html#Contrast:_Repeated)) | `MASS::contr.sdif` | `contr_code_difference` |
+| Helmert | Reverse Helmert ([1](https://marissabarlaz.github.io/portfolio/contrastcoding/#reverse-helmert-coding), [4](https://stats.oarc.ucla.edu/r/library/r-library-contrast-coding-systems-for-categorical-variables/#reverse)), Difference ([5](https://gamlj.github.io/rosetta_contrasts.html#Contrast:_Difference)), Contrast ([7](https://doi.org/10.1111/j.1467-6494.1996.tb00813.x)) | `contr.helmert / (column_i+1)` | `contr_code_helmert` |
+| Polynomial | Polynomial ([5](https://gamlj.github.io/rosetta_contrasts.html#Contrast:_Polynomial)), Orthogonal Polynomial ([4](https://stats.oarc.ucla.edu/r/library/r-library-contrast-coding-systems-for-categorical-variables/#ORTHOGONAL)), Trend ([3](https://doi.org/10.6339/JDS.2010.08(1).563)) | `contr.poly` | `contr_code_poly` |
+
+:::
+
+[Explainer](https://debruine.github.io/faux/articles/contrasts.html)
+
+## Codings
+
+```{r, echo = TRUE}
+lmem_dat <- add_random(subj = subj_n) |>
+  add_random(item = item_n) |>
+  add_within(condition = c("control", "experimental")) |>
+  add_between("subj", gender = c("M", "F", "NB"), .prob = gender_prob) |>
+  add_contrast("condition", "treatment", colnames = "treat") |>
+  add_contrast("condition", "anova", colnames = "anova") |>
+  add_contrast("condition", "sum", colnames = "sum")
+  
+```
+
+```{r}
+lmem_dat |>
+  flextable() |>
+  theme_vader()
+```
+
+
+
+## Design
+
+```{r, echo = TRUE}
+# define this to make room later
+
+design <- add_random(subj = subj_n) |>
+  add_random(item = item_n) |>
+  add_within(condition = c("control", "experimental")) |>
+  add_between("subj", gender = c("M", "F", "NB"), .prob = gender_prob) |>
+  add_contrast("condition", "treatment", colnames = "cond")
+```
+
+```{r}
+design |>
+  flextable() |>
+  theme_vader()
+```
+
+## Fixed Effects
+
+```{r, echo = TRUE}
+intercept <- 100 # model intercept (mean for control condition)
+cond_eff  <-  10 # condition effect size
+
+lmem_dat <- design |>
+  mutate(dv = intercept + 
+           cond * cond_eff)
+```
+
+```{r}
+lmem_dat |>
+  flextable() |>
+  theme_vader()
+```
+
+## Error Term
+
+```{r, echo = TRUE}
+error_sd <- 20 # SD of trial-level error (residuals)
+
+lmem_dat <- design |>
+  add_ranef(err = error_sd) |>
+  mutate(dv = intercept + err +
+           cond * cond_eff)
+```
+
+```{r}
+lmem_dat |>
+  flextable() |>
+  colformat_double(j = c("err", "dv"), digits = 2) |>
+  theme_vader()
+```
+
+## Random Intercepts
+
+```{r, echo = TRUE}
+subj_sd      <-   8 # SD of subject-level intercepts
+item_sd      <-   4 # SD of item-level intercepts
+
+lmem_dat <- design |>
+  add_ranef(err = error_sd) |>
+  add_ranef(.by = "subj", subj_i = subj_sd) |>
+  add_ranef(.by = "item", item_i = item_sd) |>
+  mutate(dv = intercept + subj_i + item_i + err +
+           cond * cond_eff)
+```
+
+```{r}
+lmem_dat |>
+  flextable() |>
+  colformat_double(j = c("err", "subj_i", "item_i", "dv"), digits = 2) |>
+  theme_vader()
+```
+
+## Random Slopes
+
+```{r, echo = TRUE}
+subj_cond_sd <-   5 # SD of subject-level condition effect size
+item_cond_sd <-  15 # SD of item-level condition effect size
+subj_cors    <-   0.5 # correlation between subject intercept and slope
+item_cors    <-  -0.5 # correlation between item intercept and slope
+
+lmem_dat <- design |>
+  add_ranef(err = error_sd) |>
+  add_ranef(.by = "subj", 
+            subj_i = subj_sd, 
+            subj_cond = subj_cond_sd, 
+            .cors = subj_cors) |>
+  add_ranef(.by = "item", 
+            item_i = item_sd, 
+            item_cond = item_cond_sd, 
+            .cors = item_cors) |>
+  mutate(dv = intercept + subj_i + item_i + err +
+           cond * (cond_eff + subj_cond + item_cond))
+```
+
+## Random Slopes
+
+```{r}
+lmem_dat |>
+  flextable() |>
+  colformat_double(j = c("err", "subj_i", "subj_cond", "item_i", "item_cond", "dv"), digits = 2) |>
+  theme_vader()
+```
+
+## Parameters
+
+```{r, echo = TRUE}
+subj_n       <- 100   # number of subjects
+item_n       <-  20   # number of items
+gender_prob  <- c(20, 75, 5) # gender category distribution
+intercept    <- 100   # model intercept (mean for control condition)
+cond_eff     <-  10   # condition effect size
+error_sd     <-  20   # SD of trial-level error (residuals)
+subj_sd      <-   8   # SD of subject-level intercepts
+item_sd      <-   4   # SD of item-level intercepts
+subj_cond_sd <-   5   # SD of subject-level condition effect size
+item_cond_sd <-  15   # SD of item-level condition effect size
+subj_cors    <-   0.5 # correlation between subject intercept and slope
+item_cors    <-  -0.5 # correlation between item intercept and slope
+```
+
+## Full Data Simulation Code
+
+```{r, echo = TRUE}
+lmem_dat <- add_random(subj = subj_n) |>
+  add_random(item = item_n) |>
+  add_within(condition = c("control", "experimental")) |>
+  add_between("subj", gender = c("M", "F", "NB"), .prob = gender_prob) |>
+  add_contrast("condition", "treatment", colnames = "cond") |>
+  add_ranef(err = error_sd) |>
+  add_ranef(.by = "subj", 
+            subj_i = subj_sd, 
+            subj_cond = subj_cond_sd, 
+            .cors = subj_cors) |>
+  add_ranef(.by = "item", 
+            item_i = item_sd, 
+            item_cond = item_cond_sd, 
+            .cors = item_cors) |>
+  mutate(dv = intercept + subj_i + item_i + err +
+           cond * (cond_eff + subj_cond + item_cond))
+```
+
+## LMEM Analysis
+
+```{r, echo = TRUE}
+lmer(dv ~ cond + 
+       (1 + cond | subj) + 
+       (1 + cond | item),
+     data = lmem_dat) |> summary()
+```
+
+## Power simulation
+
+1. Wrap dataset creation and analysis in a function that returns the values you care about as a data frame
+2. Iterate this function and save the output as a data frame
+3. Summarise the output (e.g., power, range of effect sizes)
+
+## Function Outline
+
+```{r, echo = TRUE, eval = FALSE}
+
+sim_func <- function(iteration = 0, subj_n = 100, item_n = 20, cond_eff = 0) {
+  # variables not in function arguments
+
+  # simulate the data
+  lmem_dat <- ...
+  
+  # run the analysis
+  mod <- lmer(...)
+  
+  # return a table of fixed effects only
+  broom.mixed::tidy(mod, effects = "fixed") |>
+    mutate(iteration = iteration)
+}
+
+```
+
+
+## Full Function
+
+```{r, echo = TRUE}
+sim_func <- function(iteration = 0, subj_n = 100, item_n = 20, cond_eff = 0) {
+  # variables not in function arguments
+  gender_prob  <- c(20, 75, 5)
+  intercept    <- 100
+  error_sd     <-  20
+  subj_sd      <-   8
+  item_sd      <-   4
+  subj_cond_sd <-   5
+  item_cond_sd <-  15
+  subj_cors    <-   0.5
+  item_cors    <-  -0.5
+
+# simulate the data
+  lmem_dat <- add_random(subj = subj_n) |>
+    add_random(item = item_n) |>
+    add_within(condition = c("control", "experimental")) |>
+    add_between("subj", gender = c("M", "F", "NB"), .prob = gender_prob) |>
+    add_contrast("condition", "treatment", colnames = "cond") |>
+    add_ranef(err = error_sd) |>
+    add_ranef(.by = "subj", 
+              subj_i = subj_sd, 
+              subj_cond = subj_cond_sd, 
+              .cors = subj_cors) |>
+    add_ranef(.by = "item", 
+              item_i = item_sd, 
+              item_cond = item_cond_sd, 
+              .cors = item_cors) |>
+    mutate(dv = intercept + subj_i + item_i + err +
+             cond * (cond_eff + subj_cond + item_cond))
+  
+  # run the analysis
+  mod <- lmer(dv ~ cond + 
+       (1 + cond | subj) + 
+       (1 + cond | item),
+     data = lmem_dat)
+  
+  # return a table of fixed effects only
+  broom.mixed::tidy(mod, effects = "fixed") |>
+    mutate(iteration = iteration)
+}
+
+```
+
+## Test the Function
+
+``` r
+sim_func()
+```
+
+```{r}
+sim_func() |>
+  flextable() |>
+  colformat_double(digits = 2) |>
+  theme_vader()
+```
+
+``` r
+# again to make sure iterations differ
+sim_func()
+```
+
+```{r}
+sim_func() |>
+  flextable() |>
+  colformat_double(digits = 2) |>
+  theme_vader()
+```
+
+``` r
+# change effect size
+sim_func(cond_eff = 10)
+```
+
+```{r}
+sim_func(cond_eff = 10) |>
+  flextable() |>
+  colformat_double(digits = 2) |>
+  theme_vader()
+```
+
+## Iterate
+
+```{r, echo = TRUE}
+set.seed(8675309)
+
+sim_results <- map_df(1:10, sim_func, cond_eff = 10)
+```
+
+```{r}
+head(sim_results) |>
+  flextable() |>
+  colformat_double(digits = 2) |>
+  theme_vader()
+```
+
+## Summarise
+
+```{r, echo = TRUE, eval = FALSE}
+sim_results |>
+  summarise(power = mean(p.value < 0.05), .by = term)
+```
+
+```{r}
+sim_results |>
+  summarise(power = mean(p.value < 0.05), .by = term) |>
+  flextable() |>
+  theme_vader()
+```
+
 
 # Further Resources
 
