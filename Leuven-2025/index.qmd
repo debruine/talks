@@ -6,6 +6,7 @@ qrcode::qr_code(url) |> qrcode::generate_svg("images/qrcode.svg")
 ```
 ---
 title: "Using Data Simulation in the Classroom"
+subtitle: "`r subtitle`"
 author: "Lisa DeBruine  \n![](images/qrcode.svg){width=300}"
 format: 
   revealjs:
