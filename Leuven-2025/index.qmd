@@ -36,6 +36,12 @@ set.seed(8675309)
 Being able to simulate data allows you to prep analysis scripts for pre-registration, calculate power and sensitivity for analyses that don’t have empirical methods, create reproducible examples when your data are too big or confidential to share, enhance your understanding of statistical concepts, and create demo data for teaching and tutorials. I will introduce the R package {faux} for data simulation from descriptive statistics. I will also give several examples of how to use data simulation in teaching statistical concepts.
 :::
 
+# 
+
+![](images/psyteachr_logo.png)
+
+[psyteachr.github.io](https://psyteachr.github.io)
+
 # Why Simulate Data?
 
 ## Reproducible Examples
