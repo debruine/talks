@@ -20,6 +20,16 @@ format:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## Today's Notes
+
+```{r, include = FALSE}
+qrcode::qr_code("https://bit.ly/uog-grp-2025-09-18") |>
+  qrcode::generate_svg("images/qrcode-notes.svg")
+```
+
+![https://bit.ly/uog-grp-2025-09-18](images/qrcode-notes.svg)
+
+
 
 ## GRP Advisors {.smaller}
 
@@ -53,6 +63,15 @@ to refer misconduct reports to Research Services Directorate
 
 - “We value the quality of our research over its quantity” 
 - “How research is done is as important as what is done”
+
+## Research Culture Priorities
+
+* Collegiality
+* Career Development
+* Research Recognition
+* Open Research
+* Research Integrity
+
 
 ## Culture Change Pyramid
 
