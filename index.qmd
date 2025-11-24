@@ -6,6 +6,7 @@ format:
     css: style.scss
 ---
 
+* [Teaching Reproducible Research](teach-repro-2025) for UofG Maths and Stats seminar 2025-11-25
 * [Using Data Simulation in the Classroom](Leuven-2025) for Leuven Statistics Days 2025-05-26
 * [Replicability of results in the context of private non-sharable data](rostock-datasim) for Rostock Open Science Workshop 2025-03-18
 * [Advanced GitHub](rostock-github) for Rostock Open Science Workshop 2025-03-17

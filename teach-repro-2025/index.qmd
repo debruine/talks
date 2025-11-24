@@ -1,0 +1,278 @@
+```{r}
+#| include: false
+url <- "https://debruine.github.io/talks/teach-repro-2025/"
+subtitle <- sprintf("[%s](%s)", url, url)
+# make QR code
+qrcode::qr_code(url) |> qrcode::generate_svg("images/qrcode.svg")
+
+library(tidyverse)
+set_theme(theme_bw())
+```
+---
+title: "Teaching Reproducible Research"
+subtitle: "`r subtitle`"
+author: "Lisa DeBruine  \n![](images/qrcode.svg){width=300}"
+format: 
+  revealjs:
+    logo: images/or_logo.png
+    theme: [default, ../style.scss]
+    transition: none
+    transition-speed: fast
+    df-print: kable
+    code-annotations: select
+execute:
+  warning: false
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Abstract
+
+In this talk, I will give an overview of how the School of Psychology and Neuroscience transformed our undergraduate and postgraduate curriculum to prioritise data skills and reproducibility using open source software and teaching resources. While our ethos is agnostic to specific tools and coding languages, I will give specific examples of how we use R, RStudio, and RMarkdown/quarto to instill transferable skills and good research practice supporting computational reproducibility and literate coding.
+
+# Key Concepts
+
+![[UofG Open Research Video](https://youtu.be/gGxtgEiRxYo)](images/open-research.png){fig-alt="Sketch of a 'map' to open research. There is a rainbow over the Glasgow Uni Building. Each stripe is labelled: Open research has many benefits, Visibilty, Transparency & reproducibility, Collaboration, Efficient use of funds, Credit for ideas, Public confidence."}
+
+## Replication
+
+![From *A manifesto for reproducible science* [10.1038/s41562-016-0021](https://doi.org/10.1038/s41562-016-0021)](images/lego-replication.png){fig-alt="An idealized version of the hypothetico-deductive model of the scientific method. Various potential threats to this model exist (indicated in red), including lack of replication, hypothesizing after the results are known (HARKing), poor study design, low statistical power, analytical flexibility, P-hacking, publication bias and lack of data sharing."}
+
+## Reproducibility
+
+![via the [Turing Way](https://the-turing-way.netlify.app/reproducible-research/overview/overview-definitions.html)](images/reproducible-matrix.jpg){fig-alt="Reproducible: same data, same analysis; Replicable: different data, smae analysis; Robust: same data, different analysis; Generalisable: different data, different analysis"}
+
+
+
+::: {.notes}
+
+* Reproducible: A result is reproducible when the same analysis steps performed on the same dataset consistently produces the same answer.
+
+*  Replicable: A result is replicable when the same analysis performed on different datasets produces qualitatively similar answers.
+
+*  Robust: A result is robust when the same dataset is subjected to different analysis workflows to answer the same research question (for example one pipeline written in R and another written in Python) and a qualitatively similar or identical answer is produced. Robust results show that the work is not dependent on the specificities of the programming language chosen to perform the analysis.
+
+*  Generalisable: Combining replicable and robust findings allow us to form generalisable results. Note that running an analysis on a different software implementation and with a different dataset does not provide generalised results. There will be many more steps to know how well the work applies to all the different aspects of the research question. Generalisation is an important step towards understanding that the result is not dependent on a particular dataset nor a particular version of the analysis pipeline.
+
+:::
+
+
+## Error Detection
+
+<div style="float:right;width:35%;margin-left: 1em;">
+![](images/statcheck.png)
+</div>
+
+An analysis by [Nuijten et al. (2016)](https://doi.org/10.3758/s13428-015-0664-2) of over 250K p-values reported in 8 major psych journals from 1985 to 2013 found that:
+
+* half the papers had at least one inconsistent p-value 
+* 1/8 of papers had errors that could affect conclusions
+* errors more likely to be erroneously significant than not
+
+
+    
+## Analysis Reproducibility
+
+Of 35 articles published in *Cognition* with usable data (but no code, [Hardwicke et al. (2018)](https://doi.org/10.1098/rsos.180448) found:
+
+- only 11 could be reproduced independently 
+- 11 were reproducible with the original authors' help
+- 13 were not reproducible even by the original authors
+
+## Code Reproducibility
+
+Of 62 Registered Reports in psychology published from 2014--2018, 36 had data and analysis code, 31 could be run, and 21 reproduced all the main results ([Obels et al, 2020](https://doi.org/10.1177/2515245920918872))
+
+![](images/obels.png){fig-alt="Flowchart of sample: starting from sampling frame of 188 paper, to 79 in psychology domian, to 62 in final data set, to 36 with data and code available, to 31 with runnable scripts, to 21 with reproducible results"}
+
+
+
+# Key Practices
+
+
+## Open Materials/Data/Code
+
+::: {layout-nrow=1}
+
+![[Protocols.io](https://www.gla.ac.uk/myglasgow/it/softwareandonlinetools/protocols-io/) ([webinar](https://www.protocols.io/webinars/UoG-protocolsio))](images/protocols.io.png){fig-alt="Raccoon face logo"}
+
+![[UKRN Primer](https://osf.io/preprints/osf/qw9ck_v1)](images/ukrn.jpg){fig-alt="UKRN logo"}
+
+![[Open Science Framework (OSF)](https://osf.io)](images/osf.png){fig-alt="OSF logo"}
+
+![[GitHub](https://github.com)](images/github.png){fig-alt="Shadow logo of a cat head with an octopus tentacle tail"}
+
+:::
+
+Ideally, give open materials a permanent reference, like a DOI.
+
+## Literate Coding
+
+Originated by Donald Knuth, literate coding intersperses code and human-readable documentation into an executable paper. [Quarto](https://quarto.org/) is an open-source technical publishing system that supports literate coding in multiple languages.
+
+::: {layout="[2,1,1]"}
+
+![Quarto Logo](images/quarto.png)\
+
+![RStudio Logo](images/rstudio-logo.png)\
+
+![Jupyter Logo](images/jupyter-logo.png)\
+
+:::
+
+## Markdown
+
+:::: columns
+::: {.column width="50%"}
+
+``` markdown
+### Basic Markdown
+
+Now I can make:
+
+* headers
+* paragraphs
+* lists
+* styled text:
+    * *italics*, **bold**
+    * ^superscript^, ~subscript~ 
+    * ~~strikethrough~~
+    * `verbatim code`
+* [links](https://psyteachr.github.io)
+```
+
+:::
+::: {.column width="50%" style="font-size: 60%;"}
+
+
+### Basic Markdown
+
+Now I can make:
+
+* headers
+* paragraphs
+* lists
+* styled text:
+    * *italics*, **bold**
+    * ^superscript^, ~subscript~
+    * ~~strikethrough~~
+    * `verbatim code`
+* [links](https://psyteachr.github.io)
+
+:::
+::::
+
+## Code Chunks {.smaller}
+
+You can do any combination of run and display code and its output.
+
+```{r}
+#| echo: fenced
+
+norm <- rnorm(1e5, mean = 100, sd = 10)
+p <- pnorm(norm, mean = 100, sd = 10)
+plot(norm, p)
+```
+
+
+## Figures {.smaller}
+
+Create figures in markdown or code and reference by their label (e.g., `@fig-penguins`) to automatically number and link in text (@fig-penguins).
+
+```{r}
+#| echo: fenced
+#| label: fig-penguins
+#| fig-cap: Penguin bill length by body mass
+ggplot(penguins, aes(x = body_mass, y = bill_len, colour = species)) +
+  geom_point() +
+  labs(x = "Body Mass (g)", y = "Bill Length (mm)")
+```
+
+
+## Tables {.smaller}
+
+Create tables in markdown or code in link like figures (e.g., `@tbl-mean` for @tbl-mean).
+
+```{r}
+#| echo: fenced
+#| label: tbl-mean
+#| tbl-cap: Mean body measurements by species.
+summarise(penguins, 
+          across(bill_len:body_mass, \(x) mean(x, na.rm = TRUE)),
+          .by = species) |>
+  mutate(across(-species, \(x) signif(x, 3)))
+```
+
+## Flowcharts
+
+See the [quarto guide](https://quarto.org/docs/authoring/diagrams.html) for more diagramming tools.
+
+```{mermaid}
+%%| echo: fenced
+%%| label: fig-mermaid
+%%| fig-cap: A sample mermaid diagram
+flowchart LR
+  A[Bird] --> B(Penguin)
+  B --> C{Locomotion}
+  C --> D[Swim]
+  C --> E[Waddle]
+```
+
+## Code Annotation
+
+Add `# <1>` after lines of code and a list of annotations after the code block. Set `code-annotations` in the YAMLO header to below (default), hover or select (better for touchscreens).
+
+```{r}
+#| echo: fenced
+penguin_measures <- penguins |>       # <1>
+  mutate(                             # <2>
+    bill_ratio = bill_dep / bill_len, # <3>
+    bill_area  = bill_dep * bill_len  # <3>
+  )                                   # <4>
+```
+
+1. Create a new data frame called `penguin_measures` from `penguins`, and then,
+2. Start the `mutate()` function to add new columns.
+3. Create new names for the new columns (`bill_ratio` and `bill_area`), and set them equal to functions of the existing columns `bill_dep` and `bill_len`
+4. Make sure to close the `mutate()` function.
+
+## Document Types
+
+You can create any pandoc format with quarto (see the [full list](https://quarto.org/docs/output-formats/all-formats.html)).
+
+My favourites are [reports](https://psyteachr.github.io/reprores-v5/demos/report4_demo.html), [websites](https://psyteachr.github.io/), [books](https://debruine.github.io/30DCC-2022/), and [presentations](https://debruine.github.io/talks/) (this talk was written in quarto!).
+
+
+## Code Review
+
+The process of methodically and systematically checking over code--your own or someone else's--after it has been written.
+
+-   Is the code is legible and clear?
+-   Is the analysis reproducible?
+-   Are other outputs reproducible?
+-   Does the code do what was intended?
+-   Does the code follows best practices?
+
+Code Review [Slides](https://debruine.github.io/talks/RIOT-code-review-2022/)/[Video](https://www.youtube.com/watch?v=-e5EQIw9rAg)
+
+
+# Resources
+
+* [PsyTeachR](https://psyteachr.github.io/) - open source teaching materials for UG, PG and professional upskilling in data skills
+* [Quarto](https://quarto.org/) - extensive documentation for literate coding
+* [Code Review Guide](https://github.com/code-check-club) - an in-progress guide that has been on pause for a while, but will be revived soon
+* [UK Reproducibility Network](https://www.ukrn.org/) - primers and resources for open research
+* [UofG Research Integrity](https://www.gla.ac.uk/myglasgow/ris/researchintegrity/) - contact this team with any questions!
+
+# Thank You!
+
+Teaching Reproducible Research
+
+`r subtitle`
+
+Lisa DeBruine
+
+![](images/qrcode.svg){width=300}
+
