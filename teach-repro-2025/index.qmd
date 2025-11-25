@@ -32,13 +32,62 @@ knitr::opts_chunk$set(echo = TRUE)
 
 In this talk, I will give an overview of how the School of Psychology and Neuroscience transformed our undergraduate and postgraduate curriculum to prioritise data skills and reproducibility using open source software and teaching resources. While our ethos is agnostic to specific tools and coding languages, I will give specific examples of how we use R, RStudio, and RMarkdown/quarto to instill transferable skills and good research practice supporting computational reproducibility and literate coding.
 
-# Key Concepts
+# Why Code?
+
+## Values and Priorities
+
+:::: columns
+::: {.column width="50%"}
+### UofG Values
+
+* ⭐️ Ambition & Excellence
+* 🔎 Curiosity & Discovery
+* 🧭 **Integrity & Truth**
+* 🤝Inclusive Community
+
+<div style="font-size: 20px">
+
+“We value the quality of our research over its quantity” 
+
+“How research is done is as important as what is done”
+
+</div>
+
+:::
+::: {.column width="50%"}
+### Research Culture Priorities
+
+* Research Recognition
+* Collegiality
+* **Research Integrity**
+* **Open Research**
+* Career Development
+
+:::
+::::
+
+
+
+## Open Research
 
 ![[UofG Open Research Video](https://youtu.be/gGxtgEiRxYo)](images/open-research.png){fig-alt="Sketch of a 'map' to open research. There is a rainbow over the Glasgow Uni Building. Each stripe is labelled: Open research has many benefits, Visibilty, Transparency & reproducibility, Collaboration, Efficient use of funds, Credit for ideas, Public confidence."}
 
-## Replication
+## Open Materials/Data/Code
 
-![From *A manifesto for reproducible science* [10.1038/s41562-016-0021](https://doi.org/10.1038/s41562-016-0021)](images/lego-replication.png){fig-alt="An idealized version of the hypothetico-deductive model of the scientific method. Various potential threats to this model exist (indicated in red), including lack of replication, hypothesizing after the results are known (HARKing), poor study design, low statistical power, analytical flexibility, P-hacking, publication bias and lack of data sharing."}
+::: {layout-nrow=1}
+
+![[Protocols.io](https://www.gla.ac.uk/myglasgow/it/softwareandonlinetools/protocols-io/) ([webinar](https://www.protocols.io/webinars/UoG-protocolsio))](images/protocols.io.png){fig-alt="Raccoon face logo"}
+
+![[UKRN Primer](https://osf.io/preprints/osf/qw9ck_v1)](images/ukrn.jpg){fig-alt="UKRN logo"}
+
+![[Open Science Framework (OSF)](https://osf.io)](images/osf.png){fig-alt="OSF logo"}
+
+![[GitHub](https://github.com)](images/github.png){fig-alt="Shadow logo of a cat head with an octopus tentacle tail"}
+
+:::
+
+Ideally, give open materials a permanent reference, like a DOI.
+
 
 ## Reproducibility
 
@@ -71,7 +120,6 @@ An analysis by [Nuijten et al. (2016)](https://doi.org/10.3758/s13428-015-0664-2
 * 1/8 of papers had errors that could affect conclusions
 * errors more likely to be erroneously significant than not
 
-
     
 ## Analysis Reproducibility
 
@@ -91,28 +139,32 @@ Of 62 Registered Reports in psychology published from 2014--2018, 36 had data an
 
 # Key Practices
 
-
-## Open Materials/Data/Code
-
-::: {layout-nrow=1}
-
-![[Protocols.io](https://www.gla.ac.uk/myglasgow/it/softwareandonlinetools/protocols-io/) ([webinar](https://www.protocols.io/webinars/UoG-protocolsio))](images/protocols.io.png){fig-alt="Raccoon face logo"}
-
-![[UKRN Primer](https://osf.io/preprints/osf/qw9ck_v1)](images/ukrn.jpg){fig-alt="UKRN logo"}
-
-![[Open Science Framework (OSF)](https://osf.io)](images/osf.png){fig-alt="OSF logo"}
-
-![[GitHub](https://github.com)](images/github.png){fig-alt="Shadow logo of a cat head with an octopus tentacle tail"}
-
-:::
-
-Ideally, give open materials a permanent reference, like a DOI.
-
 ## Literate Coding
 
-Originated by Donald Knuth, literate coding intersperses code and human-readable documentation into an executable paper. [Quarto](https://quarto.org/) is an open-source technical publishing system that supports literate coding in multiple languages.
+An approach to programming that focuses on the creation of a document containing a mix of human-readable narrative text and machine-readable computer code.
 
-::: {layout="[2,1,1]"}
+
+```{r}
+#| echo: false
+df <- data.frame(id = 1:10, correct = 0)
+```
+
+
+```{r}
+#| echo: false
+#| results: 'asis'
+paste("<textarea style='width:100%; height: 11em; font-size: 24px;'>",
+    "## Data Exclusions\n",
+    "Why we excluded these subjects...\n",
+    "```&lcub;r}",
+    "# exclude subjects with more than 50% errors",
+    "df_excluded <- df |> group_by(id) |> filter(mean(correct) >= .5)",
+    "```",
+    "</textarea>",
+    sep = "\n") |> cat()
+```
+
+::: {layout="[4,1,1]"}
 
 ![Quarto Logo](images/quarto.png)\
 
@@ -125,7 +177,7 @@ Originated by Donald Knuth, literate coding intersperses code and human-readable
 ## Markdown
 
 :::: columns
-::: {.column width="50%"}
+::: {.column width="60%"}
 
 ``` markdown
 ### Basic Markdown
@@ -144,8 +196,7 @@ Now I can make:
 ```
 
 :::
-::: {.column width="50%" style="font-size: 60%;"}
-
+::: {.column width="25%" style="width: 35%; font-size: 60%;"}
 
 ### Basic Markdown
 
@@ -164,9 +215,9 @@ Now I can make:
 :::
 ::::
 
-## Code Chunks {.smaller}
+## Code Chunks
 
-You can do any combination of run and display code and its output.
+You can run and/or display code and/or its output.
 
 ```{r}
 #| echo: fenced
@@ -222,7 +273,7 @@ flowchart LR
 
 ## Code Annotation
 
-Add `# <1>` after lines of code and a list of annotations after the code block. Set `code-annotations` in the YAMLO header to below (default), hover or select (better for touchscreens).
+Add `# <1>` after lines of code and a list of annotations after the code block. Set `code-annotations` in the YAML header to `below` (default), `hover` or `select` (better for touchscreens).
 
 ```{r}
 #| echo: fenced
@@ -257,8 +308,27 @@ The process of methodically and systematically checking over code--your own or s
 
 Code Review [Slides](https://debruine.github.io/talks/RIOT-code-review-2022/)/[Video](https://www.youtube.com/watch?v=-e5EQIw9rAg)
 
+# How to Get Started
 
-# Resources
+## Embedding Data Skills in Education
+
+> Promoting reproducibility and open science requires not only teaching relevant values and practices, but also providing the skills needed for reproducible data analysis. Improving students’ data skills will also enhance their employability within and beyond the academic context.
+
+McAleer, P., Stack, N., Woods, H., DeBruine, L. M., Paterson, H. M., Nordmann, E., … Barr, D. J. (2022). Embedding Data Skills in Research Methods Education: Preparing Students for Reproducible Research. <https://doi.org/10.31234/osf.io/hq68s>
+
+## Challenges
+
+* Upskilling Staff / Support Systems
+* Curriculum Reform
+    * More than just swapping out SPSS for R
+    * One-off classes versus embedding data skills
+* Choosing Software
+    * R, Python, Julia or MatLab
+    * IDEs, GitHub/GitLab
+    * Quarto or RMarkdown/Jupyter
+
+
+## Resources
 
 * [PsyTeachR](https://psyteachr.github.io/) - open source teaching materials for UG, PG and professional upskilling in data skills
 * [Quarto](https://quarto.org/) - extensive documentation for literate coding
