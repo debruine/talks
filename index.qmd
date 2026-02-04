@@ -6,7 +6,8 @@ format:
     css: style.scss
 ---
 
-* [Academic Lead for Good Research Practice](ALfGRP) for Engineering 2026-01-13
+* [Good Research Practice](GRP)
+* [Academic Lead for Good Research Practice](ALfGRP-eng) for Engineering 2026-01-13
 * [Fake it until you make it: How and why to simulate research data](fake-it-2024/) Glasgow SPN M&Ms 2024-11-26
 * [Teaching Reproducible Research](teach-repro-2025) for UofG Maths and Stats seminar 2025-11-25
 * [Using Data Simulation in the Classroom](Leuven-2025) for Leuven Statistics Days 2025-05-26
