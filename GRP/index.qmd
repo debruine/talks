@@ -16,19 +16,8 @@ format:
     transition-speed: fast
 ---
 
-## Good Research Practice Network {.smaller}
 
-* 25 [School/Unit Advisors](https://www.gla.ac.uk/myglasgow/ris/researchintegrity/advisers/collegeschoolchampsandadvisors/)
-* 4 College Champions 
-    * Arts & Humanities: Dahlia Porter
-    * MVLS: Simon Milling
-    * Science & Engineering: Sonja Franke-Arnold
-    * Social Sciences: Louise Kennefick 
-* Academic Lead for GRP (Lisa DeBruine)
-* Research Integrity Team (Amanda McKenna, Sam Oakley, Elinor Toland)
-* Various research support staff
-
-## Values
+## University of Glasgow Values
 
 ::: {layout-ncol=4}
 
@@ -48,6 +37,14 @@ format:
 
 - “We value the quality of our research over its quantity” 
 - “How research is done is as important as what is done”
+
+## Research Culture Priorities
+
+- **Research Recognition**: <span style="font-size: 70%;">All colleagues are valued for their varied contributions to a diverse range of research activities and outputs</span>
+- **Collegiality**: <span style="font-size: 70%;">People actively work together to support each other to succeed</span>
+- **Research Integrity**: <span style="font-size: 70%;">We engage with and produce research that meets the highest standards of integrity</span>
+- **Open Research**: <span style="font-size: 70%;">We are committed to openness, transparency, rigour, and reproducibility</span>
+- **Career Development**: <span style="font-size: 70%;">We support all members of our research ecology to advance in their chosen career path</span>
 
 ## Culture Change Pyramid
 
@@ -85,6 +82,35 @@ Processes are documented for others to assess and learn from
 
 
 # Key practices
+
+## Contributorship
+
+:::: columns
+::: {.column width="50%"}
+
+* Conceptualization 
+* Data curation 
+* Formal analysis 
+* Funding acquisition 
+* Investigation 
+* Methodology 
+* Project administration 
+
+:::
+::: {.column width="50%"}
+
+* Resources 
+* Software 
+* Supervision 
+* Validation 
+* Visualization 
+* Writing (original draft)
+* Writing (review & editing)
+
+:::
+::::
+
+Tenzing: [App](https://rollercoaster.shinyapps.io/tenzing/)/[Paper](https://doi.org/10.1371/journal.pone.0244611)
 
 ## Open Materials/Data/Code
 
@@ -200,7 +226,19 @@ For the purpose of open access, the author(s) has applied a Creative Commons Att
 ::::
 
 
-# Resources
+## Good Research Practice Network {.smaller}
+
+* 25 [School/Unit Advisors](https://www.gla.ac.uk/myglasgow/ris/researchintegrity/advisers/collegeschoolchampsandadvisors/)
+* 4 College Champions 
+    * Arts & Humanities: Dahlia Porter
+    * MVLS: Simon Milling
+    * Science & Engineering: Sonja Franke-Arnold
+    * Social Sciences: Louise Kennefick 
+* Academic Lead for GRP (Lisa DeBruine)
+* Research Integrity Team (Amanda McKenna, Sam Oakley, Elinor Toland)
+* Various research support staff
+
+## Other Resources
 
 ::: {layout-ncol=6}
 
