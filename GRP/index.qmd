@@ -16,11 +16,8 @@ format:
     transition-speed: fast
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 ## Good Research Practice Network {.smaller}
+
 * 25 [School/Unit Advisors](https://www.gla.ac.uk/myglasgow/ris/researchintegrity/advisers/collegeschoolchampsandadvisors/)
 * 4 College Champions 
     * Arts & Humanities: Dahlia Porter
@@ -73,14 +70,19 @@ Stakeholders can access research outputs
 
 Processes are documented for others to assess and learn from
 
+## Who is GRP for?
+
+![[UKRN Open Research Acrooss Disciplines](https://www.ukrn.org/disciplines/)](images/disciplines.png)
+
+## Reproducibility
+
+![Scriberia. CC-BY 4.0. DOI: [10.5281/zenodo.3332807](https://doi.org/10.5281/zenodo.3332807)](images/reproducibility.jpg){fig-alt="Image of a map map showing the 'path' from data to tools to results to code"}
 
 ## Replication Crisis
 
 ![From A manifesto for reproducible science, [10.1038/s41562-016-0021](https://doi.org/10.1038/s41562-016-0021)](images/lego-replication.png){fig-alt="An idealized version of the hypothetico-deductive model of the scientific method. Various potential threats to this model exist (indicated in red), including lack of replication, hypothesizing after the results are known (HARKing), poor study design, low statistical power, analytical flexibility, P-hacking, publication bias and lack of data sharing."}
 
-## Reproducibility
 
-![Scriberia. CC-BY 4.0. DOI: [10.5281/zenodo.3332807](https://doi.org/10.5281/zenodo.3332807)](images/reproducibility.jpg){fig-alt="Image of a map map showing the 'path' from data to tools to results to code"}
 
 # Key practices
 
@@ -175,6 +177,27 @@ Of 62 Registered Reports in psychology published from 2014--2018, 36 had data an
 For the purpose of open access, the author(s) has applied a Creative Commons Attribution (CC BY) licence to any Author Accepted Manuscript version arising from this submission.
 
 - [Policy](https://www.gla.ac.uk/research/strategy/ourpolicies/publications-policy/)
+
+## Next Steps
+
+:::: columns
+
+::: {.column width="60%"}
+
+* Read [Easing into Open Science](https://doi.org/10.1525/collabra.18684)
+* Get an [ORCiD](https://orcid.org/register)
+* Ask your team about open research practices and tools in your areas
+* Think about open research (especially open data) in the planning stages
+
+:::
+
+::: {.column width="40%"}
+
+![Open Science research practices across the research cycle](images/easing_path.jpg){height="10em" fig-alt="Flowchart of main steps and practices. Conceptualisation: journal club, project workflow; Design: Preregistration, Registered reports, data sharing planning; Analysis: Reproducible code; Reporting: transparent writing; Dissemination: Preprints, data sharing"}
+
+:::
+
+::::
 
 
 # Resources
