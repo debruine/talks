@@ -216,13 +216,19 @@ Lisa DeBruine<br>
 </section>
 <section id="why-credit-software" class="slide level2">
 <h2>Why credit software?</h2>
-<p>Software makes the (academic) world go ’round.</p>
-<p>DORA Principles: Value diverse scholarly outputs beyond standard articles, including datasets, software, protocols, and code</p>
-<p>So other people can find and use your software</p>
+<ul>
+<li>Transparency</li>
+<li>Funder requirements</li>
+<li>So you can cite your software</li>
+<li>So other people can find and use your software</li>
+<li>Responsible Recognition: We value diverse scholarly outputs beyond standard articles, including datasets, software, protocols, and code (<a href="https://sfdora.org">DORA</a>)</li>
+</ul>
 </section></section>
 <section>
 <section id="github" class="title-slide slide level1 center">
 <h1>GitHub</h1>
+<div class="columns">
+<div class="column" style="width:67%;">
 <ul>
 <li>README</li>
 <li>Clear role descriptions with ORCiDs</li>
@@ -230,6 +236,9 @@ Lisa DeBruine<br>
 <li>CITATION.cff</li>
 <li>Releases</li>
 </ul>
+</div><div class="column" style="width:33%;">
+<p><img data-src="images/github.png"></p>
+</div></div>
 </section>
 <section id="readme" class="slide level2">
 <h2>README</h2>
@@ -259,6 +268,65 @@ Lisa DeBruine<br>
 <li><a href="https://choosealicense.com/licenses/">choose a license</a></li>
 </ul>
 </section>
+<section id="license-comparison" class="slide level2 smaller">
+<h2>License Comparison</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 12%">
+<col style="width: 25%">
+<col style="width: 12%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>License</th>
+<th>Commercial use?</th>
+<th>Open mods?</th>
+<th>Patent?</th>
+<th>Good choice when…</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>MIT</strong></td>
+<td>✅ Yes</td>
+<td>❌ No</td>
+<td>❌ No</td>
+<td>You want <strong>simple, unrestricted reuse</strong>.</td>
+</tr>
+<tr class="even">
+<td><strong>BSD 3-Clause</strong></td>
+<td>✅ Yes</td>
+<td>❌ No</td>
+<td>❌ No</td>
+<td>You want permissive reuse plus <strong>non-endorsement protection</strong>.</td>
+</tr>
+<tr class="odd">
+<td><strong>Apache 2.0</strong></td>
+<td>✅ Yes</td>
+<td>❌ No</td>
+<td>✅ Yes</td>
+<td>You want permissive reuse plus <strong>patent protection</strong>.</td>
+</tr>
+<tr class="even">
+<td><strong>LGPLv3</strong></td>
+<td>✅ Yes, with conditions</td>
+<td>⚠️ Changes must be open</td>
+<td>✅ Yes</td>
+<td>You’re releasing a <strong>library</strong> with weak copyleft.</td>
+</tr>
+<tr class="odd">
+<td><strong>GPLv3</strong></td>
+<td>⚠️ Yes, with conditions</td>
+<td>✅ Generally</td>
+<td>✅ Yes</td>
+<td>You want <strong>derivative software to remain open</strong>.</td>
+</tr>
+</tbody>
+</table>
+<p>``</p>
+</section>
 <section id="citation.cff" class="slide level2">
 <h2>CITATION.cff</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href=""></a><span class="fu">cff-version</span><span class="kw">:</span><span class="at"> </span><span class="fl">1.2.0</span></span>
@@ -286,6 +354,8 @@ Lisa DeBruine<br>
 </section>
 <section id="zenodo" class="slide level2">
 <h2>Zenodo</h2>
+<div class="columns">
+<div class="column" style="width:67%;">
 <ul>
 <li>Get a <a href="https://zenodo.org">Zenodo</a> account</li>
 <li>Link your GitHub account</li>
@@ -295,19 +365,39 @@ Lisa DeBruine<br>
 <li>Get your Zenodo DOI(s) and badge</li>
 <li>Publish a new release for each version</li>
 </ul>
+</div><div class="column" style="width:33%;">
+<p><img data-src="images/zenodo.png"></p>
+</div></div>
 </section>
 <section id="other-repositories" class="slide level2">
 <h2>Other Repositories</h2>
 <p>You can archive a version of your software in a repository that provides DOIs, such as <a href="https://figshare.com/">Figshare</a> or <a href="https://datadryad.org/">Dryad</a>.</p>
 <p>This is more suitable for software that is no longer maintained or under development.</p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="images/figshare.png"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="images/dryad.png"></p>
+</div>
+</div>
+</div>
 </section>
 <section id="cran" class="slide level2">
 <h2>CRAN</h2>
+<div class="columns">
+<div class="column" style="width:67%;">
 <p>If you write R packages, accepted CRAN submissions now get a DOI automatically.</p>
 <p><a href="https://doi.org/10.32614/CRAN.package.faux" class="uri">https://doi.org/10.32614/CRAN.package.faux</a></p>
+</div><div class="column" style="width:33%;">
+<p><img data-src="images/cran.png"></p>
+</div></div>
 </section>
 <section id="joss" class="slide level2">
 <h2>JOSS</h2>
+<div class="columns">
+<div class="column" style="width:67%;">
 <ul>
 <li><a href="https://joss.theoj.org/">Journal of Open Source Software</a></li>
 <li>Paper with software description</li>
@@ -315,6 +405,9 @@ Lisa DeBruine<br>
 <li>Paper and code reviewed via GitHub issues</li>
 <li><a href="https://joss.readthedocs.io/en/latest/submitting.html">Submission</a></li>
 </ul>
+</div><div class="column" style="width:33%;">
+<p><img data-src="images/joss.jpg"></p>
+</div></div>
 </section></section>
 <section id="enlighten" class="title-slide slide level1 center">
 <h1>Enlighten</h1>

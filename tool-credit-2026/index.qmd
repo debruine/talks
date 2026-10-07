@@ -34,19 +34,30 @@ This talk covers why and how you can get credit for your research software. Proj
 
 ## Why credit software?
 
-Software makes the (academic) world go 'round.
+* Transparency
+* Funder requirements
+* So you can cite your software
+* So other people can find and use your software
+* Responsible Recognition: We value diverse scholarly outputs beyond standard articles, including datasets, software, protocols, and code ([DORA](https://sfdora.org)) 
 
-DORA Principles: Value diverse scholarly outputs beyond standard articles, including datasets, software, protocols, and code
 
-So other people can find and use your software
 
 # GitHub
+
+:::: {.columns}
+::: {.column width="67%"}
 
 * README
 * Clear role descriptions with ORCiDs
 * Explicit License
 * CITATION.cff
 * Releases
+
+:::
+::: {.column width="33%"}
+![](images/github.png)
+:::
+::::
 
 ## README
 
@@ -70,6 +81,17 @@ All projects should have a README that explains:
 * makes clear who is liable e.g. if something goes wrong with the software
 * will increase the impact of your research through reuse and development by others
 * [choose a license](https://choosealicense.com/licenses/)
+
+## License Comparison {.smaller}
+
+| License |Commercial use? | Open mods? | Patent? | Good choice when... |
+|---|----|--------|----|-------------|
+| **MIT**  | ✅ Yes | ❌ No | ❌ No | You want **simple, unrestricted reuse**. |
+| **BSD 3-Clause**  | ✅ Yes | ❌ No | ❌ No | You want permissive reuse plus **non-endorsement protection**. |
+| **Apache 2.0**  | ✅ Yes | ❌ No | ✅ Yes | You want permissive reuse plus **patent protection**. |
+| **LGPLv3**  | ✅ Yes, with conditions | ⚠️ Changes must be open | ✅ Yes | You're releasing a **library** with weak copyleft. |
+| **GPLv3**  | ⚠️ Yes, with conditions | ✅ Generally | ✅ Yes | You want **derivative software to remain open**. |
+``
 
 ## CITATION.cff
 
@@ -100,6 +122,8 @@ A Digital Object Identifier is a unique and permanent ID used to identify academ
 
 ## Zenodo
 
+:::: {.columns}
+::: {.column width="67%"}
 * Get a [Zenodo](https://zenodo.org) account
 * Link your GitHub account
 * Sync your repositories
@@ -107,6 +131,12 @@ A Digital Object Identifier is a unique and permanent ID used to identify academ
 * Create a release on GitHub
 * Get your Zenodo DOI(s) and badge
 * Publish a new release for each version
+:::
+
+::: {.column width="33%"}
+![](images/zenodo.png)
+:::
+::::
 
 ## Other Repositories
 
@@ -114,19 +144,43 @@ You can archive a version of your software in a repository that provides DOIs, s
 
 This is more suitable for software that is no longer maintained or under development.
 
+::: {layout-ncol=2}
+![](images/figshare.png)
+
+![](images/dryad.png)
+:::
+
 ## CRAN
+
+:::: {.columns}
+::: {.column width="67%"}
 
 If you write R packages, accepted CRAN submissions now get a DOI automatically.
 
 <https://doi.org/10.32614/CRAN.package.faux>
 
+:::
+::: {.column width="33%"}
+![](images/cran.png)
+:::
+::::
+
 ## JOSS
+
+:::: {.columns}
+::: {.column width="67%"}
 
 * [Journal of Open Source Software](https://joss.theoj.org/)
 * Paper with software description
 * Links to code repository
 * Paper and code reviewed via GitHub issues
 * [Submission](https://joss.readthedocs.io/en/latest/submitting.html)
+
+:::
+::: {.column width="33%"}
+![](images/joss.jpg)
+:::
+::::
 
 # Enlighten
 
