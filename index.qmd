@@ -6,7 +6,7 @@ format:
     css: style.scss
 ---
 
-* [Getting Credit for Tool Creation](tool-creadit-2026) for M&Ms 2026-10-07
+* [Getting Credit for Tool Creation](tool-credit-2026) for M&Ms 2026-10-07
 * [Good Research Practice](GRP)
 * [Power and Simulation](https://scienceverse.org/talks/2026-power-sim) for the 10th annual [Summer School on Statistical Methods for Linguistics and Psychology](https://vasishth.github.io/smlp2026/) 2026-08-25
 * [Academic Lead for Good Research Practice](ALfGRP-eng) for Engineering 2026-01-13

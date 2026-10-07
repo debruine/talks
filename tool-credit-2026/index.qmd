@@ -189,7 +189,7 @@ Just like accepted papers, you should track your datasets, code, software, and a
 
 # Resources
 
-* [Institute for Resaerch Software](https://www.software.ac.uk/)
+* [Institute for Research Software](https://www.software.ac.uk/)
 * [FAIR Principles for research software](https://doi.org/10.1038/s41597-022-01710-x)
 * [Code Refinery](https://coderefinery.org/)
 
