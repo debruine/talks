@@ -6,6 +6,7 @@ format:
     css: style.scss
 ---
 
+* [Getting Credit for Data and Software](credit-data-2026) for Staff Meeting 2026-11-25
 * [Getting Credit for Tool Creation](tool-credit-2026) for M&Ms 2026-10-07
 * [Good Research Practice](GRP)
 * [Power and Simulation](https://scienceverse.org/talks/2026-power-sim) for the 10th annual [Summer School on Statistical Methods for Linguistics and Psychology](https://vasishth.github.io/smlp2026/) 2026-08-25
